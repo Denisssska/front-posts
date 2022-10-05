@@ -15,7 +15,10 @@ export const PostApi={
     getPosts(){
         return instance.get('/posts')
     },
-    getOnePost(postId:string){
+    getOnePost(postId){
         return instance.get(`/posts/${postId}`)
+    },
+    getTags(){
+        return instance.get('/tags')
     }
 }

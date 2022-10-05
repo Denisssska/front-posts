@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="" />
+    <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
+      <change afterPath="$PROJECT_DIR$/src/store/slices/userReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/postsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/postsApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/userApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddComment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TagsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TagsBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/Hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/Hooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FullPost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/postsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/postsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +36,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="104ea3da-6b67-4b3e-9eea-f1698959e0ed" />
+        <option name="url" value="git@github.com:Archakov06/mern-blog-frontend.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -37,9 +62,8 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/mern-blog-frontend/src/api",
+    "last_opened_file_path": "D:/ESD-USB/todoWithRTC/todoRTC",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,6 +76,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\mern-blog-frontend\src\store\slices" />
       <recent name="D:\mern-blog-frontend\src\api" />
       <recent name="D:\mern-blog-frontend\src\store" />
       <recent name="D:\mern-blog-frontend\src\hooks" />
@@ -84,8 +109,18 @@
       <updated>1664839659166</updated>
       <workItem from="1664839662635" duration="2529000" />
       <workItem from="1664853737246" duration="1085000" />
-      <workItem from="1664896962340" duration="13264000" />
+      <workItem from="1664896962340" duration="13808000" />
+      <workItem from="1664956426896" duration="12142000" />
+      <workItem from="1664969346650" duration="4644000" />
     </task>
+    <task id="LOCAL-00001" summary="new">
+      <created>1664913030348</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664913030348</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,5 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="new" />
+    <option name="LAST_COMMIT_MESSAGE" value="new" />
   </component>
 </project>

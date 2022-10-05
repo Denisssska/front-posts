@@ -3,7 +3,8 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {postsReducer} from "./slices/postsReducer";
 
 
-export type StateAppType = ReturnType<typeof reducersBox>;
+
+// export type StateAppType = ReturnType<typeof reducersBox>;
 const reducersBox = combineReducers({
     posts: postsReducer,
 })
@@ -12,5 +13,5 @@ export const store = configureStore({
     middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk)
 })
 
-export type AppDispatch = typeof store.dispatch;
+// export type AppDispatch = typeof store.dispatch;
 

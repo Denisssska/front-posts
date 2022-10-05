@@ -14,13 +14,13 @@ export const UserApi = {
             email: payload.email,
             password: payload.password,
             fullName: payload.fullName,
-            avatarUrl: payload.avatarUrl
+            avatarUrl: payload.avatarUrl || ''
         })
     },
-    login(email: string, password: string) {
+    login(email, password) {
         return instance.post('/auth/login', {email, password})
     },
-    authMe(token: string) {
+    authMe(token) {
         return instance.get('/auth/me', token)
     }
 }

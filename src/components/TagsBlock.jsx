@@ -11,7 +11,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { SideBlock } from "./SideBlock";
 import {NavLink} from "react-router-dom";
 
-export const TagsBlock = ({ items, isLoading = true }) => {
+export const TagsBlock = ({ items, isLoading}) => {
   return (
     <SideBlock title="Тэги">
       <List>
