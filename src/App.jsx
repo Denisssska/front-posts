@@ -11,8 +11,8 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(authMeTC())
-    dispatch(getPostsTC());
-    dispatch(getTagsTC());
+    // dispatch(getPostsTC());
+    // dispatch(getTagsTC());
   }, []);
     return (
         <>

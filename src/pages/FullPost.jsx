@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-
 import { AddComment, CommentsBlock, Post } from "../components";
 import { useParams } from "react-router-dom";
 import { PostApi } from "../api/postsApi";
 import { useSelector } from "react-redux";
+import ReactMarkdown from "react-markdown";
+
 
 export const FullPost = () => {
   const [obj, setObj] = useState({});
   const [postLoading, setPostLoading] = useState(true);
   const { id } = useParams();
-  const {items} = useSelector(state=>state.user.login)
+  const { items } = useSelector(state => state.user.login);
   console.log(obj);
   useEffect(() => {
     PostApi.getOnePost(id).then(
@@ -22,28 +23,21 @@ export const FullPost = () => {
       alert("Ошибка при получении статьи");
     });
   }, [id]);
-  //
-  // const { posts } = useSelector(state => state.posts);
-  // const isPostLoading = posts.status === "loading";
-  // const post = posts.items.find(item => item._id === id);
 
   return (
     <>
       {postLoading ? <Post isLoading={postLoading} /> : <Post
         title={obj.title}
-        imageUrl={obj.imageUrl}
+        imageUrl={`http://localhost:6006${obj.imageUrl}`}
         tags={obj.tags}
         viewsCount={obj.viewsCount}
         createdAt={obj.createdAt}
-        //user={obj.user}
+        user={obj.user}
         id={id}
         isEditable={items._id === obj.user}
       >
-        <p>
-          Hey there! 👋 I'm Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Dolore impedit, incidunt itaque magni repellat veniam. Aspernatur at, deserunt
-          dignissimos distinctio earum, fuga inventore iste labore minus nobis perspiciatis porro possimus?
-        </p>
+        <ReactMarkdown children={obj.text}/>
+
       </Post>}
       <CommentsBlock
         items={[

@@ -28,7 +28,9 @@ export const Post = ({
   const onClickRemove = () => {
   };
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <div
+      className={clsx(styles.root, { [styles.rootFull]: isFullPost })}
+    >
 
       {isEditable && <div className={styles.editButtons}>
         <NavLink to={`/posts/${id}/edit`}>
@@ -41,10 +43,11 @@ export const Post = ({
         </IconButton>
       </div>}
 
-      <img
-        className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
+      {imageUrl?<img
+         //style={{margin:"0 auto",marginTop:'2%',display: 'block'}}
+          className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
         src={imageUrl || 'https://logos.flamingtext.com/Word-Logos/post-design-sketch-name.png'} alt={title}
-      />
+      />:<></>}
       <div className={styles.wrapper}>
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>

@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { CommentsBlock, Post, TagsBlock } from "../components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authMeTC } from "../store/slices/userReducer";
+import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 
 export const Home = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getPostsTC());
+    dispatch(getTagsTC());
+  }, []);
   const { posts, tags } = useSelector(state => state.posts);
   const {items} = useSelector(state=>state.user.login)
   const isPostLoading = posts.status === "loading";
@@ -24,7 +31,7 @@ export const Home = () => {
               <Post
                 key={index}
                 title={obj.title}
-                imageUrl={obj.imageUrl}
+                imageUrl={obj.imageUrl?`http://localhost:6006${obj.imageUrl}`:''}
                 id={obj._id}
                 tags={obj.tags}
                 viewsCount={obj.viewsCount}

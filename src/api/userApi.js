@@ -22,5 +22,8 @@ export const UserApi = {
   },
   authMe() {
     return instance.get("/auth/me");
+  },
+  uploadFile(formData){
+    return instance.post('/upload',formData)
   }
 };

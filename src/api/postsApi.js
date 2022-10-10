@@ -9,7 +9,7 @@ import instance from "./instance";
 export const PostApi={
     createPost(payload){
         return instance.post('/posts',{
-            title:payload.title,text:payload.text,tags:payload.text,imageUrl:payload.imageUrl
+            title:payload.title,text:payload.text,tags:payload.tags,imageUrl:payload.imageUrl
         })
     },
     getPosts(){
