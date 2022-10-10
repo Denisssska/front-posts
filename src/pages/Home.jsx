@@ -1,27 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
-
-import { Post, TagsBlock, CommentsBlock } from "../components";
-
-import { useAppDispatch, useAppSelector } from "../hooks/Hooks";
-import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { CommentsBlock, Post, TagsBlock } from "../components";
+import { useSelector } from "react-redux";
 
 export const Home = () => {
-  // const dispatch = useDispatch();
-  //
-  // useEffect(() => {
-  //   dispatch(getPostsTC());
-  //   dispatch(getTagsTC());
-  // }, []);
-
   const { posts, tags } = useSelector(state => state.posts);
+  const {items} = useSelector(state=>state.user.login)
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";
-   console.log(posts);
-  // console.log(tags);
+
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
@@ -41,6 +30,7 @@ export const Home = () => {
                 viewsCount={obj.viewsCount}
                 createdAt={obj.createdAt}
                 user={obj.user}
+                isEditable ={items?._id === obj.user._id}
               />
             ))}
         </Grid>

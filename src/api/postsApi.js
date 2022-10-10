@@ -1,5 +1,5 @@
 import React from "react";
-import {instance} from "./instance";
+import instance from "./instance";
 // type PostPropsType={
 //     title:string
 //     text:string

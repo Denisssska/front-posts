@@ -1,35 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { Post } from "../components";
-import { AddComment } from "../components";
-import { CommentsBlock } from "../components";
+import { AddComment, CommentsBlock, Post } from "../components";
 import { useParams } from "react-router-dom";
-import { useAppSelector } from "../hooks/Hooks";
+import { PostApi } from "../api/postsApi";
 import { useSelector } from "react-redux";
 
 export const FullPost = () => {
+  const [obj, setObj] = useState({});
+  const [postLoading, setPostLoading] = useState(true);
   const { id } = useParams();
-  const { posts } = useSelector(state => state.posts);
-  const isPostLoading = posts.status === "loading";
-  const post = posts.items.find(item => item._id === id);
+  const {items} = useSelector(state=>state.user.login)
+  console.log(obj);
+  useEffect(() => {
+    PostApi.getOnePost(id).then(
+      res => {
+        setObj(res.data);
+        setPostLoading(false);
+      }
+    ).catch((err) => {
+      console.warn(err);
+      alert("Ошибка при получении статьи");
+    });
+  }, [id]);
+  //
+  // const { posts } = useSelector(state => state.posts);
+  // const isPostLoading = posts.status === "loading";
+  // const post = posts.items.find(item => item._id === id);
 
   return (
     <>
-      {isPostLoading ? <Post isLoading={true} /> : <Post
-        title={post.title}
-        imageUrl={post.imageUrl}
-        tags={post.tags}
-        viewsCount={post.viewsCount}
-        createdAt={post.createdAt}
-        user={post.user}
+      {postLoading ? <Post isLoading={postLoading} /> : <Post
+        title={obj.title}
+        imageUrl={obj.imageUrl}
+        tags={obj.tags}
+        viewsCount={obj.viewsCount}
+        createdAt={obj.createdAt}
+        //user={obj.user}
         id={id}
+        isEditable={items._id === obj.user}
       >
         <p>
-          Hey there! 👋 I'm starting a new series called "Roast the Code", where
-          I will share some code, and let YOU roast and improve it. There's not
-          much more to it, just be polite and constructive, this is an exercise
-          so we can all learn together. Now then, head over to the repo and
-          roast as hard as you can!!
+          Hey there! 👋 I'm Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Dolore impedit, incidunt itaque magni repellat veniam. Aspernatur at, deserunt
+          dignissimos distinctio earum, fuga inventore iste labore minus nobis perspiciatis porro possimus?
         </p>
       </Post>}
       <CommentsBlock

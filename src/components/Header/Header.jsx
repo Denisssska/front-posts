@@ -1,26 +1,34 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-
-import styles from './Header.module.scss';
-import Container from '@mui/material/Container';
+import React from "react";
+import Button from "@mui/material/Button";
+import styles from "./Header.module.scss";
+import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutTC } from "../../store/slices/userReducer";
 
 export const Header = () => {
-  const isAuth = false;
+  const { login, registration } = useSelector(state => state.user);
+  const isAuth = login.status === "success" || registration.status === "registered";
+  const dispatch = useDispatch();
 
-  const onClickLogout = () => {};
+  const onClickLogout = () => {
+    if (window.confirm("Вы действительно хотите выйти?")) {
+      dispatch(logoutTC());
+      localStorage.removeItem("token");
+    }
+  };
 
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <NavLink  className={styles.logo} to="/">
+          <NavLink className={styles.logo} to="/">
             <div>BLOG</div>
           </NavLink>
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                <NavLink to="/posts/create">
+                <NavLink to="/add-post">
                   <Button variant="contained">Написать статью</Button>
                 </NavLink>
                 <Button onClick={onClickLogout} variant="contained" color="error">

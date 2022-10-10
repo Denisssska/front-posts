@@ -19,7 +19,7 @@ export const Post = ({
                        children,
                        isFullPost,
                        isLoading, tags, viewsCount,createdAt,
-                       user
+                       user,isEditable
                      }) => {
   if (isLoading) {
     return <PostSkeleton />;
@@ -30,7 +30,7 @@ export const Post = ({
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
 
-      <div className={styles.editButtons}>
+      {isEditable && <div className={styles.editButtons}>
         <NavLink to={`/posts/${id}/edit`}>
           <IconButton color="primary">
             <EditIcon />
@@ -39,11 +39,11 @@ export const Post = ({
         <IconButton onClick={onClickRemove} color="secondary">
           <DeleteIcon />
         </IconButton>
-      </div>
+      </div>}
 
       <img
         className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-        src={imageUrl} alt={title}
+        src={imageUrl || 'https://logos.flamingtext.com/Word-Logos/post-design-sketch-name.png'} alt={title}
       />
       <div className={styles.wrapper}>
         <UserInfo {...user} additionalText={createdAt} />
