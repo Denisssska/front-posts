@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { AddComment, CommentsBlock, Post } from "../components";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PostApi } from "../api/postsApi";
 import { useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 
 
 export const FullPost = () => {
+  const navigate = useNavigate();
   const [obj, setObj] = useState({});
   const [postLoading, setPostLoading] = useState(true);
   const { id } = useParams();
   const { items } = useSelector(state => state.user.login);
-  console.log(obj);
+  const { posts } = useSelector(state => state.posts);
+  const isPostDeleted = posts.status === "Статья удалена";
+  //console.log(obj);
+
   useEffect(() => {
     PostApi.getOnePost(id).then(
       res => {
@@ -23,20 +27,22 @@ export const FullPost = () => {
       alert("Ошибка при получении статьи");
     });
   }, [id]);
-
+  if (isPostDeleted) {
+    navigate("/");
+  }
   return (
     <>
       {postLoading ? <Post isLoading={postLoading} /> : <Post
         title={obj.title}
-        imageUrl={`http://localhost:6006${obj.imageUrl}`}
+        imageUrl={obj.imageUrl ? `http://localhost:6006${obj.imageUrl}` : ""}
         tags={obj.tags}
         viewsCount={obj.viewsCount}
         createdAt={obj.createdAt}
         user={obj.user}
         id={id}
-        isEditable={items._id === obj.user}
+        isEditable={items._id === obj.user._id}
       >
-        <ReactMarkdown children={obj.text}/>
+        <ReactMarkdown children={obj.text} />
 
       </Post>}
       <CommentsBlock

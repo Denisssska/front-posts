@@ -10,7 +10,8 @@ import styles from "./Post.module.scss";
 import { UserInfo } from "../UserInfo";
 import { PostSkeleton } from "./Skeleton";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../hooks/Hooks";
+import { deletePostTC } from "../../store/slices/postsReducer";
+import { useDispatch } from "react-redux";
 
 export const Post = ({
                        imageUrl,
@@ -18,15 +19,21 @@ export const Post = ({
                        id,
                        children,
                        isFullPost,
-                       isLoading, tags, viewsCount,createdAt,
-                       user,isEditable
+                       isLoading, tags, viewsCount, createdAt,
+                       user, isEditable
                      }) => {
+
+  const dispatch = useDispatch();
+  //console.log(id);
+  const onClickRemove = () => {
+    if(window.confirm('Вы действительно хотите удалить пост?')){
+      dispatch(deletePostTC(id));
+    }
+  };
+
   if (isLoading) {
     return <PostSkeleton />;
   }
-
-  const onClickRemove = () => {
-  };
   return (
     <div
       className={clsx(styles.root, { [styles.rootFull]: isFullPost })}
@@ -34,7 +41,7 @@ export const Post = ({
 
       {isEditable && <div className={styles.editButtons}>
         <NavLink to={`/posts/${id}/edit`}>
-          <IconButton color="primary">
+          <IconButton  color="primary">
             <EditIcon />
           </IconButton>
         </NavLink>
@@ -43,11 +50,11 @@ export const Post = ({
         </IconButton>
       </div>}
 
-      {imageUrl?<img
-         //style={{margin:"0 auto",marginTop:'2%',display: 'block'}}
-          className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-        src={imageUrl || 'https://logos.flamingtext.com/Word-Logos/post-design-sketch-name.png'} alt={title}
-      />:<></>}
+      {imageUrl ? <img
+        //style={{margin:"0 auto",marginTop:'2%',display: 'block'}}
+        className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
+        src={imageUrl || "https://logos.flamingtext.com/Word-Logos/post-design-sketch-name.png"} alt={title}
+      /> : <></>}
       <div className={styles.wrapper}>
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>

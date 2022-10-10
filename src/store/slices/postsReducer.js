@@ -15,6 +15,15 @@ export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async () => {
   const { data } = await PostApi.getPosts();
   return data;
 });
+export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postId) => {
+  const { data } = await PostApi.deletePost(postId);
+  return data;
+});
+export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({postId,payload}) => {
+  const { data } = await PostApi.updatePost(postId,payload);
+  console.log(data);
+  // return data;
+});
 export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async () => {
   const { data } = await PostApi.getTags();
   return data;
@@ -47,6 +56,16 @@ const postsSlice = createSlice({
     [getTagsTC.rejected]: (state) => {
       state.tags.items = [];
       state.tags.status = "error";
+    },
+    [deletePostTC.pending]: (state, action) => {
+      console.log(action.meta.arg);
+      state.posts.items = state.posts.items.filter(obj => obj._id !== action.meta.arg);
+    },
+    [deletePostTC.fulfilled]: (state, action) => {
+      state.posts.status = action.payload.message;
+    },
+    [deletePostTC.rejected]: (state) => {
+      state.posts.status = "error";
     }
   }
 });

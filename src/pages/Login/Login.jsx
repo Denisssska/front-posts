@@ -24,7 +24,7 @@ export const Login = () => {
    if(!data.payload){
      alert('Не удалось авторизироваться...')
    }
-    if( 'token' in data.payload){
+    if(localStorage.getItem('token')|| 'token' in data.payload){
       window.localStorage.setItem('token',data.payload.token)
     }else{
       alert('Не удалось авторизоваться...')

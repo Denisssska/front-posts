@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -6,14 +6,32 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { UserApi } from "../../api/userApi";
 import { PostApi } from "../../api/postsApi";
-
 
 export const AddPost = () => {
   const { isAuth } = useSelector((state) => state.user.authMe);
   const navigate = useNavigate();
+  const { id } = useParams();
+  const postIdEdit = id
+  const isEditing = Boolean(id);
+  useEffect(() => {
+    if (id) {
+      PostApi.getOnePost(id).then(
+        res => {
+          console.log(res.data);
+          setTitle(res.data.title);
+          setText(res.data.text);
+          setTags(res.data.tags.join(','));
+          setImageUrl(res.data.imageUrl);
+        }
+      ).catch((err) => {
+        console.warn(err);
+        alert("Ошибка при получении статьи");
+      });
+    }
+  }, []);
   const inputFileRef = useRef(null);
 
   const [text, setText] = useState("");
@@ -40,11 +58,11 @@ export const AddPost = () => {
       const fields = {
         title,
         imageUrl,
-        tags:tags.split(','),
+        tags: tags.split(","),
         text
       };
-      const { data } = await PostApi.createPost(fields);
-      const id = data._id;
+      const { data } = isEditing ? await PostApi.updatePost(postIdEdit, fields) : await PostApi.createPost(fields);
+      const id = isEditing?postIdEdit: data._id;
       navigate(`/posts/${id}`);
     } catch (e) {
       console.warn(e);
@@ -118,7 +136,7 @@ export const AddPost = () => {
       />
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
-          Опубликовать
+          {isEditing ? "Опубликовать" : "Сохранить"}
         </Button>
         <NavLink to="/">
           <Button size="large">Отмена</Button>

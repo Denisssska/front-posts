@@ -4,20 +4,21 @@ import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
-import { authMeTC } from "../store/slices/userReducer";
 import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 
 export const Home = () => {
+  const { posts, tags } = useSelector(state => state.posts);
+  const isPostDeleted = posts.status === "Статья удалена";
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getPostsTC());
     dispatch(getTagsTC());
-  }, []);
-  const { posts, tags } = useSelector(state => state.posts);
+  }, [dispatch]);
+
   const {items} = useSelector(state=>state.user.login)
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";
-
+  
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
