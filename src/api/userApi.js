@@ -1,5 +1,5 @@
 import instance from "./instance";
-import React from "react";
+
 // type UserPayloadType = {
 //     email: string
 //     password: string
@@ -25,5 +25,13 @@ export const UserApi = {
   },
   uploadFile(formData){
     return instance.post('/upload',formData)
+  },
+  updateUserFile(formData){
+    return instance.post('/update',formData)
+  },
+  changeUserPhoto(userId,avatarUrl){
+    return instance.patch(`auth/${userId}`,{
+      avatarUrl
+    })
   }
 };

@@ -21,7 +21,7 @@ export const AddPost = () => {
     if (id) {
       PostApi.getOnePost(id).then(
         res => {
-          console.log(res.data);
+          //console.log(res.data);
           setTitle(res.data.title);
           setText(res.data.text);
           setTags(res.data.tags.join(','));

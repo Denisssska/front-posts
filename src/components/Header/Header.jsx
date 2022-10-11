@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutTC } from "../../store/slices/userReducer";
+import { BasicModal } from "../../pages/ProfilePage";
 
 export const Header = () => {
   const { login, registration } = useSelector(state => state.user);
@@ -28,6 +29,7 @@ export const Header = () => {
           <div className={styles.buttons}>
             {isAuth ? (
               <>
+                <BasicModal />
                 <NavLink to="/add-post">
                   <Button variant="contained">Написать статью</Button>
                 </NavLink>

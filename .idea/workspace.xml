@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
+      <change afterPath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/instance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/instance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserInfo/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserInfo/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/userApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserInfo/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserInfo/UserInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FullPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +105,7 @@
       <workItem from="1664956426896" duration="12142000" />
       <workItem from="1664969346650" duration="68564000" />
       <workItem from="1665478796918" duration="912000" />
-      <workItem from="1665480827865" duration="835000" />
+      <workItem from="1665480827865" duration="16488000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>
