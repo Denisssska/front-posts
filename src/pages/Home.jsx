@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
+import { PORT } from "../api/instance";
 
 export const Home = () => {
   const { posts, tags } = useSelector(state => state.posts);
@@ -32,7 +33,7 @@ export const Home = () => {
               <Post
                 key={index}
                 title={obj.title}
-                imageUrl={obj.imageUrl?`http://localhost:6006${obj.imageUrl}`:''}
+                imageUrl={obj.imageUrl?`${PORT}${obj.imageUrl}`:''}
                 id={obj._id}
                 tags={obj.tags}
                 viewsCount={obj.viewsCount}

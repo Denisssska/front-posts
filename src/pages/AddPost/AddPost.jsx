@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { UserApi } from "../../api/userApi";
 import { PostApi } from "../../api/postsApi";
+import { PORT } from "../../api/instance";
 
 export const AddPost = () => {
   const { isAuth } = useSelector((state) => state.user.authMe);
@@ -106,7 +107,7 @@ export const AddPost = () => {
         </Button>
           <img
             className={styles.image}
-            src={`http://localhost:6006${imageUrl}`}
+            src={`${PORT}${imageUrl}`}
             alt="Uploaded"
           /></>
       )}

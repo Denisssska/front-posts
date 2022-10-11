@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { PostApi } from "../api/postsApi";
 import { useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
+import { PORT } from "../api/instance";
 
 
 export const FullPost = () => {
@@ -34,7 +35,7 @@ export const FullPost = () => {
     <>
       {postLoading ? <Post isLoading={postLoading} /> : <Post
         title={obj.title}
-        imageUrl={obj.imageUrl ? `http://localhost:6006${obj.imageUrl}` : ""}
+        imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : ""}
         tags={obj.tags}
         viewsCount={obj.viewsCount}
         createdAt={obj.createdAt}
