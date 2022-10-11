@@ -14,7 +14,7 @@ export const UserApi = {
       email: payload.email,
       password: payload.password,
       fullName: payload.fullName,
-      avatarUrl: payload.avatarUrl || "https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-icon-eps-file-easy-to-edit-default-avatar-photo-placeholder-profile-icon-124557887.jpg"
+      avatarUrl: payload.avatarUrl || ""
     });
   },
   login(email, password) {
