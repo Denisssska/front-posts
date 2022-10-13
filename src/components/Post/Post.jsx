@@ -24,9 +24,8 @@ export const Post = ({
                      }) => {
 
   const dispatch = useDispatch();
-  //console.log(id);
   const onClickRemove = () => {
-    if(window.confirm('Вы действительно хотите удалить пост?')){
+    if (window.confirm("Вы действительно хотите удалить пост?")) {
       dispatch(deletePostTC(id));
     }
   };
@@ -41,7 +40,7 @@ export const Post = ({
 
       {isEditable && <div className={styles.editButtons}>
         <NavLink to={`/posts/${id}/edit`}>
-          <IconButton  color="primary">
+          <IconButton color="primary">
             <EditIcon />
           </IconButton>
         </NavLink>

@@ -9,17 +9,21 @@ import { PORT } from "../api/instance";
 
 export const Home = () => {
   const { posts, tags } = useSelector(state => state.posts);
-  const isPostDeleted = posts.status === "Статья удалена";
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
+  const { items } = useSelector(state => state.user.login);
+
+  useEffect(() => {
+    dispatch(getTagsTC());
+  }, []);
+
   useEffect(() => {
     dispatch(getPostsTC());
-    dispatch(getTagsTC());
-  }, [dispatch]);
+  }, [items.fullName, items.avatarUrl]);
 
-  const {items} = useSelector(state=>state.user.login)
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";
-  
+
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
@@ -29,17 +33,17 @@ export const Home = () => {
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) => isPostLoading ?
-            <Post key={index} isLoading={true} /> : (
+            <Post key={index} isLoading={isPostLoading} /> : (
               <Post
                 key={index}
                 title={obj.title}
-                imageUrl={obj.imageUrl?`${PORT}${obj.imageUrl}`:''}
+                imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : ""}
                 id={obj._id}
                 tags={obj.tags}
                 viewsCount={obj.viewsCount}
                 createdAt={obj.createdAt}
                 user={obj.user}
-                isEditable ={items?._id === obj.user._id}
+                isEditable={items?._id === obj.user._id}
               />
             ))}
         </Grid>

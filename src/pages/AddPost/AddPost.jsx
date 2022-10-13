@@ -15,7 +15,7 @@ export const AddPost = () => {
   const { isAuth } = useSelector((state) => state.user.authMe);
   const navigate = useNavigate();
   const { id } = useParams();
-  const postIdEdit = id
+  const postIdEdit = id;
   const isEditing = Boolean(id);
   useEffect(() => {
     if (id) {
@@ -24,7 +24,7 @@ export const AddPost = () => {
           //console.log(res.data);
           setTitle(res.data.title);
           setText(res.data.text);
-          setTags(res.data.tags.join(','));
+          setTags(res.data.tags.join(","));
           setImageUrl(res.data.imageUrl);
         }
       ).catch((err) => {
@@ -39,7 +39,6 @@ export const AddPost = () => {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleChangeFile = async (event) => {
     try {
@@ -55,7 +54,6 @@ export const AddPost = () => {
   };
   const onSubmit = async () => {
     try {
-      setLoading(true);
       const fields = {
         title,
         imageUrl,
@@ -63,7 +61,7 @@ export const AddPost = () => {
         text
       };
       const { data } = isEditing ? await PostApi.updatePost(postIdEdit, fields) : await PostApi.createPost(fields);
-      const id = isEditing?postIdEdit: data._id;
+      const id = isEditing ? postIdEdit : data._id;
       navigate(`/posts/${id}`);
     } catch (e) {
       console.warn(e);

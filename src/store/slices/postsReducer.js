@@ -19,8 +19,8 @@ export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postI
   const { data } = await PostApi.deletePost(postId);
   return data;
 });
-export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({postId,payload}) => {
-  const { data } = await PostApi.updatePost(postId,payload);
+export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }) => {
+  const { data } = await PostApi.updatePost(postId, payload);
   console.log(data);
   // return data;
 });

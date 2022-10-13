@@ -23,15 +23,15 @@ export const UserApi = {
   authMe() {
     return instance.get("/auth/me");
   },
-  uploadFile(formData){
-    return instance.post('/upload',formData)
+  uploadFile(formData) {
+    return instance.post("/upload", formData);
   },
-  updateUserFile(formData){
-    return instance.post('/update',formData)
+  updateUserFile(formData) {
+    return instance.post("/update", formData);
   },
-  changeUserPhoto(userId,avatarUrl){
-    return instance.patch(`auth/${userId}`,{
-      avatarUrl
-    })
+  changeUserPhotoAndName(userId, avatarUrl, fullName) {
+    return instance.patch(`auth/${userId}`, {
+      avatarUrl, fullName
+    });
   }
 };

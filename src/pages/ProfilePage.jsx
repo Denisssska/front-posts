@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { UserApi } from "../api/userApi";
 import Avatar from "@mui/material/Avatar";
 import { PORT } from "../api/instance";
-import { authMeTC } from "../store/slices/userReducer";
+import { TextField } from "@mui/material";
+import { updateUserStateTC } from "../store/slices/userReducer";
 
 const style = {
   position: "absolute",
@@ -22,19 +22,20 @@ const style = {
 };
 
 export const BasicModal = () => {
-  const { items } = useSelector(state => state.user.login);
+  const dispatch = useDispatch();
 
-  //const { items } = useSelector(state => state.user.login);
+  const { items } = useSelector(state => state.user.login);
+  console.log(items.fullName, items.avatarUrl);
+
   const [open, setOpen] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const inputFileRef = useRef(null);
+
+  const [avatarUrl, setAvatarUrl] = useState(items.avatarUrl);
+  const [fullName, setFullName] = useState(items.fullName);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {
+  const handleClose = () => setOpen(false);
 
-    setOpen(false);
-  };
-
-  const inputFileRef = useRef(null);
 
   const handleChangePhoto = async (event) => {
     try {
@@ -51,9 +52,9 @@ export const BasicModal = () => {
   };
   const submit = async () => {
     try {
-      const { data } = await UserApi.changeUserPhoto(items._id, avatarUrl);
-      console.log(data);
+      await UserApi.changeUserPhotoAndName(items._id, avatarUrl, fullName);
       setAvatarUrl("");
+      dispatch(updateUserStateTC({ fullName, avatarUrl }));
     } catch (e) {
       console.warn();
       alert("Ошибка при создании фото профиля");
@@ -74,8 +75,11 @@ export const BasicModal = () => {
             alt="Ava"
             src={`${PORT}${avatarUrl || items.avatarUrl}`}
             sx={{ width: 156, height: 156 }}
-            style={{ margin: "0 auto", display: "block" }}
+            style={{ margin: "2% auto", display: "block" }}
           />
+          <TextField style={{ margin: "0 auto", display: "block", textAlign: "center" }}
+                     size="small" placeholder="Изменить имя" value={fullName}
+                     onChange={(e) => setFullName(e.currentTarget.value)} />
           {/*<img style={{ margin: "0 auto", display: "block" }} src={items.avatarUrl} alt="" />*/}
           <Button onClick={() => inputFileRef.current.click()}
                   style={{ margin: "0 auto", display: "block", textAlign: "center" }}>

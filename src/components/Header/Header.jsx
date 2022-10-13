@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import styles from "./Header.module.scss";
 import Container from "@mui/material/Container";
@@ -9,6 +9,7 @@ import { BasicModal } from "../../pages/ProfilePage";
 
 export const Header = () => {
   const { login, registration } = useSelector(state => state.user);
+
   const isAuth = login.status === "success" || registration.status === "registered";
   const dispatch = useDispatch();
 
@@ -29,7 +30,7 @@ export const Header = () => {
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                <BasicModal />
+                <BasicModal user={login.items} />
                 <NavLink to="/add-post">
                   <Button variant="contained">Написать статью</Button>
                 </NavLink>

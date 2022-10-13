@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PostApi } from "../../api/postsApi";
 import { UserApi } from "../../api/userApi";
 
 const initialState = {
@@ -35,6 +34,13 @@ export const authMeTC = createAsyncThunk("/auth/authMe", async () => {
   const { data } = await UserApi.authMe();
   return data;
 });
+export const updateUserStateTC = createAsyncThunk("/auth/updateUserState", async ({
+                                                                                    fullName,
+                                                                                    avatarUrl
+                                                                                  }, thunkAPI) => {
+  thunkAPI.dispatch(updateUserStateAC({ fullName, avatarUrl }));
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState: initialState,
@@ -43,6 +49,10 @@ const userSlice = createSlice({
       state.login.items = {};
       state.login.status = action.payload;
       state.authMe.isAuth = false;
+    },
+    updateUserStateAC(state, action) {
+      state.login.items.fullName = action.payload.fullName;
+      state.login.items.avatarUrl = action.payload.avatarUrl;
     }
   },
   extraReducers: {
@@ -87,5 +97,5 @@ const userSlice = createSlice({
     }
   }
 });
-export const { logoutAC } = userSlice.actions;
+export const { logoutAC, updateUserStateAC } = userSlice.actions;
 export const userReducer = userSlice.reducer;
