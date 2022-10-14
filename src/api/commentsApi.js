@@ -1,18 +1,10 @@
-import React from "react";
 import instance from "./instance";
-// type PostPropsType={
-//     title:string
-//     text:string
-//     tags?:Array<string>
-//     imageUrl?:string
-// }
-export const PostApi = {
-  createPost(payload) {
-    return instance.post("/posts", {
-      title: payload.title,
-      text: payload.text,
-      tags: payload.tags,
-      imageUrl: payload.imageUrl
+
+export const CommentApi = {
+  createComment(payload) {
+    return instance.post("/comments", {
+      comment: payload.comment,
+   postId:payload.postId
     });
   },
   getPosts() {
