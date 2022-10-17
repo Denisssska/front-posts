@@ -3,31 +3,24 @@ import instance from "./instance";
 export const CommentApi = {
   createComment(payload) {
     return instance.post("/comments", {
-      comment: payload.comment,
-   postId:payload.postId
+      comment: payload.comment, postId: payload.postId
     });
   },
-  getPosts() {
+  getAllCommentsInPost(postId) {
+    return instance.get(`/comments/${postId}`);
+  },
+  getLastComments() {
     return instance.get("/posts");
   },
-  getOnePost(postId) {
-    return instance.get(`/posts/${postId}`);
+  getAllComments() {
+    return instance.get(`/comments`);
   },
-  deletePost(postId) {
-    return instance.delete(`/posts/${postId}`);
+  deleteComment(commentId) {
+    return instance.delete(`/comments/${commentId}`);
   },
-  updatePost(postId, payload) {
-    return instance.patch(`/posts/${postId}`, {
-      title: payload.title,
-      text: payload.text,
-      tags: payload.tags,
-      imageUrl: payload.imageUrl
+  updateComment(commentId, payload) {
+    return instance.patch(`/comments/${commentId}`, {
+      comment: payload.comment, postId: payload.postId
     });
-  },
-  getPopularPosts(limit){
-    return instance(`/posts/popular/${limit}`)
-  },
-  getTags() {
-    return instance.get("/tags");
   }
 };

@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
+      <change afterPath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/postsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/postsApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/commentsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/commentsApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/server-mongodb",
+    "last_opened_file_path": "D:/mern-blog-frontend/src/store/slices",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,7 +104,8 @@
       <workItem from="1665480827865" duration="16829000" />
       <workItem from="1665573838242" duration="26009000" />
       <workItem from="1665738144002" duration="593000" />
-      <workItem from="1665777553718" duration="677000" />
+      <workItem from="1665777553718" duration="1004000" />
+      <workItem from="1665993400683" duration="2169000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>
