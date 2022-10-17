@@ -18,6 +18,7 @@ export const CommentApi = {
   deleteComment(commentId) {
     return instance.delete(`/comments/${commentId}`);
   },
+
   updateComment(commentId, payload) {
     return instance.patch(`/comments/${commentId}`, {
       comment: payload.comment, postId: payload.postId
