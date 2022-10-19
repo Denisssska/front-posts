@@ -23,19 +23,14 @@ const style = {
 
 export const BasicModal = () => {
   const dispatch = useDispatch();
-
   const { items } = useSelector(state => state.user.login);
-  console.log(items.fullName, items.avatarUrl);
-
   const [open, setOpen] = useState(false);
   const inputFileRef = useRef(null);
-
   const [avatarUrl, setAvatarUrl] = useState(items.avatarUrl);
   const [fullName, setFullName] = useState(items.fullName);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
 
   const handleChangePhoto = async (event) => {
     try {

@@ -2,20 +2,29 @@ import React, { useEffect, useState } from "react";
 import { AddComment, CommentsBlock, Post } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostApi } from "../api/postsApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { PORT } from "../api/instance";
+import { getAllCommentsInPostTC } from "../store/slices/commentsReducer";
 
 
 export const FullPost = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [obj, setObj] = useState({});
   const [postLoading, setPostLoading] = useState(true);
+  const [commentsLoading, setCommentsLoading] = useState(true);
   const { id } = useParams();
   const { items } = useSelector(state => state.user.login);
+  console.log(items);
   const { posts } = useSelector(state => state.posts);
+  const { comments } = useSelector(state => state.comments);
+
   const isPostDeleted = posts.status === "Статья удалена";
-  //console.log(obj);
+  useEffect(() => {
+    dispatch(getAllCommentsInPostTC(id));
+    setCommentsLoading(false);
+  }, []);
 
   useEffect(() => {
     PostApi.getOnePost(id).then(
@@ -46,27 +55,11 @@ export const FullPost = () => {
         <ReactMarkdown children={obj.text} />
 
       </Post>}
-      <CommentsBlock
-        items={[
-          {
-            user: {
-              fullName: "Вася Пупкин",
-              avatarUrl: "https://mui.com/static/images/avatar/1.jpg"
-            },
-            text: "Это тестовый комментарий 555555"
-          },
-          {
-            user: {
-              fullName: "Иван Иванов",
-              avatarUrl: "https://mui.com/static/images/avatar/2.jpg"
-            },
-            text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top"
-          }
-        ]}
-        isLoading={false}
-      >
-        <AddComment />
-      </CommentsBlock>
+      {commentsLoading ? <CommentsBlock isLoading={commentsLoading} /> :
+        <CommentsBlock
+          items={comments.items}
+        >
+          {items.length && <AddComment img={items.avatarUrl} />}</CommentsBlock>}
     </>
   );
 };

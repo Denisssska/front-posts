@@ -16,8 +16,8 @@ export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", a
   const { data } = await CommentApi.getAllComments();
   return data;
 });
-export const getAllCommentsInPostTC = createAsyncThunk("/comments/getAllCommentsInPostTC", async () => {
-  const { data } = await CommentApi.getAllCommentsInPost();
+export const getAllCommentsInPostTC = createAsyncThunk("/comments/getAllCommentsInPostTC", async (postId) => {
+  const { data } = await CommentApi.getAllCommentsInPost(postId);
   return data;
 });
 export const updateCommentTC = createAsyncThunk("/comments/updateCommentTC", async ({ commentId, payload }) => {
@@ -32,45 +32,50 @@ export const deleteCommentTC = createAsyncThunk("/comments/deleteCommentTC", asy
 
 
 const commentSlice = createSlice({
-  name: "posts",
+  name: "comments",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    clearCommentsAC(state) {
+      state.comments.items = [];
+      state.comments.status = "loading";
+    }
+  },
   extraReducers: {
-    [getPostsTC.pending]: (state) => {
-      state.posts.items = [];
-      state.posts.status = "loading";
+    [createCommentTC.pending]: (state) => {
+      state.comments.items = state;
+      state.comments.status = "loading";
     },
-    [getPostsTC.fulfilled]: (state, action) => {
-      state.posts.items = action.payload;
-      state.posts.status = "loaded";
+    [createCommentTC.fulfilled]: (state, action) => {
+      state.comments.items = state.comments.items.push(action.payload);
+      state.comments.status = "loaded";
     },
-    [getPostsTC.rejected]: (state) => {
-      state.posts.items = [];
-      state.posts.status = "error";
+    [createCommentTC.rejected]: (state) => {
+      state.comments.items = [];
+      state.comments.status = "error";
     },
-    [getTagsTC.pending]: (state) => {
-      state.tags.items = [];
-      state.tags.status = "loading";
+    [getAllCommentsInPostTC.pending]: (state) => {
+      state.comments.items = [];
+      state.comments.status = "loading";
     },
-    [getTagsTC.fulfilled]: (state, action) => {
-      state.tags.items = action.payload;
-      state.tags.status = "loaded";
+    [getAllCommentsInPostTC.fulfilled]: (state, action) => {
+      state.comments.items = action.payload;
+      state.comments.status = "loaded";
     },
-    [getTagsTC.rejected]: (state) => {
-      state.tags.items = [];
-      state.tags.status = "error";
+    [getAllCommentsInPostTC.rejected]: (state) => {
+      state.comments.items = [];
+      state.comments.status = "error";
     },
-    [deletePostTC.pending]: (state, action) => {
+    [deleteCommentTC.pending]: (state, action) => {
       console.log(action.meta.arg);
-      state.posts.items = state.posts.items.filter(obj => obj._id !== action.meta.arg);
+      state.comments.items = state.posts.items.filter(obj => obj._id !== action.meta.arg);
     },
-    [deletePostTC.fulfilled]: (state, action) => {
-      state.posts.status = action.payload.message;
+    [deleteCommentTC.fulfilled]: (state, action) => {
+      state.comments.status = action.payload.message;
     },
-    [deletePostTC.rejected]: (state) => {
-      state.posts.status = "error";
+    [deleteCommentTC.rejected]: (state) => {
+      state.comments.status = "error";
     }
   }
 });
-
+export const { clearCommentsAC } = commentSlice.actions;
 export const commentsReducer = commentSlice.reducer;

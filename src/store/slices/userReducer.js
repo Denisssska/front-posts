@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UserApi } from "../../api/userApi";
+import { clearCommentsAC } from "./commentsReducer";
 
 const initialState = {
   login: {
@@ -19,7 +20,7 @@ export const loginTC = createAsyncThunk("/auth/loginTC", async ({ email, passwor
   return data;
 });
 export const logoutTC = createAsyncThunk("/auth/logoutTC", async (arg, thunkAPI) => {
-  return await thunkAPI.dispatch(logoutAC("loading"));
+   await thunkAPI.dispatch(logoutAC("loading"));
 });
 export const registrationTC = createAsyncThunk("/auth/registrationTC", async ({
                                                                                 email,

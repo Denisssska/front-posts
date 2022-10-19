@@ -7,8 +7,9 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
+import { PORT } from "../api/instance";
 
-export const CommentsBlock = ({ items, children, isLoading = true }) => {
+export const CommentsBlock = ({ items, children, isLoading }) => {
   return (
     <SideBlock title="Комментарии">
       <List>
@@ -19,7 +20,7 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                 {isLoading ? (
                   <Skeleton variant="circular" width={40} height={40} />
                 ) : (
-                  <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
+                  <Avatar alt={obj.user.fullName} src={`${PORT}${obj.user.avatarUrl}`} />
                 )}
               </ListItemAvatar>
               {isLoading ? (
@@ -30,7 +31,7 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
               ) : (
                 <ListItemText
                   primary={obj.user.fullName}
-                  secondary={obj.text}
+                  secondary={obj.comments}
                 />
               )}
             </ListItem>
