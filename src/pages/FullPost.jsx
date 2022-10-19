@@ -19,7 +19,7 @@ export const FullPost = () => {
 
   const { posts } = useSelector(state => state.posts);
   const { comments } = useSelector(state => state.comments);
-
+  console.log(comments);
   const isPostDeleted = posts.status === "Статья удалена";
   useEffect(() => {
     dispatch(getAllCommentsInPostTC(id));

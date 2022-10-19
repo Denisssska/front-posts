@@ -8,12 +8,12 @@ const initialState = {
     status: "loading"
   }
 };
-export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async (payload) => {
-  console.log(payload);
-  const { data } = await CommentApi.createComment(payload);
-  console.log(data);
-  return data;
-});
+// export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async ({comment,postId}) => {
+//   console.log(comment,postId);
+//   const { data } = await CommentApi.createComment({ comment,postId });
+//   console.log(data);
+//    return data;
+// });
 export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", async () => {
   const { data } = await CommentApi.getAllComments();
   return data;
@@ -44,18 +44,20 @@ const commentSlice = createSlice({
     }
   },
   extraReducers: {
-    [createCommentTC.pending]: (state) => {
-      state.comments.items = state;
-      state.comments.status = "loading";
-    },
-    [createCommentTC.fulfilled]: (state, action) => {
-      state.comments.items = state.comments.items.push(action.payload);
-      state.comments.status = "loaded";
-    },
-    [createCommentTC.rejected]: (state) => {
-      state.comments.items = [];
-      state.comments.status = "error";
-    },
+    // [createCommentTC.pending]: (state) => {
+    //   state.comments.items = state;
+    //   state.comments.status = "loading";
+    // },
+    // [createCommentTC.fulfilled]: (state, action) => {
+    //   console.log(state);
+    //   console.log(action.payload);
+    //    state.comments.items = state.comments.items.push(action.payload);
+    //   state.comments.status = "loaded";
+    // },
+    // [createCommentTC.rejected]: (state) => {
+    //   state.comments.items = state;
+    //   state.comments.status = "error";
+    // },
     [getAllCommentsInPostTC.pending]: (state) => {
       state.comments.items = [];
       state.comments.status = "loading";

@@ -3,7 +3,7 @@ import instance from "./instance";
 export const CommentApi = {
   createComment(payload) {
     return instance.post("/comments", {
-      comment: payload.comment, postId: payload.postId
+      comments: payload.comment, postId: payload.postId
     });
   },
   getAllCommentsInPost(postId) {

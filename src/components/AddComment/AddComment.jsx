@@ -7,18 +7,28 @@ import { PORT } from "../../api/instance";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createCommentTC } from "../../store/slices/commentsReducer";
+import { CommentApi } from "../../api/commentsApi";
 
 export const AddComment = ({ img }) => {
   const { id } = useParams();
+  console.log(id);
   const dispatch = useDispatch();
   const [commentInPost, setCommentInPost] = useState("");
-  const addComment = async (event) => {
+  const writeComment = (event) => {
     setCommentInPost(event.currentTarget.value);
-    const payload = {
-      comment: commentInPost,
-      postId: id
-    };
-    await dispatch(createCommentTC(payload));
+  };
+  const createComment = async () => {
+    try {
+      const payload = {
+        comment: commentInPost,
+        postId: id
+      };
+      const { data } = await CommentApi.createComment(payload);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+
   };
   return (
     <>
@@ -29,14 +39,14 @@ export const AddComment = ({ img }) => {
         />
         <div className={styles.form}>
           <TextField
-            onChange={addComment}
+            onChange={(event) => writeComment(event)}
             label="Написать комментарий"
             variant="outlined"
             maxRows={10}
             multiline
             fullWidth
           />
-          <Button variant="contained">Отправить</Button>
+          <Button onClick={createComment} variant="contained">Отправить</Button>
         </div>
       </div>
     </>
