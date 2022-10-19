@@ -11,7 +11,7 @@ import { PORT } from "../api/instance";
 
 export const CommentsBlock = ({ items, children, isLoading }) => {
   return (
-    <SideBlock title="Комментарии">
+    <SideBlock title={items.length ? "Комментарии" : "Нет комментариев"}>
       <List>
         {(isLoading ? [...Array(5)] : items).map((obj, index) => (
           <React.Fragment key={index}>

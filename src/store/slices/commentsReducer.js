@@ -9,7 +9,9 @@ const initialState = {
   }
 };
 export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async (payload) => {
+  console.log(payload);
   const { data } = await CommentApi.createComment(payload);
+  console.log(data);
   return data;
 });
 export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", async () => {
@@ -18,6 +20,7 @@ export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", a
 });
 export const getAllCommentsInPostTC = createAsyncThunk("/comments/getAllCommentsInPostTC", async (postId) => {
   const { data } = await CommentApi.getAllCommentsInPost(postId);
+  // localStorage.setItem('commentsInPost',data)
   return data;
 });
 export const updateCommentTC = createAsyncThunk("/comments/updateCommentTC", async ({ commentId, payload }) => {

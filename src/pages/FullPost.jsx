@@ -16,7 +16,7 @@ export const FullPost = () => {
   const [commentsLoading, setCommentsLoading] = useState(true);
   const { id } = useParams();
   const { items } = useSelector(state => state.user.login);
-  console.log(items);
+
   const { posts } = useSelector(state => state.posts);
   const { comments } = useSelector(state => state.comments);
 
@@ -55,11 +55,13 @@ export const FullPost = () => {
         <ReactMarkdown children={obj.text} />
 
       </Post>}
-      {commentsLoading ? <CommentsBlock isLoading={commentsLoading} /> :
+      {commentsLoading ? <CommentsBlock isLoading={commentsLoading} items={[]} /> :
         <CommentsBlock
           items={comments.items}
         >
-          {items.length && <AddComment img={items.avatarUrl} />}</CommentsBlock>}
+          {Boolean(items.avatarUrl) && <AddComment img={items.avatarUrl} />}
+          {/*<AddComment img={items.avatarUrl} />*/}
+        </CommentsBlock>}
     </>
   );
 };

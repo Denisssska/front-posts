@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FullPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/userReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +115,8 @@
       <workItem from="1666162006880" duration="870000" />
       <workItem from="1666162923184" duration="7598000" />
       <workItem from="1666175936718" duration="365000" />
+      <workItem from="1666176962681" duration="3645000" />
+      <workItem from="1666182795049" duration="386000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>
