@@ -16,7 +16,7 @@ export const TagsBlock = ({ items, isLoading}) => {
     <SideBlock title="Тэги">
       <List>
         {(isLoading ? [...Array(5)] : items).map((name, i) => (
-          <NavLink
+          <NavLink key={i}
             style={{ textDecoration: "none", color: "black" }}
             to={`/tags/${name}`}
           >

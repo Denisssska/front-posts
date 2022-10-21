@@ -6,7 +6,7 @@ import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 import { PORT } from "../api/instance";
-import { getAllCommentsInPostTC, getAllCommentsTC } from "../store/slices/commentsReducer";
+import { getAllCommentsTC } from "../store/slices/commentsReducer";
 
 export const Home = () => {
   const { posts, tags, comments } = useSelector(state => state.posts);
@@ -16,9 +16,7 @@ export const Home = () => {
   if (comments.items.length) {
     mass = comments.items.map(item => item.postId);
   }
-  console.log(mass);
-  //console.log(comments.items);
-  //console.log(posts.items);
+
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);

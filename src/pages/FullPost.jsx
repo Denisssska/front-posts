@@ -14,11 +14,12 @@ export const FullPost = () => {
   const [obj, setObj] = useState({});
   const [postLoading, setPostLoading] = useState(true);
   const [commentsLoading, setCommentsLoading] = useState(true);
+
   const { id } = useParams();
   const { items } = useSelector(state => state.user.login);
-
   const { posts } = useSelector(state => state.posts);
   const { comments } = useSelector(state => state.comments);
+
   console.log(comments);
   const isPostDeleted = posts.status === "Статья удалена";
   useEffect(() => {
@@ -47,6 +48,7 @@ export const FullPost = () => {
         imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : ""}
         tags={obj.tags}
         viewsCount={obj.viewsCount}
+        commentsCount={comments.items || []}
         createdAt={obj.createdAt}
         user={obj.user}
         id={id}

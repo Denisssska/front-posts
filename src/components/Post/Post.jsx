@@ -27,7 +27,6 @@ export const Post = ({
     commentsCount = commentsCount.filter(item => item === id);
   }
 
-  console.log(commentsCount);
   const onClickRemove = () => {
     if (window.confirm("Вы действительно хотите удалить пост?")) {
       dispatch(deletePostTC(id));
@@ -79,7 +78,7 @@ export const Post = ({
             </li>
             <li>
               <CommentIcon />
-              <span>{commentsCount.length || '0'}</span>
+              <span>{commentsCount.length || "0"}</span>
             </li>
           </ul>
         </div>

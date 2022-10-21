@@ -5,7 +5,7 @@ import { CommentApi } from "../../api/commentsApi";
 const initialState = {
   comments: {
     items: [],
-    allComments:[],
+    allComments: [],
     status: "loading"
   }
 };
@@ -50,7 +50,7 @@ const commentSlice = createSlice({
       state.comments.status = "loading";
     },
     [getAllCommentsTC.fulfilled]: (state, action) => {
-      state.comments.allComments=action.payload
+      state.comments.allComments = action.payload;
       state.comments.status = "loaded";
     },
     [getAllCommentsTC.rejected]: (state) => {
