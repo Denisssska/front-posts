@@ -6,13 +6,13 @@ import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 import { PORT } from "../api/instance";
+import { getAllCommentsTC } from "../store/slices/commentsReducer";
 
 export const Home = () => {
-  const { posts, tags } = useSelector(state => state.posts);
-
+  const { posts, tags, comments } = useSelector(state => state.posts);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.user.login);
-
+  //console.log(comments.items);
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
@@ -21,6 +21,9 @@ export const Home = () => {
     dispatch(getPostsTC());
   }, [items.fullName, items.avatarUrl]);
 
+  useEffect(() => {
+    dispatch(getAllCommentsTC());
+  }, []);
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";
 

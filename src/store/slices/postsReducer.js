@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PostApi } from "../../api/postsApi";
+import { getAllCommentsTC } from "./commentsReducer";
 
 const initialState = {
   posts: {
@@ -9,6 +10,10 @@ const initialState = {
   tags: {
     items: [],
     status: "loading"
+  },
+  comments:{
+    items:[],
+    status:"loading"
   }
 };
 export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async () => {
@@ -19,11 +24,11 @@ export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postI
   const { data } = await PostApi.deletePost(postId);
   return data;
 });
-export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }) => {
-  const { data } = await PostApi.updatePost(postId, payload);
-  console.log(data);
-  // return data;
-});
+// export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }) => {
+//   const { data } = await PostApi.updatePost(postId, payload);
+//   console.log(data);
+//   // return data;
+// });
 export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async () => {
   const { data } = await PostApi.getTags();
   return data;
@@ -33,6 +38,18 @@ const postsSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: {
+    [getAllCommentsTC.pending]: (state) => {
+      state.comments.items = [];
+      state.comments.status = "loading";
+    },
+    [getAllCommentsTC.fulfilled]: (state, action) => {
+      state.comments.items=action.payload
+      state.comments.status = "loaded";
+    },
+    [getAllCommentsTC.rejected]: (state) => {
+      state.comments.items = [];
+      state.comments.status = "error";
+    },
     [getPostsTC.pending]: (state) => {
       state.posts.items = [];
       state.posts.status = "loading";

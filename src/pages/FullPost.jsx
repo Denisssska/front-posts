@@ -5,7 +5,7 @@ import { PostApi } from "../api/postsApi";
 import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { PORT } from "../api/instance";
-import { getAllCommentsInPostTC } from "../store/slices/commentsReducer";
+import { getAllCommentsInPostTC, getAllCommentsTC } from "../store/slices/commentsReducer";
 
 
 export const FullPost = () => {
@@ -24,7 +24,7 @@ export const FullPost = () => {
   useEffect(() => {
     dispatch(getAllCommentsInPostTC(id));
     setCommentsLoading(false);
-  }, []);
+  }, [comments.allComments]);
 
   useEffect(() => {
     PostApi.getOnePost(id).then(

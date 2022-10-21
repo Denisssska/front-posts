@@ -5,6 +5,7 @@ import { CommentApi } from "../../api/commentsApi";
 const initialState = {
   comments: {
     items: [],
+    allComments:[],
     status: "loading"
   }
 };
@@ -44,20 +45,18 @@ const commentSlice = createSlice({
     }
   },
   extraReducers: {
-    // [createCommentTC.pending]: (state) => {
-    //   state.comments.items = state;
-    //   state.comments.status = "loading";
-    // },
-    // [createCommentTC.fulfilled]: (state, action) => {
-    //   console.log(state);
-    //   console.log(action.payload);
-    //    state.comments.items = state.comments.items.push(action.payload);
-    //   state.comments.status = "loaded";
-    // },
-    // [createCommentTC.rejected]: (state) => {
-    //   state.comments.items = state;
-    //   state.comments.status = "error";
-    // },
+    [getAllCommentsTC.pending]: (state) => {
+      state.comments.allComments = [];
+      state.comments.status = "loading";
+    },
+    [getAllCommentsTC.fulfilled]: (state, action) => {
+      state.comments.allComments=action.payload
+      state.comments.status = "loaded";
+    },
+    [getAllCommentsTC.rejected]: (state) => {
+      state.comments.allComments = [];
+      state.comments.status = "error";
+    },
     [getAllCommentsInPostTC.pending]: (state) => {
       state.comments.items = [];
       state.comments.status = "loading";
