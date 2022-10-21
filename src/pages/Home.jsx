@@ -6,13 +6,19 @@ import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 import { PORT } from "../api/instance";
-import { getAllCommentsTC } from "../store/slices/commentsReducer";
+import { getAllCommentsInPostTC, getAllCommentsTC } from "../store/slices/commentsReducer";
 
 export const Home = () => {
   const { posts, tags, comments } = useSelector(state => state.posts);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.user.login);
+  let mass = [];
+  if (comments.items.length) {
+    mass = comments.items.map(item => item.postId);
+  }
+  console.log(mass);
   //console.log(comments.items);
+  //console.log(posts.items);
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
@@ -24,6 +30,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getAllCommentsTC());
   }, []);
+
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";
 
@@ -44,6 +51,7 @@ export const Home = () => {
                 id={obj._id}
                 tags={obj.tags}
                 viewsCount={obj.viewsCount}
+                commentsCount={mass ? mass : []}
                 createdAt={obj.createdAt}
                 user={obj.user}
                 isEditable={items?._id === obj.user._id}

@@ -5,14 +5,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { PORT } from "../../api/instance";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { createCommentTC } from "../../store/slices/commentsReducer";
 import { CommentApi } from "../../api/commentsApi";
 
 export const AddComment = ({ img }) => {
   const { id } = useParams();
-  console.log(id);
-  const dispatch = useDispatch();
   const [commentInPost, setCommentInPost] = useState("");
   const writeComment = (event) => {
     setCommentInPost(event.currentTarget.value);

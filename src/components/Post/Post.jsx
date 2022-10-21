@@ -20,10 +20,14 @@ export const Post = ({
                        children,
                        isFullPost,
                        isLoading, tags, viewsCount, createdAt,
-                       user, isEditable
+                       user, isEditable, commentsCount
                      }) => {
-
   const dispatch = useDispatch();
+  if (commentsCount) {
+    commentsCount = commentsCount.filter(item => item === id);
+  }
+
+  console.log(commentsCount);
   const onClickRemove = () => {
     if (window.confirm("Вы действительно хотите удалить пост?")) {
       dispatch(deletePostTC(id));
@@ -75,7 +79,7 @@ export const Post = ({
             </li>
             <li>
               <CommentIcon />
-              <span>{"commentsCount" || "not messages"}</span>
+              <span>{commentsCount.length || '0'}</span>
             </li>
           </ul>
         </div>

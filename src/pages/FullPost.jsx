@@ -24,7 +24,7 @@ export const FullPost = () => {
   useEffect(() => {
     dispatch(getAllCommentsInPostTC(id));
     setCommentsLoading(false);
-  }, [comments.allComments]);
+  }, []);
 
   useEffect(() => {
     PostApi.getOnePost(id).then(
