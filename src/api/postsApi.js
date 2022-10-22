@@ -29,7 +29,8 @@ export const PostApi = {
       title: payload.title,
       text: payload.text,
       tags: payload.tags,
-      imageUrl: payload.imageUrl
+      imageUrl: payload.imageUrl,
+      commentsCount:payload.commentsCount
     });
   },
   getPopularPosts(limit){

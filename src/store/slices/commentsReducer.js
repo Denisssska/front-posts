@@ -9,19 +9,23 @@ const initialState = {
     status: "loading"
   }
 };
-// export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async ({comment,postId}) => {
-//   console.log(comment,postId);
-//   const { data } = await CommentApi.createComment({ comment,postId });
-//   console.log(data);
-//    return data;
-// });
+export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async ({
+                                                                                      comment,
+                                                                                      postId,
+                                                                                      avatarUrl,
+                                                                                      fullName
+                                                                                    }) => {
+  const { data } = await CommentApi.createComment({ comment, postId });
+  return {
+    ...data, user: { avatarUrl, fullName }
+  };
+});
 export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", async () => {
   const { data } = await CommentApi.getAllComments();
   return data;
 });
 export const getAllCommentsInPostTC = createAsyncThunk("/comments/getAllCommentsInPostTC", async (postId) => {
   const { data } = await CommentApi.getAllCommentsInPost(postId);
-  // localStorage.setItem('commentsInPost',data)
   return data;
 });
 export const updateCommentTC = createAsyncThunk("/comments/updateCommentTC", async ({ commentId, payload }) => {
@@ -45,7 +49,16 @@ const commentSlice = createSlice({
     }
   },
   extraReducers: {
-    [getAllCommentsTC.pending]: (state) => {
+    [createCommentTC.pending]: (state) => {
+      state.comments.status = "loading";
+    },
+    [createCommentTC.fulfilled]: (state, action) => {
+      state.comments.items.push(action.payload);
+      state.comments.status = "loaded";
+    },
+    [createCommentTC.rejected]: (state) => {
+      state.comments.status = "error";
+    }, [getAllCommentsTC.pending]: (state) => {
       state.comments.allComments = [];
       state.comments.status = "loading";
     },

@@ -5,7 +5,7 @@ import { PostApi } from "../api/postsApi";
 import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { PORT } from "../api/instance";
-import { getAllCommentsInPostTC, getAllCommentsTC } from "../store/slices/commentsReducer";
+import { getAllCommentsInPostTC } from "../store/slices/commentsReducer";
 
 
 export const FullPost = () => {
@@ -20,7 +20,7 @@ export const FullPost = () => {
   const { posts } = useSelector(state => state.posts);
   const { comments } = useSelector(state => state.comments);
 
-  console.log(comments);
+  //console.log(comments);
   const isPostDeleted = posts.status === "Статья удалена";
   useEffect(() => {
     dispatch(getAllCommentsInPostTC(id));
@@ -38,6 +38,7 @@ export const FullPost = () => {
       alert("Ошибка при получении статьи");
     });
   }, [id]);
+
   if (isPostDeleted) {
     navigate("/");
   }
@@ -48,7 +49,7 @@ export const FullPost = () => {
         imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : ""}
         tags={obj.tags}
         viewsCount={obj.viewsCount}
-        commentsCount={comments.items || []}
+        commentsCount={comments.items.length}
         createdAt={obj.createdAt}
         user={obj.user}
         id={id}
@@ -61,8 +62,7 @@ export const FullPost = () => {
         <CommentsBlock
           items={comments.items}
         >
-          {Boolean(items.avatarUrl) && <AddComment img={items.avatarUrl} />}
-          {/*<AddComment img={items.avatarUrl} />*/}
+          {Boolean(items.avatarUrl) && <AddComment  obj={obj} img={items.avatarUrl} />}
         </CommentsBlock>}
     </>
   );

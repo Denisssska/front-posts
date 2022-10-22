@@ -23,9 +23,10 @@ export const Post = ({
                        user, isEditable, commentsCount
                      }) => {
   const dispatch = useDispatch();
-  if (commentsCount) {
-    commentsCount = commentsCount.filter(item => item === id);
-  }
+
+  // if (commentsCount) {
+  //   commentsCount = commentsCount.filter(item => item === id);
+  // }
 
   const onClickRemove = () => {
     if (window.confirm("Вы действительно хотите удалить пост?")) {
@@ -78,7 +79,7 @@ export const Post = ({
             </li>
             <li>
               <CommentIcon />
-              <span>{commentsCount.length || "0"}</span>
+              <span>{commentsCount}</span>
             </li>
           </ul>
         </div>

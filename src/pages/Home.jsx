@@ -9,14 +9,9 @@ import { PORT } from "../api/instance";
 import { getAllCommentsTC } from "../store/slices/commentsReducer";
 
 export const Home = () => {
-  const { posts, tags, comments } = useSelector(state => state.posts);
+  const { posts, tags } = useSelector(state => state.posts);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.user.login);
-  let mass = [];
-  if (comments.items.length) {
-    mass = comments.items.map(item => item.postId);
-  }
-
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
@@ -24,10 +19,6 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getPostsTC());
   }, [items.fullName, items.avatarUrl]);
-
-  useEffect(() => {
-    dispatch(getAllCommentsTC());
-  }, []);
 
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";
@@ -49,7 +40,7 @@ export const Home = () => {
                 id={obj._id}
                 tags={obj.tags}
                 viewsCount={obj.viewsCount}
-                commentsCount={mass ? mass : []}
+                commentsCount={obj.commentsCount}
                 createdAt={obj.createdAt}
                 user={obj.user}
                 isEditable={items?._id === obj.user._id}

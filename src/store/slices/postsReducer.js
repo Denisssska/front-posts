@@ -5,7 +5,8 @@ import { getAllCommentsTC } from "./commentsReducer";
 const initialState = {
   posts: {
     items: [],
-    status: "loading"
+    status: "loading",
+    isUpdated: false
   },
   tags: {
     items: [],
@@ -24,6 +25,12 @@ export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postI
   const { data } = await PostApi.deletePost(postId);
   return data;
 });
+export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }) => {
+  console.log(payload);
+  const { data } = await PostApi.updatePost(postId, payload);
+  console.log(data.message);
+return data
+});
 
 export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async () => {
   const { data } = await PostApi.getTags();
@@ -34,6 +41,16 @@ const postsSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: {
+    [updatePostTC.pending]: (state) => {
+      state.posts.isUpdated = false;
+    },
+    [updatePostTC.fulfilled]: (state) => {
+      state.posts.isUpdated = true;
+    },
+    [updatePostTC.rejected]: (state) => {
+      state.posts.isUpdated = false;
+      state.posts.status = "error";
+    },
     [getAllCommentsTC.pending]: (state) => {
       state.comments.items = [];
       state.comments.status = "loading";
@@ -71,7 +88,7 @@ const postsSlice = createSlice({
       state.tags.status = "error";
     },
     [deletePostTC.pending]: (state, action) => {
-      console.log(action.meta.arg);
+      //console.log(action.meta.arg);
       state.posts.items = state.posts.items.filter(obj => obj._id !== action.meta.arg);
     },
     [deletePostTC.fulfilled]: (state, action) => {
