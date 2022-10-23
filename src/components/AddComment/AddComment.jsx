@@ -5,8 +5,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { PORT } from "../../api/instance";
 import { useParams } from "react-router-dom";
-import { CommentApi } from "../../api/commentsApi";
-import { PostApi } from "../../api/postsApi";
 import { updatePostTC } from "../../store/slices/postsReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { createCommentTC } from "../../store/slices/commentsReducer";
@@ -18,18 +16,16 @@ export const AddComment = ({ img, obj }) => {
   const [commentInPost, setCommentInPost] = useState("");
 
   const { comments } = useSelector(state => state.comments);
-  console.log(comments);
+
   const writeComment = (event) => {
     setCommentInPost(event.currentTarget.value);
   };
   const createComment = () => {
-    // try {
-
     dispatch(createCommentTC({
       comment: commentInPost,
       postId: id,
-      avatarUrl: items.avatarUrl,
-      fullName: items.fullName
+      // avatarUrl: items.avatarUrl,
+      // fullName: items.fullName
     }));
     if (comments.items.length) {
       const payloadPost = {
@@ -59,6 +55,7 @@ export const AddComment = ({ img, obj }) => {
             maxRows={10}
             multiline
             fullWidth
+            value={commentInPost}
           />
           <Button disabled={commentInPost === ""} onClick={createComment} variant="contained">Отправить</Button>
         </div>

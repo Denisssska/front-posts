@@ -5,6 +5,7 @@ import { CommentApi } from "../../api/commentsApi";
 const initialState = {
   comments: {
     items: [],
+    process:'empty',
     allComments: [],
     status: "loading"
   }
@@ -12,13 +13,14 @@ const initialState = {
 export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async ({
                                                                                       comment,
                                                                                       postId,
-                                                                                      avatarUrl,
-                                                                                      fullName
+                                                                                      // avatarUrl,
+                                                                                      // fullName
                                                                                     }) => {
   const { data } = await CommentApi.createComment({ comment, postId });
-  return {
-    ...data, user: { avatarUrl, fullName }
-  };
+  // return {
+  //   ...data, user: { avatarUrl, fullName }
+  // };
+  return data
 });
 export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", async () => {
   const { data } = await CommentApi.getAllComments();
@@ -50,14 +52,14 @@ const commentSlice = createSlice({
   },
   extraReducers: {
     [createCommentTC.pending]: (state) => {
-      state.comments.status = "loading";
+      state.comments.process = 'empty'
     },
     [createCommentTC.fulfilled]: (state, action) => {
-      state.comments.items.push(action.payload);
-      state.comments.status = "loaded";
+      // state.comments.items.push(action.payload);
+      state.comments.process = 'well'
     },
     [createCommentTC.rejected]: (state) => {
-      state.comments.status = "error";
+      state.comments.process = "error";
     }, [getAllCommentsTC.pending]: (state) => {
       state.comments.allComments = [];
       state.comments.status = "loading";

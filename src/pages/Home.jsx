@@ -6,12 +6,12 @@ import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 import { PORT } from "../api/instance";
-import { getAllCommentsTC } from "../store/slices/commentsReducer";
 
 export const Home = () => {
   const { posts, tags } = useSelector(state => state.posts);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.user.login);
+
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
@@ -50,7 +50,7 @@ export const Home = () => {
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagLoading} />
           <CommentsBlock
-            items={[
+            item={[
               {
                 user: {
                   fullName: "Вася Пупкин",

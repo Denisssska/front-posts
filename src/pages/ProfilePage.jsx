@@ -28,7 +28,7 @@ export const BasicModal = () => {
   const inputFileRef = useRef(null);
   const [avatarUrl, setAvatarUrl] = useState(items.avatarUrl);
   const [fullName, setFullName] = useState(items.fullName);
-
+  const [disabled, setDisabled] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -39,16 +39,23 @@ export const BasicModal = () => {
       formData.append("image", file);
       const { data } = await UserApi.updateUserFile(formData);
       setAvatarUrl(data.url);
+      setDisabled(false);
     } catch (e) {
       console.warn(e);
       alert("Ошибка при загрузке файла");
 
     }
   };
+  const changeName = (e) => {
+    setDisabled(false);
+    setFullName(e.currentTarget.value);
+
+  };
   const submit = async () => {
     try {
       await UserApi.changeUserPhotoAndName(items._id, avatarUrl, fullName);
-      setAvatarUrl("");
+      //setAvatarUrl("");
+      setDisabled(true);
       dispatch(updateUserStateTC({ fullName, avatarUrl }));
     } catch (e) {
       console.warn();
@@ -74,14 +81,17 @@ export const BasicModal = () => {
           />
           <TextField style={{ margin: "0 auto", display: "block", textAlign: "center" }}
                      size="small" placeholder="Изменить имя" value={fullName}
-                     onChange={(e) => setFullName(e.currentTarget.value)} />
+                     onChange={(e) => changeName(e)} />
           {/*<img style={{ margin: "0 auto", display: "block" }} src={items.avatarUrl} alt="" />*/}
           <Button onClick={() => inputFileRef.current.click()}
                   style={{ margin: "0 auto", display: "block", textAlign: "center" }}>
             Изменить фото профиля
           </Button>
-          <Button disabled={!avatarUrl.length} onClick={submit}
-                  style={{ margin: "0 auto", display: "block", textAlign: "center" }}>
+          <Button
+            // disabled={!avatarUrl.length}
+            disabled={disabled}
+            onClick={submit}
+            style={{ margin: "0 auto", display: "block", textAlign: "center" }}>
             Сохранить изменения
           </Button>
         </Box>

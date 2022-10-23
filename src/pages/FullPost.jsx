@@ -20,12 +20,11 @@ export const FullPost = () => {
   const { posts } = useSelector(state => state.posts);
   const { comments } = useSelector(state => state.comments);
 
-  //console.log(comments);
   const isPostDeleted = posts.status === "Статья удалена";
   useEffect(() => {
     dispatch(getAllCommentsInPostTC(id));
     setCommentsLoading(false);
-  }, []);
+  }, [comments.process]);
 
   useEffect(() => {
     PostApi.getOnePost(id).then(
@@ -37,7 +36,7 @@ export const FullPost = () => {
       console.warn(err);
       alert("Ошибка при получении статьи");
     });
-  }, [id]);
+  }, [id, items.avatarUrl, items.fullName]);
 
   if (isPostDeleted) {
     navigate("/");
@@ -58,11 +57,11 @@ export const FullPost = () => {
         <ReactMarkdown children={obj.text} />
 
       </Post>}
-      {commentsLoading ? <CommentsBlock isLoading={commentsLoading} items={[]} /> :
+      {commentsLoading ? <CommentsBlock isLoading={commentsLoading} item={[]} /> :
         <CommentsBlock
-          items={comments.items}
+          item={comments.items}
         >
-          {Boolean(items.avatarUrl) && <AddComment  obj={obj} img={items.avatarUrl} />}
+          {Boolean(items.avatarUrl) && <AddComment obj={obj} img={items.avatarUrl} />}
         </CommentsBlock>}
     </>
   );

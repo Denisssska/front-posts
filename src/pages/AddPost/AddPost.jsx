@@ -5,13 +5,14 @@ import Button from "@mui/material/Button";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { UserApi } from "../../api/userApi";
 import { PostApi } from "../../api/postsApi";
 import { PORT } from "../../api/instance";
 
 export const AddPost = () => {
+  const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.user.authMe);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -60,7 +61,10 @@ export const AddPost = () => {
         tags: tags.split(","),
         text
       };
-      const { data } = isEditing ? await PostApi.updatePost(postIdEdit, fields) : await PostApi.createPost(fields);
+      const { data } = isEditing ?
+        await PostApi.updatePost(postIdEdit, fields)
+        // dispatch(updatePostTC({ postId: postIdEdit, payload: fields }))
+        : await PostApi.createPost(fields);
       const id = isEditing ? postIdEdit : data._id;
       navigate(`/posts/${id}`);
     } catch (e) {

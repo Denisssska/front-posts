@@ -8,12 +8,18 @@ import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
 import { PORT } from "../api/instance";
+import DeleteIcon from "@mui/icons-material/Clear";
+import IconButton from "@mui/material/IconButton";
+import { useSelector } from "react-redux";
 
-export const CommentsBlock = ({ items, children, isLoading }) => {
+export const CommentsBlock = ({ item, children, isLoading }) => {
+
+  const { items } = useSelector(state => state.user.login);
+
   return (
-    <SideBlock title={items.length ? "Комментарии" : "Нет комментариев"}>
+    <SideBlock title={item.length ? "Комментарии" : "Нет комментариев"}>
       <List>
-        {(isLoading ? [...Array(5)] : items).map((obj, index) => (
+        {isLoading ? [...Array(5)] : item.map((obj, index) => (
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
@@ -29,10 +35,15 @@ export const CommentsBlock = ({ items, children, isLoading }) => {
                   <Skeleton variant="text" height={18} width={230} />
                 </div>
               ) : (
-                <ListItemText
-                  primary={obj.user.fullName}
-                  secondary={obj.comments}
-                />
+                <>
+                  <ListItemText
+                    primary={obj.user.fullName}
+                    secondary={obj.comments}
+                  />
+                  {obj.user._id === items._id && <IconButton color="secondary">
+                    <DeleteIcon />
+                  </IconButton>}</>
+
               )}
             </ListItem>
             <Divider variant="inset" component="li" />

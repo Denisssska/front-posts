@@ -26,9 +26,7 @@ export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postI
   return data;
 });
 export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }) => {
-  console.log(payload);
   const { data } = await PostApi.updatePost(postId, payload);
-  console.log(data.message);
 return data
 });
 
