@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/commentsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/commentsApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FullPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/postsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/postsReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +125,7 @@
       <workItem from="1666354945690" duration="2961000" />
       <workItem from="1666362672471" duration="9629000" />
       <workItem from="1666508489491" duration="2416000" />
-      <workItem from="1666511533705" duration="9391000" />
+      <workItem from="1666511533705" duration="14828000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>

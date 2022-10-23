@@ -5,22 +5,20 @@ import { CommentApi } from "../../api/commentsApi";
 const initialState = {
   comments: {
     items: [],
-    process:'empty',
+    process: "empty",
     allComments: [],
     status: "loading"
   }
 };
 export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async ({
                                                                                       comment,
-                                                                                      postId,
-                                                                                      // avatarUrl,
-                                                                                      // fullName
+                                                                                      postId
                                                                                     }) => {
   const { data } = await CommentApi.createComment({ comment, postId });
-  // return {
-  //   ...data, user: { avatarUrl, fullName }
-  // };
-  return data
+  if (data) {
+    alert("комментарий создан");
+  }
+  return data;
 });
 export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", async () => {
   const { data } = await CommentApi.getAllComments();
@@ -37,6 +35,7 @@ export const updateCommentTC = createAsyncThunk("/comments/updateCommentTC", asy
 });
 export const deleteCommentTC = createAsyncThunk("/comments/deleteCommentTC", async (commentId) => {
   const { data } = await CommentApi.deleteComment(commentId);
+  alert(data.message);
   return data;
 });
 
@@ -52,11 +51,11 @@ const commentSlice = createSlice({
   },
   extraReducers: {
     [createCommentTC.pending]: (state) => {
-      state.comments.process = 'empty'
+      state.comments.process = "empty";
     },
     [createCommentTC.fulfilled]: (state, action) => {
       // state.comments.items.push(action.payload);
-      state.comments.process = 'well'
+      state.comments.process = "well";
     },
     [createCommentTC.rejected]: (state) => {
       state.comments.process = "error";
@@ -86,7 +85,7 @@ const commentSlice = createSlice({
     },
     [deleteCommentTC.pending]: (state, action) => {
       console.log(action.meta.arg);
-      state.comments.items = state.posts.items.filter(obj => obj._id !== action.meta.arg);
+      state.comments.items = state.comments.items.filter(obj => obj._id !== action.meta.arg);
     },
     [deleteCommentTC.fulfilled]: (state, action) => {
       state.comments.status = action.payload.message;

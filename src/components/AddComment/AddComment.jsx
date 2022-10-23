@@ -24,8 +24,6 @@ export const AddComment = ({ img, obj }) => {
     dispatch(createCommentTC({
       comment: commentInPost,
       postId: id,
-      // avatarUrl: items.avatarUrl,
-      // fullName: items.fullName
     }));
     if (comments.items.length) {
       const payloadPost = {

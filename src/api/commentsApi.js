@@ -16,6 +16,7 @@ export const CommentApi = {
     return instance.get(`/comments`);
   },
   deleteComment(commentId) {
+    console.log(commentId);
     return instance.delete(`/comments/${commentId}`);
   },
 

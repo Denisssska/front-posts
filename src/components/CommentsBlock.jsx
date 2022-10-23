@@ -10,12 +10,19 @@ import Skeleton from "@mui/material/Skeleton";
 import { PORT } from "../api/instance";
 import DeleteIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCommentTC } from "../store/slices/commentsReducer";
 
 export const CommentsBlock = ({ item, children, isLoading }) => {
 
   const { items } = useSelector(state => state.user.login);
+  const dispatch = useDispatch();
+  const deleteComment = (commentId) => {
+    if (commentId) {
+      dispatch(deleteCommentTC(commentId));
+    }
 
+  };
   return (
     <SideBlock title={item.length ? "Комментарии" : "Нет комментариев"}>
       <List>
@@ -40,9 +47,10 @@ export const CommentsBlock = ({ item, children, isLoading }) => {
                     primary={obj.user.fullName}
                     secondary={obj.comments}
                   />
-                  {obj.user._id === items._id && <IconButton color="secondary">
-                    <DeleteIcon />
-                  </IconButton>}</>
+                  {obj.user._id === items._id &&
+                    <IconButton color="secondary" onClick={() => deleteComment(obj._id)}>
+                      <DeleteIcon />
+                    </IconButton>}</>
 
               )}
             </ListItem>
