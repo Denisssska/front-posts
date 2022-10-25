@@ -16,7 +16,7 @@ export const PostApi = {
     });
   },
   getPosts() {
-    return instance.get("/posts");
+    return instance.get("/posts",{headers:{sorts:'commentsCount'}});
   },
   getOnePost(postId) {
     return instance.get(`/posts/${postId}`);
