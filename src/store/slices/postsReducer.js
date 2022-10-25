@@ -19,8 +19,8 @@ const initialState = {
     status: "loading"
   }
 };
-export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async () => {
-  const { data } = await PostApi.getPosts();
+export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async (sorts) => {
+  const { data } = await PostApi.getPosts(sorts);
   return data;
 });
 export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async (postId) => {

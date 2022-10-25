@@ -15,8 +15,8 @@ export const PostApi = {
       imageUrl: payload.imageUrl
     });
   },
-  getPosts() {
-    return instance.get("/posts",{headers:{sorts:'commentsCount'}});
+  getPosts(sorts) {
+    return instance.get("/posts", { headers: { sorts } });
   },
   getOnePost(postId) {
     return instance.get(`/posts/${postId}`);
@@ -30,11 +30,11 @@ export const PostApi = {
       text: payload.text,
       tags: payload.tags,
       imageUrl: payload.imageUrl,
-      commentsCount:payload.commentsCount
+      commentsCount: payload.commentsCount
     });
   },
-  getPopularPosts(limit){
-    return instance(`/posts/popular/${limit}`)
+  getPopularPosts(limit) {
+    return instance(`/posts/popular/${limit}`);
   },
   getTags() {
     return instance.get("/tags");
