@@ -1,20 +1,14 @@
-import instance from "./instance";
+import instance, { PORT } from "./instance";
 
-// type UserPayloadType = {
-//     email: string
-//     password: string
-//     fullName: string
-//     avatarUrl: string
-//
-// }
 export const UserApi = {
 
   registration(payload) {
+    console.log(payload);
     return instance.post("/auth/register", {
       email: payload.email,
       password: payload.password,
       fullName: payload.fullName,
-      avatarUrl: payload.avatarUrl || ""
+      avatarUrl: payload.avatarUrl || 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png'
     });
   },
   login(email, password) {

@@ -8,6 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import { PORT } from "../api/instance";
 import { TextField } from "@mui/material";
 import { updateUserStateTC } from "../store/slices/userReducer";
+import img from "../assets/man-avatar.webp";
 
 const style = {
   position: "absolute",
@@ -73,12 +74,14 @@ export const BasicModal = () => {
       >
         <Box sx={style}>
            <input ref={inputFileRef} type="file" onChange={handleChangePhoto} hidden />
-          <Avatar
-            alt="Ava"
-            src={`${PORT}${avatarUrl || items.avatarUrl}`}
-            sx={{ width: 156, height: 156 }}
-            style={{ margin: "2% auto", display: "block" }}
-          />
+          {avatarUrl || items.avatarUrl ?
+            <Avatar
+              alt="Ava"
+              src={`${PORT}${avatarUrl || items.avatarUrl}`}
+              sx={{ width: 156, height: 156 }}
+              style={{ margin: "2% auto", display: "block" }}
+            /> :
+            <Avatar style={{ margin: "2% auto" }} sx={{ width: 156, height: 156 }} />}
           <TextField style={{ margin: "0 auto", display: "block", textAlign: "center" }}
                      size="small" placeholder="Изменить имя" value={fullName}
                      onChange={(e) => changeName(e)} />

@@ -10,27 +10,21 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { UserApi } from "../../api/userApi";
 import { PostApi } from "../../api/postsApi";
 import { PORT } from "../../api/instance";
+import { getOnePostTC, updateOrCreateTC } from "../../store/slices/postsReducer";
 
 export const AddPost = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.user.authMe);
   const navigate = useNavigate();
   const { id } = useParams();
-  const postIdEdit = id;
-  const isEditing = Boolean(id);
+
   useEffect(() => {
     if (id) {
-      PostApi.getOnePost(id).then(
-        res => {
-          //console.log(res.data);
-          setTitle(res.data.title);
-          setText(res.data.text);
-          setTags(res.data.tags.join(","));
-          setImageUrl(res.data.imageUrl);
-        }
-      ).catch((err) => {
-        console.warn(err);
-        alert("Ошибка при получении статьи");
+      dispatch(getOnePostTC(id)).then(res => {
+        setTitle(res.payload.title);
+        setText(res.payload.text);
+        setTags(res.payload.tags.join(","));
+        setImageUrl(res.payload.imageUrl);
       });
     }
   }, []);
@@ -61,17 +55,25 @@ export const AddPost = () => {
         tags: tags.split(","),
         text
       };
-      const { data } = isEditing ?
-        await PostApi.updatePost(postIdEdit, fields)
-        // dispatch(updatePostTC({ postId: postIdEdit, payload: fields }))
+      const { data } = id ?
+        await PostApi.updatePost(id, fields)
         : await PostApi.createPost(fields);
-      const id = isEditing ? postIdEdit : data._id;
-      navigate(`/posts/${id}`);
+      const resultId = id ? id : data._id;
+      navigate(`/posts/${resultId}`);
     } catch (e) {
       console.warn(e);
       alert("Ошибка при создании статьи");
     }
   };
+  // const onSubmit = ()=>{
+  //   const fields = {
+  //     title,
+  //     imageUrl,
+  //     tags: tags.split(","),
+  //     text
+  //   };
+  //   dispatch(updateOrCreateTC({id,fields}))
+  // }
   const onClickRemoveImage = () => {
     setImageUrl("");
   };
@@ -104,14 +106,16 @@ export const AddPost = () => {
       </Button>
       <input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
       {imageUrl && (
-        <><Button variant="contained" color="error" onClick={onClickRemoveImage}>
-          Удалить
-        </Button>
+        <>
+          <Button variant="contained" color="error" onClick={onClickRemoveImage}>
+            Удалить
+          </Button>
           <img
             className={styles.image}
             src={`${PORT}${imageUrl}`}
             alt="Uploaded"
-          /></>
+          />
+        </>
       )}
       <br />
       <br />
@@ -139,7 +143,7 @@ export const AddPost = () => {
       />
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
-          {isEditing ? "Опубликовать" : "Сохранить"}
+          {id ? "Опубликовать" : "Сохранить"}
         </Button>
         <NavLink to="/">
           <Button size="large">Отмена</Button>

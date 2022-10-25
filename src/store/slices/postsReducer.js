@@ -5,8 +5,10 @@ import { getAllCommentsTC } from "./commentsReducer";
 const initialState = {
   posts: {
     items: [],
+    onePost: {},
     status: "loading",
-    isUpdated: false
+    isUpdated: false,
+    createdId: ""
   },
   tags: {
     items: [],
@@ -21,15 +23,41 @@ export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async () => {
   const { data } = await PostApi.getPosts();
   return data;
 });
+export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async (postId) => {
+  try {
+    const {data} = await PostApi.getOnePost(postId);
+    return data
+  } catch (e) {
+    console.warn(e);
+    alert("Ошибка при получении статьи");
+  }
+});
 export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postId) => {
   const { data } = await PostApi.deletePost(postId);
   return data;
 });
 export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }) => {
   const { data } = await PostApi.updatePost(postId, payload);
-return data
+  return data;
 });
-
+export const updateOrCreateTC = createAsyncThunk("/posts/updateOrCreateTC", async ({ id, fields }) => {
+  // try {
+  //   const fields = {
+  //     title,
+  //     imageUrl,
+  //     tags: tags.split(","),
+  //     text
+  //   };
+  //   const { data } = id ?
+  //     await PostApi.updatePost(id, fields)
+  //     : await PostApi.createPost(fields);
+  //   const resultId = id ? id : data._id;
+  //   navigate(`/posts/${resultId}`);
+  // } catch (e) {
+  //   console.warn(e);
+  //   alert("Ошибка при создании статьи");
+  // }
+});
 export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async () => {
   const { data } = await PostApi.getTags();
   return data;
@@ -39,6 +67,16 @@ const postsSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: {
+    [getOnePostTC.pending]: (state) => {
+      state.posts.onePost = {};
+    },
+    [getOnePostTC.fulfilled]: (state, action) => {
+      state.posts.onePost = action.payload;
+    },
+    [getOnePostTC.rejected]: (state) => {
+      state.posts.onePost = {};
+      state.posts.status = "error";
+    },
     [updatePostTC.pending]: (state) => {
       state.posts.isUpdated = false;
     },

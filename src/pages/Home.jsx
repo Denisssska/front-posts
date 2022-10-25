@@ -16,9 +16,12 @@ export const Home = () => {
     dispatch(getTagsTC());
   }, []);
 
+  // useEffect(() => {
+  //   dispatch(getPostsTC());
+  // }, [items.fullName, items.avatarUrl]);
   useEffect(() => {
     dispatch(getPostsTC());
-  }, [items.fullName, items.avatarUrl]);
+  }, []);
 
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";

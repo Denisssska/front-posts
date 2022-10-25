@@ -7,9 +7,9 @@ import Avatar from "@mui/material/Avatar";
 import styles from "./Login.module.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { UserApi } from "../../api/userApi";
 import { registrationTC } from "../../store/slices/userReducer";
 import { useNavigate } from "react-router-dom";
+
 
 export const Registration = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export const Registration = () => {
     defaultValues: {
       email: "",
       password: "",
-      fullName: ""
+      fullName: "",
     },
     mode: "onChange"
   });

@@ -28,6 +28,7 @@ export const registrationTC = createAsyncThunk("/auth/registrationTC", async ({
                                                                                 fullName,
                                                                                 avatarUrl
                                                                               }) => {
+
   const { data } = await UserApi.registration({ email, password, fullName, avatarUrl });
   return data;
 });
