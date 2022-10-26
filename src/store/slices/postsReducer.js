@@ -8,7 +8,8 @@ const initialState = {
     onePost: {},
     status: "loading",
     isUpdated: false,
-    createdId: ""
+    createdId: "",
+    sortByItem: "createdAt"
   },
   tags: {
     items: [],
@@ -19,14 +20,15 @@ const initialState = {
     status: "loading"
   }
 };
-export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async (sorts) => {
+export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async (sorts,thunkAPI) => {
+  thunkAPI.dispatch(changeSortBy(sorts))
   const { data } = await PostApi.getPosts(sorts);
   return data;
 });
 export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async (postId) => {
   try {
-    const {data} = await PostApi.getOnePost(postId);
-    return data
+    const { data } = await PostApi.getOnePost(postId);
+    return data;
   } catch (e) {
     console.warn(e);
     alert("Ошибка при получении статьи");
@@ -65,7 +67,11 @@ export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async () => {
 const postsSlice = createSlice({
   name: "posts",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    changeSortBy(state, action) {
+      state.posts.sortByItem = action.payload;
+    }
+  },
   extraReducers: {
     [getOnePostTC.pending]: (state) => {
       state.posts.onePost = {};
@@ -135,5 +141,5 @@ const postsSlice = createSlice({
     }
   }
 });
-
+export const { changeSortBy } = postsSlice.actions;
 export const postsReducer = postsSlice.reducer;

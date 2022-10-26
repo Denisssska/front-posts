@@ -10,7 +10,7 @@ import styles from "./Post.module.scss";
 import { UserInfo } from "../UserInfo/UserInfo";
 import { PostSkeleton } from "./Skeleton";
 import { NavLink } from "react-router-dom";
-import { deletePostTC } from "../../store/slices/postsReducer";
+import { changeSortBy, deletePostTC } from "../../store/slices/postsReducer";
 import { useDispatch } from "react-redux";
 
 export const Post = ({
@@ -24,16 +24,14 @@ export const Post = ({
                      }) => {
   const dispatch = useDispatch();
 
-  // if (commentsCount) {
-  //   commentsCount = commentsCount.filter(item => item === id);
-  // }
-
   const onClickRemove = () => {
     if (window.confirm("Вы действительно хотите удалить пост?")) {
       dispatch(deletePostTC(id));
     }
   };
-
+const handleClick = (sorts)=>{
+  dispatch(changeSortBy(sorts))
+}
   if (isLoading) {
     return <PostSkeleton />;
   }
@@ -67,7 +65,7 @@ export const Post = ({
           <ul className={styles.tags}>
             {tags.map((name, index) => (
               <li key={index}>
-                <NavLink to={`/tag/${name}`}>#{name}</NavLink>
+                <NavLink onClick={() => handleClick(name)} to={`/tags/${name}`}>#{name}</NavLink>
               </li>
             ))}
           </ul>

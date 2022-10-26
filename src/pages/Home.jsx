@@ -4,38 +4,40 @@ import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
-import { getPostsTC, getTagsTC } from "../store/slices/postsReducer";
+import { changeSortBy, getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 import { PORT } from "../api/instance";
 
 export const Home = () => {
   const { posts, tags } = useSelector(state => state.posts);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.user.login);
-const [value,setValue]=useState(0)
+  const [value, setValue] = useState(0);
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
 
   useEffect(() => {
-    dispatch(getPostsTC('createdAt'));
-  }, [items.fullName, items.avatarUrl]);
+    dispatch(getPostsTC(posts.sortByItem));
+  }, [items.fullName, items.avatarUrl,posts.sortByItem]);
 
-const sortNew =()=>{
-  dispatch(getPostsTC('createdAt'));
-  setValue(0)
-}
-const sortPop =()=>{
-  dispatch(getPostsTC('viewsCount'));
-  setValue(1)
-}
+  const sortNew = (sorts) => {
+    // dispatch(getPostsTC('createdAt'));
+    if (sorts === "createdAt") {
+      dispatch(changeSortBy(sorts));
+      setValue(0);
+    }else if(sorts ==='viewsCount'){
+      dispatch(changeSortBy(sorts));
+      setValue(1);
+    }
+  };
   const isPostLoading = posts.status === "loading";
   const isTagLoading = tags.status === "loading";
 
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={value} aria-label="basic tabs example">
-        <Tab onClick={sortNew} label="Новые" />
-        <Tab onClick={sortPop} label="Популярные" />
+        <Tab onClick={() => sortNew("createdAt")} label="Новые" />
+        <Tab onClick={() => sortNew("viewsCount")} label="Популярные" />
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
