@@ -8,9 +8,8 @@ import styles from "./AddPost.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { UserApi } from "../../api/userApi";
-import { PostApi } from "../../api/postsApi";
 import { PORT } from "../../api/instance";
-import { getOnePostTC, updateOrCreateTC } from "../../store/slices/postsReducer";
+import { createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/postsReducer";
 
 export const AddPost = () => {
   const dispatch = useDispatch();
@@ -47,33 +46,34 @@ export const AddPost = () => {
       alert("Ошибка при загрузке файла");
     }
   };
-  const onSubmit = async () => {
-    try {
-      const fields = {
-        title,
-        imageUrl,
-        tags: tags.split(","),
-        text
-      };
-      const { data } = id ?
-        await PostApi.updatePost(id, fields)
-        : await PostApi.createPost(fields);
-      const resultId = id ? id : data._id;
-      navigate(`/posts/${resultId}`);
-    } catch (e) {
-      console.warn(e);
-      alert("Ошибка при создании статьи");
-    }
-  };
-  // const onSubmit = ()=>{
-  //   const fields = {
-  //     title,
-  //     imageUrl,
-  //     tags: tags.split(","),
-  //     text
-  //   };
-  //   dispatch(updateOrCreateTC({id,fields}))
-  // }
+  // const onSubmit = async () => {
+  //   try {
+  //     const fields = {
+  //       title,
+  //       imageUrl,
+  //       tags: tags.split(","),
+  //       text
+  //     };
+  //     const { data } = id ?
+  //       await PostApi.updatePost(id, fields)
+  //       : await PostApi.createPost(fields);
+  //     const resultId = id ? id : data._id;
+  //     navigate(`/posts/${resultId}`);
+  //   } catch (e) {
+  //     console.warn(e);
+  //     alert("Ошибка при создании статьи");
+  //   }
+  // };
+  const onSubmit = ()=>{
+    const fields = {
+      title,
+      imageUrl,
+      tags: tags.split(","),
+      text
+    };
+    dispatch(id?updatePostTC({postId:id,payload:fields}):createPostTC({payload:fields}))
+         // const resultId = id ? id : data._id;
+  }
   const onClickRemoveImage = () => {
     setImageUrl("");
   };

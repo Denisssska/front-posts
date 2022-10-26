@@ -29,9 +29,9 @@ export const Post = ({
       dispatch(deletePostTC(id));
     }
   };
-const handleClick = (sorts)=>{
-  dispatch(changeSortBy(sorts))
-}
+  const handleClick = (sorts) => {
+    dispatch(changeSortBy(sorts));
+  };
   if (isLoading) {
     return <PostSkeleton />;
   }

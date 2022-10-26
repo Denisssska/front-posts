@@ -20,7 +20,11 @@ const initialState = {
     status: "loading"
   }
 };
-export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async (sorts,thunkAPI) => {
+export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({payload}) => {
+  const { data } = await PostApi.createPost(payload);
+  console.log(data);
+  return data;
+});export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async (sorts,thunkAPI) => {
   thunkAPI.dispatch(changeSortBy(sorts))
   const { data } = await PostApi.getPosts(sorts);
   return data;
