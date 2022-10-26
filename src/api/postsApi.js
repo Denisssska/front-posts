@@ -16,6 +16,7 @@ export const PostApi = {
     });
   },
   getPosts(sorts) {
+
     return instance.get("/posts", { params: { sorts } });
   },
   getOnePost(postId) {
