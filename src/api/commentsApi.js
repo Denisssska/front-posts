@@ -10,7 +10,7 @@ export const CommentApi = {
     return instance.get(`/comments/${postId}`);
   },
   getLastComments() {
-    return instance.get("/posts");
+    return instance.get("/comments",{params:{item:'3'}});
   },
   getAllComments() {
     return instance.get(`/comments`);

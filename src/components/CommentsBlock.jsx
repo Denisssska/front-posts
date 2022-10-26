@@ -16,10 +16,12 @@ import { deleteCommentTC } from "../store/slices/commentsReducer";
 export const CommentsBlock = ({ item, children, isLoading }) => {
 
   const { items } = useSelector(state => state.user.login);
+
   const dispatch = useDispatch();
+
   const deleteComment = (commentId) => {
     if (commentId) {
-      dispatch(deleteCommentTC(commentId));
+      dispatch(deleteCommentTC({ commentId }));
     }
 
   };

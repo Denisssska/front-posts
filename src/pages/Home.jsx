@@ -6,9 +6,11 @@ import { CommentsBlock, Post, TagsBlock } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSortBy, getPostsTC, getTagsTC } from "../store/slices/postsReducer";
 import { PORT } from "../api/instance";
+import { getLastCommentsTC } from "../store/slices/commentsReducer";
 
 export const Home = () => {
   const { posts, tags } = useSelector(state => state.posts);
+  const { comments } = useSelector(state => state.comments);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.user.login);
   const [value, setValue] = useState(0);
@@ -16,13 +18,15 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
+  useEffect(() => {
+    dispatch(getLastCommentsTC());
+  }, [comments.isCommentDeleted]);
 
   useEffect(() => {
     dispatch(getPostsTC({ sorts: posts.sortByItem }));
   }, [items.fullName, items.avatarUrl, posts.sortByItem]);
 
   const sortNew = (sorts) => {
-    // dispatch(getPostsTC('createdAt'));
     if (sorts === "createdAt") {
       dispatch(changeSortBy(sorts));
       setValue(0);
@@ -60,10 +64,10 @@ export const Home = () => {
         </Grid>
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagLoading} />
-          <CommentsBlock
-            item={[]}
+          {comments.lastComments.length && <CommentsBlock
+            item={comments.lastComments}
             isLoading={false}
-          />
+          />}
         </Grid>
       </Grid>
     </>

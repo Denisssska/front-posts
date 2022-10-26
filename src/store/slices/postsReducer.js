@@ -101,18 +101,18 @@ const postsSlice = createSlice({
       state.posts.isUpdated = false;
       state.posts.status = "error";
     },
-    [getAllCommentsTC.pending]: (state) => {
-      state.comments.items = [];
-      state.comments.status = "loading";
-    },
-    [getAllCommentsTC.fulfilled]: (state, action) => {
-      state.comments.items = action.payload;
-      state.comments.status = "loaded";
-    },
-    [getAllCommentsTC.rejected]: (state) => {
-      state.comments.items = [];
-      state.comments.status = "error";
-    },
+    // [getAllCommentsTC.pending]: (state) => {
+    //   state.comments.items = [];
+    //   state.comments.status = "loading";
+    // },
+    // [getAllCommentsTC.fulfilled]: (state, action) => {
+    //   state.comments.items = action.payload;
+    //   state.comments.status = "loaded";
+    // },
+    // [getAllCommentsTC.rejected]: (state) => {
+    //   state.comments.items = [];
+    //   state.comments.status = "error";
+    // },
     [getPostsTC.pending]: (state) => {
       state.posts.items = [];
       state.posts.status = "loading";

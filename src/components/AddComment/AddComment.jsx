@@ -23,7 +23,7 @@ export const AddComment = ({ img, obj }) => {
   const createComment = () => {
     dispatch(createCommentTC({
       comment: commentInPost,
-      postId: id,
+      postId: id
     }));
     if (comments.items.length) {
       const payloadPost = {
