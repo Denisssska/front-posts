@@ -12,20 +12,21 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.user.login);
   const [value, setValue] = useState(0);
+
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
 
   useEffect(() => {
-    dispatch(getPostsTC(posts.sortByItem));
-  }, [items.fullName, items.avatarUrl,posts.sortByItem]);
+    dispatch(getPostsTC({ sorts: posts.sortByItem }));
+  }, [items.fullName, items.avatarUrl, posts.sortByItem]);
 
   const sortNew = (sorts) => {
     // dispatch(getPostsTC('createdAt'));
     if (sorts === "createdAt") {
       dispatch(changeSortBy(sorts));
       setValue(0);
-    }else if(sorts ==='viewsCount'){
+    } else if (sorts === "viewsCount") {
       dispatch(changeSortBy(sorts));
       setValue(1);
     }

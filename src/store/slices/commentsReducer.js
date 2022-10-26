@@ -15,9 +15,6 @@ export const createCommentTC = createAsyncThunk("/comments/createCommentTC", asy
                                                                                       postId
                                                                                     }) => {
   const { data } = await CommentApi.createComment({ comment, postId });
-  if (data) {
-    alert("комментарий создан");
-  }
   return data;
 });
 export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", async () => {

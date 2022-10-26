@@ -14,9 +14,9 @@ import { createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/pos
 export const AddPost = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.user.authMe);
+  const {posts} = useSelector(state => state.posts);
   const navigate = useNavigate();
   const { id } = useParams();
-
   useEffect(() => {
     if (id) {
       dispatch(getOnePostTC(id)).then(res => {
@@ -26,7 +26,7 @@ export const AddPost = () => {
         setImageUrl(res.payload.imageUrl);
       });
     }
-  }, []);
+  }, [posts.createdPost]);
   const inputFileRef = useRef(null);
 
   const [text, setText] = useState("");
@@ -64,16 +64,21 @@ export const AddPost = () => {
   //     alert("Ошибка при создании статьи");
   //   }
   // };
-  const onSubmit = ()=>{
+  const onSubmit = () => {
     const fields = {
       title,
       imageUrl,
       tags: tags.split(","),
       text
     };
-    dispatch(id?updatePostTC({postId:id,payload:fields}):createPostTC({payload:fields}))
-         // const resultId = id ? id : data._id;
-  }
+    dispatch(id ? updatePostTC({ postId: id, payload: fields }) : createPostTC({ payload: fields }));
+    if (id){
+      navigate(`/posts/${id}`);
+    }else{
+      navigate(`/`);
+    }
+  };
+
   const onClickRemoveImage = () => {
     setImageUrl("");
   };

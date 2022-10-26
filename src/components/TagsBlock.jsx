@@ -9,16 +9,24 @@ import ListItemText from "@mui/material/ListItemText";
 import Skeleton from "@mui/material/Skeleton";
 
 import { SideBlock } from "./SideBlock";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { changeSortBy } from "../store/slices/postsReducer";
+import { useDispatch } from "react-redux";
 
-export const TagsBlock = ({ items, isLoading}) => {
+export const TagsBlock = ({ items, isLoading }) => {
+
+  const dispatch = useDispatch();
+  const handleClick = (sorts) => {
+    dispatch(changeSortBy(sorts));
+  };
   return (
     <SideBlock title="Тэги">
       <List>
-        {(isLoading ? [...Array(5)] : items).map((name, i) => (
+        {isLoading ? [...Array(5)] : items.map((name, i) => (
           <NavLink key={i}
-            style={{ textDecoration: "none", color: "black" }}
-            to={`/tags/${name}`}
+                   onClick={() => handleClick(name)}
+                   style={{ textDecoration: "none", color: "black" }}
+                   to={`/tags/${name}`}
           >
             <ListItem key={i} disablePadding>
               <ListItemButton>

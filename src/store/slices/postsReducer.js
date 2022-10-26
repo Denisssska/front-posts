@@ -6,6 +6,7 @@ const initialState = {
   posts: {
     items: [],
     onePost: {},
+    createdPost: {},
     status: "loading",
     isUpdated: false,
     createdId: "",
@@ -20,12 +21,18 @@ const initialState = {
     status: "loading"
   }
 };
-export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({payload}) => {
-  const { data } = await PostApi.createPost(payload);
-  console.log(data);
-  return data;
-});export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async (sorts,thunkAPI) => {
-  thunkAPI.dispatch(changeSortBy(sorts))
+export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ payload }) => {
+  try {
+    const { data } = await PostApi.createPost(payload);
+    return data;
+  } catch (e) {
+    console.warn(e);
+    alert("Ошибка при создании статьи");
+  }
+
+});
+export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async ({sorts}, thunkAPI) => {
+  thunkAPI.dispatch(changeSortBy(sorts));
   const { data } = await PostApi.getPosts(sorts);
   return data;
 });
@@ -46,24 +53,7 @@ export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ pos
   const { data } = await PostApi.updatePost(postId, payload);
   return data;
 });
-export const updateOrCreateTC = createAsyncThunk("/posts/updateOrCreateTC", async ({ id, fields }) => {
-  // try {
-  //   const fields = {
-  //     title,
-  //     imageUrl,
-  //     tags: tags.split(","),
-  //     text
-  //   };
-  //   const { data } = id ?
-  //     await PostApi.updatePost(id, fields)
-  //     : await PostApi.createPost(fields);
-  //   const resultId = id ? id : data._id;
-  //   navigate(`/posts/${resultId}`);
-  // } catch (e) {
-  //   console.warn(e);
-  //   alert("Ошибка при создании статьи");
-  // }
-});
+
 export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async () => {
   const { data } = await PostApi.getTags();
   return data;
@@ -77,11 +67,25 @@ const postsSlice = createSlice({
     }
   },
   extraReducers: {
+    [createPostTC.pending]: (state) => {
+      state.posts.createdPost = {};
+      state.posts.status = "loading";
+    },
+    [createPostTC.fulfilled]: (state, action) => {
+      state.posts.createdPost = action.payload;
+      state.posts.status = "loaded";
+    },
+    [createPostTC.rejected]: (state) => {
+      state.posts.createdPost = {};
+      state.posts.status = "error";
+    },
     [getOnePostTC.pending]: (state) => {
       state.posts.onePost = {};
+      state.posts.status = "loading";
     },
     [getOnePostTC.fulfilled]: (state, action) => {
       state.posts.onePost = action.payload;
+      state.posts.status = "loaded";
     },
     [getOnePostTC.rejected]: (state) => {
       state.posts.onePost = {};
