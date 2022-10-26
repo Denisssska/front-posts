@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutTC } from "../../store/slices/userReducer";
 import { BasicModal } from "../../pages/ProfilePage";
+import { changeSortBy } from "../../store/slices/postsReducer";
 
 export const Header = () => {
   const { login, registration } = useSelector(state => state.user);
@@ -19,12 +20,14 @@ export const Header = () => {
       localStorage.removeItem("token");
     }
   };
-
+  const handleClick = (sorts) => {
+    dispatch(changeSortBy(sorts));
+  };
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <NavLink className={styles.logo} to="/">
+          <NavLink onClick={() => handleClick('createdAt')} className={styles.logo} to="/">
             <div>BLOG</div>
           </NavLink>
           <div className={styles.buttons}>
