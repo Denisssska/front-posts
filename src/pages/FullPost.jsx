@@ -6,28 +6,29 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { PORT } from "../api/instance";
 import { getAllCommentsInPostTC } from "../store/slices/commentsReducer";
+import { getOnePostTC } from "../store/slices/postsReducer";
 
 
 export const FullPost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [obj, setObj] = useState({});
-  const [postLoading, setPostLoading] = useState(true);
+   const [postLoading, setPostLoading] = useState(true);
   const [commentsLoading, setCommentsLoading] = useState(true);
 
   const { id } = useParams();
   const { items } = useSelector(state => state.user.login);
   const { posts } = useSelector(state => state.posts);
   const { comments } = useSelector(state => state.comments);
-
   const isPostDeleted = posts.status === "Статья удалена";
-
+  //console.log(obj);
   useEffect(() => {
     dispatch(getAllCommentsInPostTC(id));
     setCommentsLoading(false);
   }, [comments.process]);
 
   useEffect(() => {
+    // dispatch(getOnePostTC({ postId: id }));
     PostApi.getOnePost(id).then(
       res => {
         setObj(res.data);
@@ -37,7 +38,8 @@ export const FullPost = () => {
       console.warn(err);
       alert("Ошибка при получении статьи");
     });
-  }, [id, items.avatarUrl, items.fullName]);
+  }, [ items.avatarUrl, items.fullName]);
+ // console.log(posts.onePost);
 
   if (isPostDeleted) {
     navigate("/");

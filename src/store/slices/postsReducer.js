@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PostApi } from "../../api/postsApi";
-import { getAllCommentsTC } from "./commentsReducer";
 
 const initialState = {
   posts: {
@@ -31,12 +30,12 @@ export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ pay
   }
 
 });
-export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async ({sorts}, thunkAPI) => {
+export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async ({ sorts }, thunkAPI) => {
   thunkAPI.dispatch(changeSortBy(sorts));
   const { data } = await PostApi.getPosts(sorts);
   return data;
 });
-export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async (postId) => {
+export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async ({ postId }) => {
   try {
     const { data } = await PostApi.getOnePost(postId);
     return data;

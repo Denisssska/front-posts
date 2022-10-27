@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/commentsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/commentsApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/postsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/postsApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FullPost.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/slices/postsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/postsReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

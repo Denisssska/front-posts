@@ -18,6 +18,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
+
   useEffect(() => {
     dispatch(getLastCommentsTC());
   }, [comments.isCommentDeleted]);

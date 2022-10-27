@@ -14,12 +14,12 @@ import { createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/pos
 export const AddPost = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.user.authMe);
-  const {posts} = useSelector(state => state.posts);
+  const { posts } = useSelector(state => state.posts);
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     if (id) {
-      dispatch(getOnePostTC(id)).then(res => {
+      dispatch(getOnePostTC({ postId: id })).then(res => {
         setTitle(res.payload.title);
         setText(res.payload.text);
         setTags(res.payload.tags.join(","));
@@ -46,24 +46,7 @@ export const AddPost = () => {
       alert("Ошибка при загрузке файла");
     }
   };
-  // const onSubmit = async () => {
-  //   try {
-  //     const fields = {
-  //       title,
-  //       imageUrl,
-  //       tags: tags.split(","),
-  //       text
-  //     };
-  //     const { data } = id ?
-  //       await PostApi.updatePost(id, fields)
-  //       : await PostApi.createPost(fields);
-  //     const resultId = id ? id : data._id;
-  //     navigate(`/posts/${resultId}`);
-  //   } catch (e) {
-  //     console.warn(e);
-  //     alert("Ошибка при создании статьи");
-  //   }
-  // };
+
   const onSubmit = () => {
     const fields = {
       title,
@@ -72,9 +55,9 @@ export const AddPost = () => {
       text
     };
     dispatch(id ? updatePostTC({ postId: id, payload: fields }) : createPostTC({ payload: fields }));
-    if (id){
+    if (id) {
       navigate(`/posts/${id}`);
-    }else{
+    } else {
       navigate(`/`);
     }
   };
