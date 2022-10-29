@@ -20,20 +20,29 @@ const initialState = {
     status: "loading"
   }
 };
-export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ payload }) => {
+export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ payload }, { rejectWithValue }) => {
   try {
     const { data } = await PostApi.createPost(payload);
     return data;
   } catch (e) {
-    console.warn(e);
-    alert("Ошибка при создании статьи");
+
+    // alert("Ошибка при создании статьи");
   }
 
 });
 export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async ({ sorts }, thunkAPI) => {
   thunkAPI.dispatch(changeSortBy(sorts));
-  const { data } = await PostApi.getPosts(sorts);
-  return data;
+  try {
+    const { data } = await PostApi.getPosts(sorts);
+    if (!data) {
+      throw new Error("Can't get post.Server error");
+    }
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+
+
 });
 export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async ({ postId }) => {
   try {
@@ -53,9 +62,17 @@ export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ pos
   return data;
 });
 
-export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async () => {
-  const { data } = await PostApi.getTags();
-  return data;
+export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async (_,thunkAPI) => {
+  try {
+    const { data } = await PostApi.getTags();
+    if (!data) {
+     throw new Error("Can't get task.Server error")
+    }
+    return data;
+  }catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+
 });
 const postsSlice = createSlice({
   name: "posts",
@@ -63,6 +80,9 @@ const postsSlice = createSlice({
   reducers: {
     changeSortBy(state, action) {
       state.posts.sortByItem = action.payload;
+    },
+    viewError(state, action) {
+      state.posts.status = action.payload;
     }
   },
   extraReducers: {
@@ -100,18 +120,6 @@ const postsSlice = createSlice({
       state.posts.isUpdated = false;
       state.posts.status = "error";
     },
-    // [getAllCommentsTC.pending]: (state) => {
-    //   state.comments.items = [];
-    //   state.comments.status = "loading";
-    // },
-    // [getAllCommentsTC.fulfilled]: (state, action) => {
-    //   state.comments.items = action.payload;
-    //   state.comments.status = "loaded";
-    // },
-    // [getAllCommentsTC.rejected]: (state) => {
-    //   state.comments.items = [];
-    //   state.comments.status = "error";
-    // },
     [getPostsTC.pending]: (state) => {
       state.posts.items = [];
       state.posts.status = "loading";
@@ -120,9 +128,9 @@ const postsSlice = createSlice({
       state.posts.items = action.payload;
       state.posts.status = "loaded";
     },
-    [getPostsTC.rejected]: (state) => {
+    [getPostsTC.rejected]: (state,action) => {
       state.posts.items = [];
-      state.posts.status = "error";
+      state.posts.status = action.payload;
     },
     [getTagsTC.pending]: (state) => {
       state.tags.items = [];
@@ -132,9 +140,9 @@ const postsSlice = createSlice({
       state.tags.items = action.payload;
       state.tags.status = "loaded";
     },
-    [getTagsTC.rejected]: (state) => {
+    [getTagsTC.rejected]: (state,action) => {
       state.tags.items = [];
-      state.tags.status = "error";
+      state.tags.status = action.payload;
     },
     [deletePostTC.pending]: (state, action) => {
       //console.log(action.meta.arg);
@@ -148,5 +156,5 @@ const postsSlice = createSlice({
     }
   }
 });
-export const { changeSortBy } = postsSlice.actions;
+export const { changeSortBy, viewError } = postsSlice.actions;
 export const postsReducer = postsSlice.reducer;

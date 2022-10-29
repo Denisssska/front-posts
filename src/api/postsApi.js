@@ -1,11 +1,6 @@
 import React from "react";
 import instance from "./instance";
-// type PostPropsType={
-//     title:string
-//     text:string
-//     tags?:Array<string>
-//     imageUrl?:string
-// }
+
 export const PostApi = {
   createPost(payload) {
     return instance.post("/posts", {
@@ -37,6 +32,6 @@ export const PostApi = {
     return instance(`/posts/popular/${limit}`);
   },
   getTags() {
-    return instance.get("/tags");
+    return instance.get("/tagss");
   }
 };
