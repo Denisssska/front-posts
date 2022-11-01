@@ -25,8 +25,7 @@ export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ pay
     const { data } = await PostApi.createPost(payload);
     return data;
   } catch (e) {
-
-    // alert("Ошибка при создании статьи");
+    return rejectWithValue(e.message);
   }
 
 });
@@ -34,9 +33,6 @@ export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async ({ sorts }
   thunkAPI.dispatch(changeSortBy(sorts));
   try {
     const { data } = await PostApi.getPosts(sorts);
-    if (!data) {
-      throw new Error("Can't get post.Server error");
-    }
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
@@ -44,32 +40,37 @@ export const getPostsTC = createAsyncThunk("/posts/getPostsTC", async ({ sorts }
 
 
 });
-export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async ({ postId }) => {
+export const getOnePostTC = createAsyncThunk("/posts/getOnePostTC", async ({ postId }, thunkAPI) => {
   try {
     const { data } = await PostApi.getOnePost(postId);
     return data;
   } catch (e) {
-    console.warn(e);
-    alert("Ошибка при получении статьи");
+    return thunkAPI.rejectWithValue(e.message);
   }
 });
-export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postId) => {
-  const { data } = await PostApi.deletePost(postId);
-  return data;
+export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postId, thunkAPI) => {
+  try {
+    const { data } = await PostApi.deletePost(postId);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+
 });
-export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }) => {
-  const { data } = await PostApi.updatePost(postId, payload);
-  return data;
+export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload },thunkAPI) => {
+  try {
+    const { data } = await PostApi.updatePost(postId, payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
 });
 
-export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async (_,thunkAPI) => {
+export const getTagsTC = createAsyncThunk("/posts/getTagsTC", async (_, thunkAPI) => {
   try {
     const { data } = await PostApi.getTags();
-    if (!data) {
-     throw new Error("Can't get task.Server error")
-    }
     return data;
-  }catch (e) {
+  } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
   }
 
@@ -128,7 +129,7 @@ const postsSlice = createSlice({
       state.posts.items = action.payload;
       state.posts.status = "loaded";
     },
-    [getPostsTC.rejected]: (state,action) => {
+    [getPostsTC.rejected]: (state, action) => {
       state.posts.items = [];
       state.posts.status = action.payload;
     },
@@ -140,7 +141,7 @@ const postsSlice = createSlice({
       state.tags.items = action.payload;
       state.tags.status = "loaded";
     },
-    [getTagsTC.rejected]: (state,action) => {
+    [getTagsTC.rejected]: (state, action) => {
       state.tags.items = [];
       state.tags.status = action.payload;
     },

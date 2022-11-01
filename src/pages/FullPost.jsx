@@ -12,8 +12,6 @@ import { getOnePostTC } from "../store/slices/postsReducer";
 export const FullPost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [obj, setObj] = useState({});
-   const [postLoading, setPostLoading] = useState(true);
   const [commentsLoading, setCommentsLoading] = useState(true);
 
   const { id } = useParams();
@@ -28,43 +26,34 @@ export const FullPost = () => {
   }, [comments.process]);
 
   useEffect(() => {
-    // dispatch(getOnePostTC({ postId: id }));
-    PostApi.getOnePost(id).then(
-      res => {
-        setObj(res.data);
-        setPostLoading(false);
-      }
-    ).catch((err) => {
-      console.warn(err);
-      alert("Ошибка при получении статьи");
-    });
+    dispatch(getOnePostTC({ postId: id }));
   }, [ items.avatarUrl, items.fullName]);
- // console.log(posts.onePost);
+  // console.log(posts.onePost);
 
   if (isPostDeleted) {
     navigate("/");
   }
   return (
     <>
-      {postLoading ? <Post isLoading={postLoading} /> : <Post
-        title={obj.title}
-        imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : ""}
-        tags={obj.tags}
-        viewsCount={obj.viewsCount}
+      {!posts.onePost._id ? <Post isLoading={true} /> : <Post
+        title={posts.onePost.title}
+        imageUrl={posts.onePost.imageUrl ? `${PORT}${posts.onePost.imageUrl}` : ""}
+        tags={posts.onePost.tags}
+        viewsCount={posts.onePost.viewsCount}
         commentsCount={comments.items.length}
-        createdAt={obj.createdAt}
-        user={obj.user}
+        createdAt={posts.onePost.createdAt}
+        user={posts.onePost.user}
         id={id}
-        isEditable={items._id === obj.user._id}
+        isEditable={items._id === posts.onePost.user._id}
       >
-        <ReactMarkdown children={obj.text} />
+        <ReactMarkdown children={posts.onePost.text} />
 
       </Post>}
       {commentsLoading ? <CommentsBlock isLoading={commentsLoading} item={[]} /> :
         <CommentsBlock
           item={comments.items}
         >
-          {Boolean(items.avatarUrl) && <AddComment obj={obj} img={items.avatarUrl} />}
+          {Boolean(items.avatarUrl) && <AddComment obj={posts.onePost} img={items.avatarUrl} />}
         </CommentsBlock>}
     </>
   );

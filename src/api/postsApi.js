@@ -32,6 +32,6 @@ export const PostApi = {
     return instance(`/posts/popular/${limit}`);
   },
   getTags() {
-    return instance.get("/tagss");
+    return instance.get("/tags");
   }
 };

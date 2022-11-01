@@ -14,12 +14,14 @@ import { createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/pos
 export const AddPost = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.user.authMe);
-  const { posts } = useSelector(state => state.posts);
+  const { posts }  = useSelector(state => state.posts);
   const navigate = useNavigate();
   const { id } = useParams();
+  console.log(posts.onePost);
   useEffect(() => {
     if (id) {
       dispatch(getOnePostTC({ postId: id })).then(res => {
+        setState({...res.payload,tags:res.payload.tags.join(",")})
         setTitle(res.payload.title);
         setText(res.payload.text);
         setTags(res.payload.tags.join(","));
@@ -27,8 +29,11 @@ export const AddPost = () => {
       });
     }
   }, [posts.createdPost]);
+
   const inputFileRef = useRef(null);
 
+  const [state,setState]=useState({})
+  // console.log(state);
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
