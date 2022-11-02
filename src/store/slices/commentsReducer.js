@@ -14,31 +14,52 @@ const initialState = {
 export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async ({
                                                                                       comment,
                                                                                       postId
-                                                                                    }) => {
-  const { data } = await CommentApi.createComment({ comment, postId });
-  return data;
+                                                                                    }, { rejectWithValue }) => {
+  try {
+    const { data } = await CommentApi.createComment({ comment, postId });
+    return data;
+  } catch (e) {
+    rejectWithValue(e.message);
+  }
 });
-// export const getAllCommentsTC = createAsyncThunk("/comments/getAllCommentsTC", async () => {
-//   const { data } = await CommentApi.getAllComments();
-//   return data;
-// });
-export const getLastCommentsTC = createAsyncThunk("/comments/getLastCommentsTC", async () => {
-  const { data } = await CommentApi.getLastComments();
-  return data;
+
+export const getLastCommentsTC = createAsyncThunk("/comments/getLastCommentsTC", async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await CommentApi.getLastComments();
+    return data;
+  } catch (e) {
+    rejectWithValue(e.message);
+  }
+
 });
-export const getAllCommentsInPostTC = createAsyncThunk("/comments/getAllCommentsInPostTC", async (postId) => {
-  const { data } = await CommentApi.getAllCommentsInPost(postId);
-  return data;
+export const getAllCommentsInPostTC = createAsyncThunk("/comments/getAllCommentsInPostTC", async ({ postId }, { rejectWithValue }) => {
+  try {
+    const { data } = await CommentApi.getAllCommentsInPost(postId);
+    return data;
+  } catch (e) {
+    rejectWithValue(e.message);
+  }
 });
-export const updateCommentTC = createAsyncThunk("/comments/updateCommentTC", async ({ commentId, payload }) => {
-  const { data } = await CommentApi.updateComment(commentId, payload);
-  console.log(data);
-  // return data;
+export const updateCommentTC = createAsyncThunk("/comments/updateCommentTC", async ({
+                                                                                      commentId,
+                                                                                      payload
+                                                                                    }, { rejectWithValue }) => {
+
+  try {
+    const { data } = await CommentApi.updateComment(commentId, payload);
+    console.log(data);
+  } catch (e) {
+    rejectWithValue(e.message);
+  }
 });
-export const deleteCommentTC = createAsyncThunk("/comments/deleteCommentTC", async ({ commentId }) => {
-  const { data } = await CommentApi.deleteComment(commentId);
-  alert(data.message);
-  return data;
+export const deleteCommentTC = createAsyncThunk("/comments/deleteCommentTC", async ({ commentId }, { rejectWithValue }) => {
+  try {
+    const { data } = await CommentApi.deleteComment(commentId);
+    alert(data.message);
+    return data;
+  } catch (e) {
+    rejectWithValue(e.message);
+  }
 });
 
 

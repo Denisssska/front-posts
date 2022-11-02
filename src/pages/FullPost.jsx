@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AddComment, CommentsBlock, Post } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostApi } from "../api/postsApi";
@@ -9,26 +9,24 @@ import { getAllCommentsInPostTC } from "../store/slices/commentsReducer";
 import { getOnePostTC } from "../store/slices/postsReducer";
 
 
-export const FullPost = () => {
+export const FullPost =() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [commentsLoading, setCommentsLoading] = useState(true);
 
   const { id } = useParams();
   const { items } = useSelector(state => state.user.login);
   const { posts } = useSelector(state => state.posts);
   const { comments } = useSelector(state => state.comments);
   const isPostDeleted = posts.status === "Статья удалена";
-  //console.log(obj);
+
   useEffect(() => {
-    dispatch(getAllCommentsInPostTC(id));
-    setCommentsLoading(false);
-  }, [comments.process]);
+    dispatch(getAllCommentsInPostTC({ postId: id }));
+    }, [comments.process]);
 
   useEffect(() => {
     dispatch(getOnePostTC({ postId: id }));
-  }, [ items.avatarUrl, items.fullName]);
-  // console.log(posts.onePost);
+  }, [items.avatarUrl, items.fullName]);
+
 
   if (isPostDeleted) {
     navigate("/");
@@ -49,7 +47,7 @@ export const FullPost = () => {
         <ReactMarkdown children={posts.onePost.text} />
 
       </Post>}
-      {commentsLoading ? <CommentsBlock isLoading={commentsLoading} item={[]} /> :
+      {!comments.items.length ? <CommentsBlock isLoading={true} item={[]} /> :
         <CommentsBlock
           item={comments.items}
         >
