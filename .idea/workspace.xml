@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
+      <change afterPath="$PROJECT_DIR$/src/utils/savePhotoOnServer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/postsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/postsApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/FullPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/postsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/postsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +130,8 @@
       <workItem from="1666511533705" duration="14828000" />
       <workItem from="1666771549256" duration="11798000" />
       <workItem from="1667293843977" duration="1781000" />
-      <workItem from="1667305973959" duration="10552000" />
+      <workItem from="1667305973959" duration="11226000" />
+      <workItem from="1667372798653" duration="4209000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>

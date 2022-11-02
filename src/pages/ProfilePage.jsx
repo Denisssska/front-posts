@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import { PORT } from "../api/instance";
 import { TextField } from "@mui/material";
 import { updateUserStateTC } from "../store/slices/userReducer";
-import img from "../assets/man-avatar.webp";
+import { savePhotoOnServer } from "../utils/savePhotoOnServer";
 
 const style = {
   position: "absolute",
@@ -30,22 +30,11 @@ export const BasicModal = () => {
   const [avatarUrl, setAvatarUrl] = useState(items.avatarUrl);
   const [fullName, setFullName] = useState(items.fullName);
   const [disabled, setDisabled] = useState(true);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
-  const handleChangePhoto = async (event) => {
-    try {
-      const formData = new FormData();
-      const file = event.target.files[0];
-      formData.append("image", file);
-      const { data } = await UserApi.updateUserFile(formData);
-      setAvatarUrl(data.url);
-      setDisabled(false);
-    } catch (e) {
-      console.warn(e);
-      alert("Ошибка при загрузке файла");
-
-    }
+  const handleChangePhoto =  async (event) => {
+    const data = await savePhotoOnServer(event)
+      setAvatarUrl(data);
+       setDisabled(false);
   };
   const changeName = (e) => {
     setDisabled(false);
@@ -55,7 +44,6 @@ export const BasicModal = () => {
   const submit = async () => {
     try {
       await UserApi.changeUserPhotoAndName(items._id, avatarUrl, fullName);
-      //setAvatarUrl("");
       setDisabled(true);
       dispatch(updateUserStateTC({ fullName, avatarUrl }));
     } catch (e) {
@@ -65,10 +53,10 @@ export const BasicModal = () => {
   };
   return (
     <span>
-      <Button variant={"contained"} onClick={handleOpen}>Изменить профиль</Button>
+      <Button variant={"contained"} onClick={()=>setOpen(true)}>Изменить профиль</Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
