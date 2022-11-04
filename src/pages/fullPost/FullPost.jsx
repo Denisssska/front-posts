@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { AddComment, CommentsBlock, Post } from "../components";
+import { AddComment, CommentsBlock, Post } from "../../components";
 import { useNavigate, useParams } from "react-router-dom";
-import { PostApi } from "../api/postsApi";
+import { PostApi } from "../../api/postsApi";
 import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
-import { PORT } from "../api/instance";
-import { getAllCommentsInPostTC } from "../store/slices/commentsReducer";
-import { getOnePostTC } from "../store/slices/postsReducer";
+import { PORT } from "../../api/instance";
+import { getAllCommentsInPostTC } from "../../store/slices/commentsReducer";
+import { getOnePostTC } from "../../store/slices/postsReducer";
 
 
 export const FullPost =() => {

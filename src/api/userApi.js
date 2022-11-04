@@ -24,7 +24,7 @@ export const UserApi = {
     return instance.post("/update", formData);
   },
   changeUserPhotoAndName(userId, avatarUrl, fullName) {
-    return instance.patch(`auth/${userId}`, {
+    return instance.patch(`/auth/${userId}`, {
       avatarUrl, fullName
     });
   }

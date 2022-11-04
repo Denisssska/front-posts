@@ -5,6 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authMeTC } from "./store/slices/userReducer";
+import { ForgotPasswordPage } from "./pages/changePassword/ForgotPasswordPage";
+import { CreatePasswordPage } from "./pages/changePassword/CreatePasswordPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +22,8 @@ function App() {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/forgot" element={<ForgotPasswordPage />} />
+          <Route path="/create-password/*" element={<CreatePasswordPage />} />
           <Route path="/tags/:tag" element={<Home />} />
           <Route path="/posts/:id" element={<FullPost />} />
           <Route path="/posts/:id/edit" element={<AddPost />} />

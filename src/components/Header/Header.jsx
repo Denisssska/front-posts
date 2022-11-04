@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutTC } from "../../store/slices/userReducer";
-import { BasicModal } from "../../pages/ProfilePage";
+import { BasicModal } from "../../pages/profilePage/ProfilePage";
 import { changeSortBy } from "../../store/slices/postsReducer";
 
 export const Header = () => {

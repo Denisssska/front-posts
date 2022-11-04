@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import styles from "./Login.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { loginTC } from "../../store/slices/userReducer";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export const Login = () => {
@@ -59,6 +59,7 @@ export const Login = () => {
         <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
           Войти
         </Button>
+        <NavLink to="/forgot">Забыли пороль?</NavLink>
       </form>
 
     </Paper>

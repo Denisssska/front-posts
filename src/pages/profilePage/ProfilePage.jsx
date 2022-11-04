@@ -3,12 +3,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { UserApi } from "../api/userApi";
+import { UserApi } from "../../api/userApi";
 import Avatar from "@mui/material/Avatar";
-import { PORT } from "../api/instance";
+import { PORT } from "../../api/instance";
 import { TextField } from "@mui/material";
-import { updateUserStateTC } from "../store/slices/userReducer";
-import { savePhotoOnServer } from "../utils/savePhotoOnServer";
+import { updateUserStateTC } from "../../store/slices/userReducer";
+import { savePhotoOnServer } from "../../utils/savePhotoOnServer";
 
 const style = {
   position: "absolute",

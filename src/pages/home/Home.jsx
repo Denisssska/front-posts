@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
-import { CommentsBlock, Post, TagsBlock } from "../components";
+import { CommentsBlock, Post, TagsBlock } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSortBy, getPostsTC, getTagsTC } from "../store/slices/postsReducer";
-import { PORT } from "../api/instance";
-import { getLastCommentsTC } from "../store/slices/commentsReducer";
+import { changeSortBy, getPostsTC, getTagsTC } from "../../store/slices/postsReducer";
+import { PORT } from "../../api/instance";
+import { getLastCommentsTC } from "../../store/slices/commentsReducer";
 
 export const Home = () => {
   const { posts, tags } = useSelector(state => state.posts);
