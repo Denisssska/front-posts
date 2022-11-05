@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
-      <change afterPath="$PROJECT_DIR$/src/api/password.api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/changePassword/CreatePasswordPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/changePassword/ForgotPasswordPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_10_2022_21_52_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_10_2022_21_52__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/slices/changePasswordReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/userApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/fullPost/FullPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profilePage/ProfilePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/changePassword/CreatePasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/changePassword/CreatePasswordPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/changePassword/ForgotPasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/changePassword/ForgotPasswordPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +52,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/front-posts/src/pages/changePassword",
+    "last_opened_file_path": "D:/front-posts/src/store/slices",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -77,11 +68,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\front-posts\src\store\slices" />
       <recent name="D:\front-posts\src\pages\changePassword" />
       <recent name="D:\mern-blog-frontend\src\store\slices" />
       <recent name="D:\mern-blog-frontend\src\api" />
       <recent name="D:\mern-blog-frontend\src\store" />
-      <recent name="D:\mern-blog-frontend\src\hooks" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\front-posts\src\pages\profilePage" />
@@ -146,7 +137,8 @@
       <workItem from="1667293843977" duration="1781000" />
       <workItem from="1667305973959" duration="11226000" />
       <workItem from="1667372798653" duration="11944000" />
-      <workItem from="1667566755514" duration="8190000" />
+      <workItem from="1667566755514" duration="8494000" />
+      <workItem from="1667639314323" duration="8836000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>
