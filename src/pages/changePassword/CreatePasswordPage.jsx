@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import Paper from "@mui/material/Paper";
 import styles from "../Login/Login.module.scss";
@@ -9,8 +9,10 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { UserApi } from "../../api/userApi";
 import { ChangePassword } from "../../api/password.api";
+import { createNewPasswordTC } from "../../store/slices/changePasswordReducer";
 
 export const CreatePasswordPage = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const isCreated = useSelector(state => state.password.status === "created");
@@ -24,10 +26,10 @@ export const CreatePasswordPage = () => {
       email: "", password: ""
     }, mode: "onChange"
   });
-  const onSubmit = async (values) => {
-    console.log(values.password);
-    const {data} = await ChangePassword.createPass(values.password,token,id)
-    console.log(data);
+  const onSubmit =(values) => {
+    dispatch(createNewPasswordTC({password:values.password,token,id}))
+    // const {data} = await ChangePassword.createPass(values.password,token,id)
+
     // const data = await dispatch(loginTC(values));
     // if(!data.payload){
     //   alert('Не удалось авторизироваться...')
