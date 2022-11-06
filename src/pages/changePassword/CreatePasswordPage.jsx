@@ -7,6 +7,8 @@ import styles from "../Login/Login.module.scss";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { UserApi } from "../../api/userApi";
+import { ChangePassword } from "../../api/password.api";
 
 export const CreatePasswordPage = () => {
   const location = useLocation();
@@ -15,8 +17,8 @@ export const CreatePasswordPage = () => {
   console.log();
   const id = location.pathname.split("/")[2];
   const token = location.pathname.split("/")[3];
-  console.log(id);
-  console.log(token);
+  //console.log(id);
+  //console.log(token);
   const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
     defaultValues: {
       email: "", password: ""
@@ -24,6 +26,8 @@ export const CreatePasswordPage = () => {
   });
   const onSubmit = async (values) => {
     console.log(values.password);
+    const {data} = await ChangePassword.createPass(values.password,token,id)
+    console.log(data);
     // const data = await dispatch(loginTC(values));
     // if(!data.payload){
     //   alert('Не удалось авторизироваться...')

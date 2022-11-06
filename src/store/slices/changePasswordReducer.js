@@ -14,6 +14,14 @@ export const forgotPasswordTC = createAsyncThunk("/auth/forgotPasswordTC", async
     thunkAPI.rejectWithValue(e.message);
   }
 });
+export const createNewPasswordTC = createAsyncThunk("/auth/createNewPasswordTC", async ({ password,token,id }, thunkAPI) => {
+  try {
+    const {data} = await ChangePassword.createPass(password,token,id)
+    return data;
+  } catch (e) {
+    thunkAPI.rejectWithValue(e.message);
+  }
+});
 
 
 const passwordSlice = createSlice({
@@ -32,7 +40,19 @@ const passwordSlice = createSlice({
     [forgotPasswordTC.rejected]: (state) => {
       state.message = "";
       state.status = "error";
-    }
+    },
+    [createNewPasswordTC.pending]: (state) => {
+      state.message = "";
+      state.status = "loading";
+    },
+    [createNewPasswordTC.fulfilled]: (state, action) => {
+      state.message = action.payload.message;
+      state.status = "loaded";
+    },
+    [createNewPasswordTC.rejected]: (state) => {
+      state.message = "";
+      state.status = "error";
+    },
   }
 });
 
