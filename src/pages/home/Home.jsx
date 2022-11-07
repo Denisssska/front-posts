@@ -52,7 +52,7 @@ export const Home = () => {
               <Post
                 key={index}
                 title={obj.title}
-                imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : ""}
+                imageUrl={obj.imageUrl ? `${PORT}/${obj.imageUrl}` : ""}
                 id={obj._id}
                 tags={obj.tags}
                 viewsCount={obj.viewsCount}
