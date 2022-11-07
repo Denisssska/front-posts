@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/changePassword/CreatePasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/changePassword/CreatePasswordPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/changePassword/ForgotPasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/changePassword/ForgotPasswordPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/slices/changePasswordReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/changePasswordReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,6 +141,7 @@
       <workItem from="1667566755514" duration="8494000" />
       <workItem from="1667639314323" duration="9602000" />
       <workItem from="1667727465653" duration="6096000" />
+      <workItem from="1667814798760" duration="5065000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>

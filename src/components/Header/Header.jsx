@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import styles from "./Header.module.scss";
 import Container from "@mui/material/Container";
@@ -12,6 +12,7 @@ export const Header = () => {
   const { login, registration } = useSelector(state => state.user);
 
   const isAuth = login.status === "success" || registration.status === "registered";
+
   const dispatch = useDispatch();
 
   const onClickLogout = () => {
@@ -27,7 +28,7 @@ export const Header = () => {
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <NavLink onClick={() => handleClick('createdAt')} className={styles.logo} to="/">
+          <NavLink onClick={() => handleClick("createdAt")} className={styles.logo} to="/">
             <div>BLOG</div>
           </NavLink>
           <div className={styles.buttons}>

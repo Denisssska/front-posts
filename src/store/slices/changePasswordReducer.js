@@ -47,6 +47,7 @@ const passwordSlice = createSlice({
     },
     [createNewPasswordTC.fulfilled]: (state, action) => {
       console.log("createNewPass : fulfilled");
+      state.message = action.payload.message
       state.status = "created";
     },
     [createNewPasswordTC.rejected]: (state) => {
