@@ -8,7 +8,7 @@ export const ChangePassword = {
       email,
       message: `<div style="background-color: lime; padding: 15px">
                         password recovery link:пока не работает 
-                        <a href="http://localhost:3000/create-password/$id$/$token$">link</a>
+                        <a href="https://front-posts-jgbiyl7cj-denisssska.vercel.app/create-password/$id$/$token$">link</a>
                       </div>`
     });
   },
