@@ -14,6 +14,7 @@ import { changeSortBy, deletePostTC } from "../../store/slices/postsReducer";
 import { useDispatch } from "react-redux";
 
 export const Post = ({
+  visible,
                        imageUrl,
                        title,
                        id,
@@ -54,7 +55,7 @@ export const Post = ({
       {imageUrl ? <img
         //style={{margin:"0 auto",marginTop:'2%',display: 'block'}}
         className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-        src={imageUrl || "https://logos.flamingtext.com/Word-Logos/post-design-sketch-name.png"} alt={title}
+        src={imageUrl || ""} alt={title}
       /> : <></>}
       <div className={styles.wrapper}>
         <UserInfo {...user} additionalText={createdAt} />
@@ -72,11 +73,11 @@ export const Post = ({
           {children && <div className={styles.content}>{children}</div>}
           <ul className={styles.postDetails}>
             <li>
-              <EyeIcon />
+              <EyeIcon  />
               <span>{viewsCount}</span>
             </li>
             <li>
-              <CommentIcon />
+             <CommentIcon />
               <span>{commentsCount}</span>
             </li>
           </ul>

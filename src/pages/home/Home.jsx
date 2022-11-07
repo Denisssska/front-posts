@@ -19,9 +19,9 @@ export const Home = () => {
     dispatch(getTagsTC());
   }, []);
 
-  useEffect(() => {
-    dispatch(getLastCommentsTC());
-  }, [comments.isCommentDeleted]);
+  // useEffect(() => {
+  //   dispatch(getLastCommentsTC());
+  // }, [comments.isCommentDeleted]);
 
   useEffect(() => {
     dispatch(getPostsTC({ sorts: posts.sortByItem }));
@@ -45,7 +45,7 @@ export const Home = () => {
         <Tab onClick={() => sortNew("createdAt")} label="Новые" />
         <Tab onClick={() => sortNew("viewsCount")} label="Популярные" />
       </Tabs>
-      <Grid container spacing={4}>
+      <Grid container spacing={0}>
         <Grid xs={8} item>
           {(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) => isPostLoading ?
             <Post key={index} isLoading={isPostLoading} /> : (
@@ -65,10 +65,10 @@ export const Home = () => {
         </Grid>
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagLoading} />
-          {comments.lastComments.length && <CommentsBlock
-            item={comments.lastComments}
-            isLoading={false}
-          />}
+          {/*{comments.lastComments.length && <CommentsBlock*/}
+          {/*  item={comments.lastComments}*/}
+          {/*  isLoading={false}*/}
+          {/*/>}*/}
         </Grid>
       </Grid>
     </>

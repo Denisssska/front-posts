@@ -15,7 +15,7 @@ export const UserInfo = ({ avatarUrl, fullName, additionalText }) => {
 
   return (
     <div className={styles.root}>
-      <img className={styles.avatar} src={`${PORT}${avatarUrl}`} alt={""} />
+      <img className={styles.avatar} src={`${PORT}${avatarUrl} ` || ''} alt={""} />
       <div className={styles.userDetails}>
         <span className={styles.userName}>{fullName}</span>
         <span className={styles.additional}>{date + "." + month + "." + year}</span>
