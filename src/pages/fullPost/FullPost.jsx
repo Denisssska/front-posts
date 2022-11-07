@@ -35,7 +35,7 @@ export const FullPost =() => {
     <>
       {!posts.onePost._id ? <Post isLoading={true} /> : <Post
         title={posts.onePost.title}
-        imageUrl={posts.onePost.imageUrl ? `${PORT}/${posts.onePost.imageUrl}` : ""}
+        imageUrl={posts.onePost.imageUrl ? `${PORT}${posts.onePost.imageUrl}` : ""}
         tags={posts.onePost.tags}
         viewsCount={posts.onePost.viewsCount}
         commentsCount={comments.items.length}
