@@ -7,8 +7,8 @@ export const ChangePassword = {
     return instance.post("/auth/send-password-link", {
       email,
       message: `<div style="background-color: lime; padding: 15px">
-                        password recovery link: 
-                        <a href="https://localhost:3000/create-password">link</a>
+                        password recovery link:пока не работает 
+                        <a href="http://localhost:3000/create-password/$id$/$token$">link</a>
                       </div>`
     });
   },
