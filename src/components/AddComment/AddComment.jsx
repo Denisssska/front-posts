@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createCommentTC } from "../../store/slices/commentsReducer";
 
 export const AddComment = ({ img, obj }) => {
-  const { items } = useSelector(state => state.user.login);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [commentInPost, setCommentInPost] = useState("");
@@ -25,7 +24,7 @@ export const AddComment = ({ img, obj }) => {
       comment: commentInPost,
       postId: id
     }));
-    if (comments.items.length) {
+    if (comments.items) {
       const payloadPost = {
         title: obj.title,
         text: obj.text,

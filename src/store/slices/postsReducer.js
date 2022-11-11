@@ -8,7 +8,6 @@ const initialState = {
     createdPost: {},
     status: "loading",
     isUpdated: false,
-    createdId: "",
     sortByItem: "createdAt"
   },
   tags: {
@@ -57,7 +56,7 @@ export const deletePostTC = createAsyncThunk("/posts/deletePostTC", async (postI
   }
 
 });
-export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload },thunkAPI) => {
+export const updatePostTC = createAsyncThunk("/posts/updatePostTC", async ({ postId, payload }, thunkAPI) => {
   try {
     const { data } = await PostApi.updatePost(postId, payload);
     return data;

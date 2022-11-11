@@ -12,21 +12,35 @@ import DeleteIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCommentTC } from "../store/slices/commentsReducer";
+import { updatePostTC } from "../store/slices/postsReducer";
+import { useParams } from "react-router-dom";
 
-export const CommentsBlock = ({ item, children, isLoading }) => {
-
+export const CommentsBlock = ({ item, children }) => {
+  const { comments } = useSelector(state => state.comments);
+  const { posts } = useSelector(state => state.posts);
   const { items } = useSelector(state => state.user.login);
-
+  const isLoading = comments.status === "loading";
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const deleteComment = (commentId) => {
     if (commentId) {
       dispatch(deleteCommentTC({ commentId }));
+      if (id === posts.onePost._id && item.length) {
+        const payloadPost = {
+          title: posts.onePost.title,
+          text: posts.onePost.text,
+          tags: posts.onePost.tags,
+          imageUrl: posts.onePost.imageUrl,
+          commentsCount: item.length - 1
+        };
+        dispatch(updatePostTC({ payload: payloadPost, postId: id }));
+      }
     }
 
   };
   return (
-    <SideBlock title={item.length ? "Комментарии" : "Нет комментариев"}>
+    <SideBlock title="Комментарии">
       <List>
         {isLoading ? [...Array(5)] : item.map((obj, index) => (
           <React.Fragment key={index}>

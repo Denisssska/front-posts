@@ -5,10 +5,9 @@ import { CommentApi } from "../../api/commentsApi";
 const initialState = {
   comments: {
     items: [],
-    process: "empty",
     lastComments: [],
     status: "loading",
-    isCommentDeleted: false
+    isCommentChanged: false
   }
 };
 export const createCommentTC = createAsyncThunk("/comments/createCommentTC", async ({
@@ -55,7 +54,7 @@ export const updateCommentTC = createAsyncThunk("/comments/updateCommentTC", asy
 export const deleteCommentTC = createAsyncThunk("/comments/deleteCommentTC", async ({ commentId }, { rejectWithValue }) => {
   try {
     const { data } = await CommentApi.deleteComment(commentId);
-    alert(data.message);
+
     return data;
   } catch (e) {
     rejectWithValue(e.message);
@@ -74,14 +73,14 @@ const commentSlice = createSlice({
   },
   extraReducers: {
     [createCommentTC.pending]: (state) => {
-      state.comments.process = "empty";
+      state.comments.isCommentChanged = false;
     },
     [createCommentTC.fulfilled]: (state, action) => {
       // state.comments.items.push(action.payload);
-      state.comments.process = "well";
+      state.comments.isCommentChanged = true;
     },
     [createCommentTC.rejected]: (state) => {
-      state.comments.process = "error";
+      state.comments.status = "error";
     },
     [getLastCommentsTC.pending]: (state) => {
       state.comments.lastComments = [];
@@ -108,14 +107,16 @@ const commentSlice = createSlice({
       state.comments.status = "error";
     },
     [deleteCommentTC.pending]: (state, action) => {
-      console.log(action.meta.arg);
+      //console.log(action.meta.arg);
+      state.comments.isCommentChanged = false;
       state.comments.items = state.comments.items.filter(obj => obj._id !== action.meta.arg);
     },
     [deleteCommentTC.fulfilled]: (state, action) => {
-      state.comments.isCommentDeleted = true;
+      state.comments.isCommentChanged = true;
       state.comments.status = action.payload.message;
     },
     [deleteCommentTC.rejected]: (state) => {
+      state.comments.isCommentChanged = false;
       state.comments.status = "error";
     }
   }
