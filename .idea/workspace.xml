@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/commentsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/commentsApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentsBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/commentsContainer/CommentsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/commentsContainer/CommentsContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/commentsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/postsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/postsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post/Post.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post/Post.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +140,7 @@
       <workItem from="1667833535376" duration="386000" />
       <workItem from="1667835163246" duration="1247000" />
       <workItem from="1668162987619" duration="143000" />
-      <workItem from="1668163154287" duration="7859000" />
+      <workItem from="1668163154287" duration="8332000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>
