@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginTC } from "../../store/slices/userReducer";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Snackbar } from "@mui/material";
+
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -19,15 +21,16 @@ export const Login = () => {
       email: "", password: ""
     }, mode: "onChange"
   });
+
   const onSubmit = async (values) => {
-   const data = await dispatch(loginTC(values));
-   if(!data.payload){
-     alert('Не удалось авторизироваться...')
-   }
-    if(localStorage.getItem('token')|| 'token' in data.payload){
-      window.localStorage.setItem('token',data.payload.token)
-    }else{
-      alert('Не удалось авторизоваться...')
+    const data = await dispatch(loginTC(values));
+    if (!data.payload) {
+      alert("Не удалось авторизироваться...");
+    }
+    if (localStorage.getItem("token") || "token" in data.payload) {
+      window.localStorage.setItem("token", data.payload.token);
+    } else {
+      alert("Не удалось авторизоваться...");
     }
   };
 
@@ -36,32 +39,36 @@ export const Login = () => {
   }
 
   return (
-    <Paper classes={{ root: styles.root }}>
-      <Typography classes={{ root: styles.title }} variant="h5">
-        Вход в аккаунт
-      </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          type="email"
-          className={styles.field}
-          label="E-Mail"
-          error={Boolean(errors.email?.message)}
-          helperText={errors.email?.message}
-          {...register("email", { required: "Укажите почту" })}
-          fullWidth
-        />
-        <TextField
-          {...register("password", { required: "Укажите пароль" })}
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message} className={styles.field}
-          label="Пароль"
-          fullWidth />
-        <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
-          Войти
-        </Button>
-        <NavLink to="/forgot">Забыли пороль?</NavLink>
-      </form>
+    <>
+      {login.status !== "success" && login.status !== "loading" &&
+        <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }} message={login.status} />}
+      <Paper classes={{ root: styles.root }}>
+        <Typography classes={{ root: styles.title }} variant="h5">
+          Вход в аккаунт
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            type="email"
+            className={styles.field}
+            label="E-Mail"
+            error={Boolean(errors.email?.message)}
+            helperText={errors.email?.message}
+            {...register("email", { required: "Укажите почту" })}
+            fullWidth
+          />
+          <TextField
+            {...register("password", { required: "Укажите пароль" })}
+            error={Boolean(errors.password?.message)}
+            helperText={errors.password?.message} className={styles.field}
+            label="Пароль"
+            fullWidth />
+          <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
+            Войти
+          </Button>
+          <NavLink to="/forgot">Забыли пороль?</NavLink>
+        </form>
+      </Paper>
+    </>
 
-    </Paper>
   );
 };

@@ -75,8 +75,7 @@ const commentSlice = createSlice({
     [createCommentTC.pending]: (state) => {
       state.comments.isCommentChanged = false;
     },
-    [createCommentTC.fulfilled]: (state, action) => {
-      // state.comments.items.push(action.payload);
+    [createCommentTC.fulfilled]: (state) => {
       state.comments.isCommentChanged = true;
     },
     [createCommentTC.rejected]: (state) => {
@@ -95,7 +94,6 @@ const commentSlice = createSlice({
       state.comments.status = "error";
     },
     [getAllCommentsInPostTC.pending]: (state) => {
-      state.comments.items = [];
       state.comments.status = "loading";
     },
     [getAllCommentsInPostTC.fulfilled]: (state, action) => {

@@ -1,11 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { AddComment, CommentsBlock, Post } from "../../components";
+import React, { useEffect } from "react";
+import { Post } from "../../components";
 import { useNavigate, useParams } from "react-router-dom";
-import { PostApi } from "../../api/postsApi";
 import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { PORT } from "../../api/instance";
-import { getAllCommentsInPostTC } from "../../store/slices/commentsReducer";
 import { getOnePostTC } from "../../store/slices/postsReducer";
 import { CommentsContainer } from "../../components/commentsContainer/CommentsContainer";
 
@@ -35,12 +33,10 @@ export const FullPost = () => {
         title={posts.onePost.title}
         imageUrl={posts.onePost.imageUrl ? `${PORT}${posts.onePost.imageUrl}` : ""}
         tags={posts.onePost.tags}
-        // viewsCount={posts.onePost.viewsCount}
-        // commentsCount={comments.items.length}
         createdAt={posts.onePost.createdAt}
         user={posts.onePost.user}
         id={id}
-
+        isViewedCount={false}
         isEditable={items._id === posts.onePost.user._id}
       >
         <ReactMarkdown children={posts.onePost.text} />

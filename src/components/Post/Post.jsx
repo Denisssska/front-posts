@@ -14,14 +14,13 @@ import { changeSortBy, deletePostTC } from "../../store/slices/postsReducer";
 import { useDispatch } from "react-redux";
 
 export const Post = ({
-                       visible,
                        imageUrl,
                        title,
                        id,
                        children,
                        isFullPost,
                        isLoading, tags, viewsCount, createdAt,
-                       user, isEditable, commentsCount
+                       user, isEditable, commentsCount, isViewedCount
                      }) => {
   const dispatch = useDispatch();
 
@@ -71,7 +70,7 @@ export const Post = ({
             ))}
           </ul>
           {children && <div className={styles.content}>{children}</div>}
-          {viewsCount && commentsCount && <ul className={styles.postDetails}>
+          {isViewedCount && <ul className={styles.postDetails}>
             <li>
               <EyeIcon />
               <span>{viewsCount}</span>

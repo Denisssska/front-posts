@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CommentsBlock } from "../CommentsBlock";
+import { CommentsBlock } from "./CommentsBlock";
 import { AddComment } from "../AddComment/AddComment";
 import { getAllCommentsInPostTC } from "../../store/slices/commentsReducer";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ export const CommentsContainer = () => {
   const { posts } = useSelector(state => state.posts);
   useEffect(() => {
     dispatch(getAllCommentsInPostTC({ postId: id }));
-  }, [comments.isCommentChanged]);
+  }, [comments.isCommentChanged, items.avatarUrl, items.fullName]);
 
   return (
     <>

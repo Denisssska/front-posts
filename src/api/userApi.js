@@ -1,4 +1,4 @@
-import instance, { PORT } from "./instance";
+import instance from "./instance";
 
 export const UserApi = {
 

@@ -8,14 +8,15 @@ import { authMeTC } from "./store/slices/userReducer";
 import { ForgotPasswordPage } from "./pages/changePassword/ForgotPasswordPage";
 import { CreatePasswordPage } from "./pages/changePassword/CreatePasswordPage";
 
+
 function App() {
   const dispatch = useDispatch();
 
+  const status = useSelector(state => state.user.registration.status);
+
   useEffect(() => {
     dispatch(authMeTC());
-  }, []);
-
-
+  }, [status]);
   return (
     <>
       <Header />

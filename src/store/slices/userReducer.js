@@ -1,40 +1,55 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UserApi } from "../../api/userApi";
-import { clearCommentsAC } from "./commentsReducer";
 
 const initialState = {
   login: {
     items: {},
-    status: "loading"
+    status: "loading",
+    message: ""
   },
   registration: {
     items: {},
     status: "registration"
   },
   authMe: {
-    isAuth: false
+    isAuth: false,
+    status:'loading'
   }
 };
 export const loginTC = createAsyncThunk("/auth/loginTC", async ({ email, password }, thunkAPI) => {
-  const { data } = await UserApi.login(email, password);
-  return data;
+  try {
+    const { data } = await UserApi.login(email, password);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data.message);
+  }
+
 });
 export const logoutTC = createAsyncThunk("/auth/logoutTC", async (arg, thunkAPI) => {
-   await thunkAPI.dispatch(logoutAC("loading"));
+  await thunkAPI.dispatch(logoutAC("loading"));
 });
 export const registrationTC = createAsyncThunk("/auth/registrationTC", async ({
                                                                                 email,
                                                                                 password,
                                                                                 fullName,
                                                                                 avatarUrl
-                                                                              }) => {
+                                                                              }, thunkAPI) => {
+  try {
+    const { data } = await UserApi.registration({ email, password, fullName, avatarUrl });
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
 
-  const { data } = await UserApi.registration({ email, password, fullName, avatarUrl });
-  return data;
 });
-export const authMeTC = createAsyncThunk("/auth/authMe", async () => {
-  const { data } = await UserApi.authMe();
-  return data;
+export const authMeTC = createAsyncThunk("/auth/authMe", async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await UserApi.authMe();
+    return data;
+  } catch (e) {
+    return rejectWithValue(e.message);
+  }
+
 });
 export const updateUserStateTC = createAsyncThunk("/auth/updateUserState", async ({
                                                                                     fullName,
@@ -50,6 +65,7 @@ const userSlice = createSlice({
     logoutAC(state, action) {
       state.login.items = {};
       state.login.status = action.payload;
+      state.registration.status = "registration"
       state.authMe.isAuth = false;
     },
     updateUserStateAC(state, action) {
@@ -80,9 +96,9 @@ const userSlice = createSlice({
       state.login.status = "success";
       state.authMe.isAuth = true;
     },
-    [loginTC.rejected]: (state) => {
+    [loginTC.rejected]: (state, action) => {
       state.login.items = {};
-      state.login.status = "error";
+      state.login.status = action.payload;
     },
     [authMeTC.pending]: (state) => {
       state.login.items = {};
@@ -95,7 +111,7 @@ const userSlice = createSlice({
     },
     [authMeTC.rejected]: (state) => {
       state.login.items = {};
-      state.login.status = "error";
+      state.authMe.status = "error";
     }
   }
 });

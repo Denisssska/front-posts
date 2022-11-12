@@ -1,5 +1,5 @@
 import React from "react";
-import { SideBlock } from "./SideBlock";
+import { SideBlock } from "../SideBlock";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
@@ -7,12 +7,12 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
-import { PORT } from "../api/instance";
+import { PORT } from "../../api/instance";
 import DeleteIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCommentTC } from "../store/slices/commentsReducer";
-import { updatePostTC } from "../store/slices/postsReducer";
+import { deleteCommentTC } from "../../store/slices/commentsReducer";
+import { updatePostTC } from "../../store/slices/postsReducer";
 import { useParams } from "react-router-dom";
 
 export const CommentsBlock = ({ item, children }) => {
@@ -42,7 +42,7 @@ export const CommentsBlock = ({ item, children }) => {
   return (
     <SideBlock title="Комментарии">
       <List>
-        {isLoading ? [...Array(5)] : item.map((obj, index) => (
+        {(isLoading ? [...Array(5)] : item).map((obj, index) => (
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
