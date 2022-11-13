@@ -19,12 +19,14 @@ const initialState = {
     status: "loading"
   }
 };
-export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ payload }, { rejectWithValue }) => {
+export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ payload }, thunkAPI) => {
   try {
     const { data } = await PostApi.createPost(payload);
     return data;
   } catch (e) {
-    return rejectWithValue(e.message);
+    console.log(e.response.data);
+    // await thunkAPI.dispatch(viewError(e.response.data))
+    return thunkAPI.rejectWithValue(e.response.data);
   }
 
 });
@@ -82,7 +84,11 @@ const postsSlice = createSlice({
       state.posts.sortByItem = action.payload;
     },
     viewError(state, action) {
+      console.log(action.payload);
       state.posts.status = action.payload;
+    },
+    changePostsStatus(state) {
+      state.posts.status = "loading";
     }
   },
   extraReducers: {
@@ -94,9 +100,9 @@ const postsSlice = createSlice({
       state.posts.createdPost = action.payload;
       state.posts.status = "loaded";
     },
-    [createPostTC.rejected]: (state) => {
+    [createPostTC.rejected]: (state, action) => {
       state.posts.createdPost = {};
-      state.posts.status = "error";
+      state.posts.status = action.payload;
     },
     [getOnePostTC.pending]: (state) => {
       state.posts.onePost = {};
@@ -106,9 +112,9 @@ const postsSlice = createSlice({
       state.posts.onePost = action.payload;
       state.posts.status = "loaded";
     },
-    [getOnePostTC.rejected]: (state) => {
+    [getOnePostTC.rejected]: (state, action) => {
       state.posts.onePost = {};
-      state.posts.status = "error";
+      state.posts.status = action.payload;
     },
     [updatePostTC.pending]: (state) => {
       state.posts.isUpdated = false;
@@ -151,10 +157,10 @@ const postsSlice = createSlice({
     [deletePostTC.fulfilled]: (state, action) => {
       state.posts.status = action.payload.message;
     },
-    [deletePostTC.rejected]: (state) => {
-      state.posts.status = "error";
+    [deletePostTC.rejected]: (state, action) => {
+      state.posts.status = action.payload;
     }
   }
 });
-export const { changeSortBy, viewError } = postsSlice.actions;
+export const { changeSortBy, viewError, changePostsStatus } = postsSlice.actions;
 export const postsReducer = postsSlice.reducer;

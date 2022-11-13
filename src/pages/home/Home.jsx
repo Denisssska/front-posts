@@ -4,7 +4,7 @@ import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { Post, TagsBlock } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSortBy, getPostsTC, getTagsTC } from "../../store/slices/postsReducer";
+import { changePostsStatus, changeSortBy, getPostsTC, getTagsTC } from "../../store/slices/postsReducer";
 import { PORT } from "../../api/instance";
 import { getLastCommentsTC } from "../../store/slices/commentsReducer";
 
@@ -53,7 +53,7 @@ export const Home = () => {
               <Post
                 key={index}
                 title={obj.title}
-                imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : "/upload/bird.jpg"}
+                imageUrl={obj.imageUrl ? `${PORT}${obj.imageUrl}` : ""}
                 id={obj._id}
                 tags={obj.tags}
                 viewsCount={obj.viewsCount}

@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registrationTC } from "../../store/slices/userReducer";
 import { useNavigate } from "react-router-dom";
+import { Snackbar } from "@mui/material";
 
 
 export const Registration = () => {
@@ -25,19 +26,19 @@ export const Registration = () => {
     defaultValues: {
       email: "",
       password: "",
-      fullName: "",
+      fullName: ""
     },
     mode: "onChange"
   });
   const onSubmit = async (value) => {
-   const data = await dispatch(registrationTC(value));
-    if(!data.payload){
-      alert('Не удалось зарегистрироваться...')
+    const data = await dispatch(registrationTC(value));
+    if (!data.payload) {
+      alert("Не удалось зарегистрироваться...");
     }
-    if( 'token' in data.payload){
-     localStorage.setItem('token',data.payload.token)
-    }else{
-      alert('Не удалось зарегистрироваться...')
+    if ("token" in data.payload) {
+      localStorage.setItem("token", data.payload.token);
+    } else {
+      alert("Не удалось зарегистрироваться...");
     }
   };
   if (isCreated) {
@@ -80,7 +81,8 @@ export const Registration = () => {
           Зарегистрироваться
         </Button>
       </form>
-
+      {registration.status !== "registration" && registration.status !== "registered" &&
+        <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }} message={registration.status} />}
     </Paper>
   );
 };

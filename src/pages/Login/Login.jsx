@@ -41,7 +41,9 @@ export const Login = () => {
   return (
     <>
       {login.status !== "success" && login.status !== "loading" &&
-        <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }} message={login.status} />}
+        <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                  message={login.status} />
+      }
       <Paper classes={{ root: styles.root }}>
         <Typography classes={{ root: styles.title }} variant="h5">
           Вход в аккаунт

@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutTC } from "../../store/slices/userReducer";
 import { BasicModal } from "../../pages/profilePage/ProfilePage";
-import { changeSortBy } from "../../store/slices/postsReducer";
+import { changePostsStatus, changeSortBy } from "../../store/slices/postsReducer";
 
 export const Header = () => {
   const { login, registration } = useSelector(state => state.user);
@@ -36,7 +36,7 @@ export const Header = () => {
               <>
                 <BasicModal user={login.items} />
                 <NavLink to="/add-post">
-                  <Button variant="contained">Написать статью</Button>
+                  <Button onClick={()=>dispatch(changePostsStatus())} variant="contained">Написать статью</Button>
                 </NavLink>
                 <Button onClick={onClickLogout} variant="contained" color="error">
                   Выйти

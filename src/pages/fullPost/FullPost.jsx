@@ -20,6 +20,7 @@ export const FullPost = () => {
 
 
   useEffect(() => {
+
     dispatch(getOnePostTC({ postId: id }));
   }, [items.avatarUrl, items.fullName]);
 

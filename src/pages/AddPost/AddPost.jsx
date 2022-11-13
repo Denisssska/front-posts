@@ -8,8 +8,9 @@ import styles from "./AddPost.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { PORT } from "../../api/instance";
-import { createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/postsReducer";
+import { changePostsStatus, createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/postsReducer";
 import { savePhotoOnServer } from "../../utils/savePhotoOnServer";
+import { Snackbar } from "@mui/material";
 
 export const AddPost = () => {
   const dispatch = useDispatch();
@@ -50,9 +51,11 @@ export const AddPost = () => {
     dispatch(id ? updatePostTC({ postId: id, payload: fields }) : createPostTC({ payload: fields }));
     if (id) {
       navigate(`/posts/${id}`);
-    } else {
-      navigate(`/`);
     }
+    // else if(posts.status === "loaded") {
+    //    navigate(`/`);
+    //   console.log(posts.status);
+    // }
   };
   const options = React.useMemo(
     () => ({
@@ -68,9 +71,10 @@ export const AddPost = () => {
     }),
     []
   );
-  if (!isAuth) {
+  if (!isAuth || posts.status === "loaded") {
     navigate("/");
   }
+  console.log(posts.status);
   return (
     <Paper style={{ padding: 30 }}>
       <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">Загрузить превью</Button>
@@ -111,6 +115,14 @@ export const AddPost = () => {
           <Button size="large">Отмена</Button>
         </NavLink>
       </div>
+      {posts.status !== "loading" && posts.status !== "loaded" &&
+        posts.status.map((item, id) => <Snackbar key={id} open
+                                                 anchorOrigin={{
+                                                   vertical: "bottom",
+                                                   horizontal: "center"
+                                                 }}
+                                                 message={item.msg} />)
+      }
     </Paper>
   );
 };

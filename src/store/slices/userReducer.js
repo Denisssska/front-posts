@@ -13,7 +13,7 @@ const initialState = {
   },
   authMe: {
     isAuth: false,
-    status:'loading'
+    status: "loading"
   }
 };
 export const loginTC = createAsyncThunk("/auth/loginTC", async ({ email, password }, thunkAPI) => {
@@ -21,7 +21,11 @@ export const loginTC = createAsyncThunk("/auth/loginTC", async ({ email, passwor
     const { data } = await UserApi.login(email, password);
     return data;
   } catch (e) {
-    return thunkAPI.rejectWithValue(e.response.data.message);
+    if (e.response.data.message) {
+      return thunkAPI.rejectWithValue(e.response.data.message);
+    } else {
+      return thunkAPI.rejectWithValue(e.response.data[0].msg);
+    }
   }
 
 });
@@ -38,7 +42,7 @@ export const registrationTC = createAsyncThunk("/auth/registrationTC", async ({
     const { data } = await UserApi.registration({ email, password, fullName, avatarUrl });
     return data;
   } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
+    return thunkAPI.rejectWithValue(e.response.data[0].msg);
   }
 
 });
@@ -65,7 +69,7 @@ const userSlice = createSlice({
     logoutAC(state, action) {
       state.login.items = {};
       state.login.status = action.payload;
-      state.registration.status = "registration"
+      state.registration.status = "registration";
       state.authMe.isAuth = false;
     },
     updateUserStateAC(state, action) {
@@ -83,9 +87,9 @@ const userSlice = createSlice({
       state.registration.status = "registered";
       state.authMe.isAuth = true;
     },
-    [registrationTC.rejected]: (state) => {
+    [registrationTC.rejected]: (state, action) => {
       state.registration.items = {};
-      state.registration.status = "error";
+      state.registration.status = action.payload;
     },
     [loginTC.pending]: (state) => {
       state.login.items = {};
