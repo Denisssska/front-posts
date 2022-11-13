@@ -14,14 +14,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteCommentTC } from "../../store/slices/commentsReducer";
 import { updatePostTC } from "../../store/slices/postsReducer";
 import { useParams } from "react-router-dom";
+import { initComments } from "../../selectors/commentsSelector";
+import { initPost } from "../../selectors/postsSelector";
+import { initUser } from "../../selectors/userSelector";
 
 export const CommentsBlock = ({ item, children }) => {
-  const { comments } = useSelector(state => state.comments);
-  const { posts } = useSelector(state => state.posts);
-  const { items } = useSelector(state => state.user.login);
-  const isLoading = comments.status === "loading";
   const dispatch = useDispatch();
   const { id } = useParams();
+  const { status } = useSelector(initComments.all);
+  const posts = useSelector(initPost.posts);
+  const { items } = useSelector(initUser.login);
+  const isLoading = status === "loading";
 
   const deleteComment = (commentId) => {
     if (commentId) {

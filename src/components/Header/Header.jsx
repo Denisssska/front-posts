@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutTC } from "../../store/slices/userReducer";
 import { BasicModal } from "../../pages/profilePage/ProfilePage";
 import { changePostsStatus, changeSortBy } from "../../store/slices/postsReducer";
+import { initUser } from "../../selectors/userSelector";
 
 export const Header = () => {
-  const { login, registration } = useSelector(state => state.user);
-
+  const login = useSelector(initUser.login);
+  const registration = useSelector(initUser.registration);
   const isAuth = login.status === "success" || registration.status === "registered";
 
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ export const Header = () => {
               <>
                 <BasicModal user={login.items} />
                 <NavLink to="/add-post">
-                  <Button onClick={()=>dispatch(changePostsStatus())} variant="contained">Написать статью</Button>
+                  <Button onClick={() => dispatch(changePostsStatus())} variant="contained">Написать статью</Button>
                 </NavLink>
                 <Button onClick={onClickLogout} variant="contained" color="error">
                   Выйти

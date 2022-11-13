@@ -13,12 +13,7 @@ import { NavLink } from "react-router-dom";
 import { changeSortBy, deletePostTC } from "../../store/slices/postsReducer";
 import { useDispatch } from "react-redux";
 
-export const Post = ({
-                       imageUrl,
-                       title,
-                       id,
-                       children,
-                       isFullPost,
+export const Post = ({ imageUrl, title, id, children, isFullPost,
                        isLoading, tags, viewsCount, createdAt,
                        user, isEditable, commentsCount, isViewedCount
                      }) => {

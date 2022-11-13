@@ -5,21 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
-      <change afterPath="$PROJECT_DIR$/src/selectors/commentsSelector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/selectors/passwordSelector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/selectors/postsSelector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/selectors/userSelector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2022_23_03__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2022_23_03__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddComment/AddComment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Registration/Registration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Registration/Registration.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/changePassword/CreatePasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/changePassword/CreatePasswordPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/changePassword/ForgotPasswordPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/changePassword/ForgotPasswordPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/fullPost/FullPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/fullPost/FullPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profilePage/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profilePage/ProfilePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/userReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TagsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TagsBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/commentsContainer/CommentsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/commentsContainer/CommentsBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/commentsContainer/CommentsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/commentsContainer/CommentsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AddPost/AddPost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/postsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/postsReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +66,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "D:\\mern-blog-frontend\\node_modules\\prettier",
     "settings.editor.selected.configurable": "terminal",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2021.3.3\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>

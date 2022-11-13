@@ -14,7 +14,6 @@ import { changeSortBy } from "../store/slices/postsReducer";
 import { useDispatch } from "react-redux";
 
 export const TagsBlock = ({ items, isLoading }) => {
-
   const dispatch = useDispatch();
   const handleClick = (sorts) => {
     dispatch(changeSortBy(sorts));
@@ -22,7 +21,7 @@ export const TagsBlock = ({ items, isLoading }) => {
   return (
     <SideBlock title="Тэги">
       <List>
-        {isLoading ? [...Array(5)] : items.map((name, i) => (
+        {(isLoading ? [...Array(5)] : items).map((name, i) => (
           <NavLink key={i}
                    onClick={() => handleClick(name)}
                    style={{ textDecoration: "none", color: "black" }}

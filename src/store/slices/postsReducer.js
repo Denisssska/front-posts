@@ -25,7 +25,6 @@ export const createPostTC = createAsyncThunk("/posts/createPostTC", async ({ pay
     return data;
   } catch (e) {
     console.log(e.response.data);
-    // await thunkAPI.dispatch(viewError(e.response.data))
     return thunkAPI.rejectWithValue(e.response.data);
   }
 
@@ -82,10 +81,6 @@ const postsSlice = createSlice({
   reducers: {
     changeSortBy(state, action) {
       state.posts.sortByItem = action.payload;
-    },
-    viewError(state, action) {
-      console.log(action.payload);
-      state.posts.status = action.payload;
     },
     changePostsStatus(state) {
       state.posts.status = "loading";

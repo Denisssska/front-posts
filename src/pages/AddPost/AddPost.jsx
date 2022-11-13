@@ -11,11 +11,13 @@ import { PORT } from "../../api/instance";
 import { changePostsStatus, createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/postsReducer";
 import { savePhotoOnServer } from "../../utils/savePhotoOnServer";
 import { Snackbar } from "@mui/material";
+import { initPost } from "../../selectors/postsSelector";
+import { initUser } from "../../selectors/userSelector";
 
 export const AddPost = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state) => state.user.authMe);
-  const { posts } = useSelector(state => state.posts);
+  const { isAuth } = useSelector(initUser.auth);
+  const posts = useSelector(initPost.posts);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -52,10 +54,6 @@ export const AddPost = () => {
     if (id) {
       navigate(`/posts/${id}`);
     }
-    // else if(posts.status === "loaded") {
-    //    navigate(`/`);
-    //   console.log(posts.status);
-    // }
   };
   const options = React.useMemo(
     () => ({
