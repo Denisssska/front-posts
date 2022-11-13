@@ -50,7 +50,8 @@ export const authMeTC = createAsyncThunk("/auth/authMe", async (_, { rejectWithV
     const { data } = await UserApi.authMe();
     return data;
   } catch (e) {
-    return rejectWithValue(e.message);
+    console.log();
+    return rejectWithValue(e);
   }
 
 });

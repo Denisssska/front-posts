@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
-      <change afterPath="$PROJECT_DIR$/public/3959420.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/userReducer.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/userReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +50,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowCoverage.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/mern-blog-frontend/src/selectors",
     "node.js.detected.package.eslint": "true",
@@ -58,6 +59,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "D:/front-posts/node_modules/react-scripts",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "D:\\mern-blog-frontend\\node_modules\\prettier",
     "settings.editor.selected.configurable": "terminal",
@@ -74,14 +76,55 @@
       <recent name="D:\mern-blog-frontend\src\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\front-posts\public" />
       <recent name="D:\mern-blog-frontend\src\components\commentsContainer" />
       <recent name="D:\front-posts\src\pages\profilePage" />
       <recent name="D:\front-posts\src\pages\home" />
       <recent name="D:\front-posts\src\pages\fullPost" />
-      <recent name="D:\front-posts\src\assets" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Jest.authMeTC.should authMeTC with resolved response">
+    <configuration name="authMeTC.should authMeTC with resolved response" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/userReducer.test.js" />
+      <test-names>
+        <test-name value="authMeTC" />
+        <test-name value="should authMeTC with resolved response" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="loginTC" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/tests/userReducer.test.js" />
+      <test-names>
+        <test-name value="loginTC" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="loginTC.should loginTC with resolved response" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/userReducer.test.js" />
+      <test-names>
+        <test-name value="loginTC" />
+        <test-name value="should loginTC with resolved response" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -92,9 +135,23 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="test:cypress" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test:cypress" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.authMeTC.should authMeTC with resolved response" />
+        <item itemvalue="Jest.loginTC.should loginTC with resolved response" />
         <item itemvalue="npm.start" />
+        <item itemvalue="Jest.loginTC" />
+        <item itemvalue="npm.test:cypress" />
       </list>
     </recent_temporary>
   </component>
@@ -176,5 +233,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="new" />
     <option name="LAST_COMMIT_MESSAGE" value="new" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/front_posts$loginTC_should_loginTC_with_resolved_response.info" NAME="loginTC.should loginTC with resolved response Coverage Results" MODIFIED="1668360843666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
