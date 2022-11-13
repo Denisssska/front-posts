@@ -4,25 +4,21 @@ import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { Post, TagsBlock } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { changePostsStatus, changeSortBy, getPostsTC, getTagsTC } from "../../store/slices/postsReducer";
+import { changeSortBy, getPostsTC, getTagsTC } from "../../store/slices/postsReducer";
 import { PORT } from "../../api/instance";
-import { getLastCommentsTC } from "../../store/slices/commentsReducer";
+import { initUser } from "../../selectors/userSelector";
+import { initPost } from "../../selectors/postsSelector";
 
 export const Home = () => {
-  const { posts, tags } = useSelector(state => state.posts);
-  // const { comments } = useSelector(state => state.comments);
+  const posts = useSelector(initPost.posts);
+  const tags = useSelector(initPost.tags);
   const dispatch = useDispatch();
-  const { items } = useSelector(state => state.user.login);
-
+  const { items } = useSelector(initUser.login);
   const [value, setValue] = useState(0);
 
   useEffect(() => {
     dispatch(getTagsTC());
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(getLastCommentsTC());
-  // }, [comments.isCommentDeleted]);
 
   useEffect(() => {
     dispatch(getPostsTC({ sorts: posts.sortByItem }));

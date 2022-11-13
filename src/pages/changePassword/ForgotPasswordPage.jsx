@@ -8,11 +8,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { forgotPasswordTC } from "../../store/slices/changePasswordReducer";
 import { useDispatch, useSelector } from "react-redux";
+import { initPassword } from "../../selectors/passwordSelector";
 
 
 export const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
-  const isSendEmail = useSelector(state => state.password.message === "Email sent successfully");
+  const { message } = useSelector(initPassword.item);
+  const isSendEmail = message === "Email sent successfully";
   const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
     defaultValues: {
       email: ""

@@ -9,13 +9,15 @@ import { loginTC } from "../../store/slices/userReducer";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Snackbar } from "@mui/material";
+import { initUser } from "../../selectors/userSelector";
 
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { login } = useSelector(state => state.user);
-  const isRegistered = login.status === "success";
   const dispatch = useDispatch();
+  const { status } = useSelector(initUser.login);
+  const isRegistered = status === "success";
+
   const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
     defaultValues: {
       email: "", password: ""
@@ -40,9 +42,9 @@ export const Login = () => {
 
   return (
     <>
-      {login.status !== "success" && login.status !== "loading" &&
+      {status !== "success" && status !== "loading" &&
         <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                  message={login.status} />
+                  message={status} />
       }
       <Paper classes={{ root: styles.root }}>
         <Typography classes={{ root: styles.title }} variant="h5">

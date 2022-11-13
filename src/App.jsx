@@ -7,13 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { authMeTC } from "./store/slices/userReducer";
 import { ForgotPasswordPage } from "./pages/changePassword/ForgotPasswordPage";
 import { CreatePasswordPage } from "./pages/changePassword/CreatePasswordPage";
+import { initUser } from "./selectors/userSelector";
 
 
 function App() {
   const dispatch = useDispatch();
-
-  const status = useSelector(state => state.user.registration.status);
-
+  const { status } = useSelector(initUser.registration);
   useEffect(() => {
     dispatch(authMeTC());
   }, [status]);

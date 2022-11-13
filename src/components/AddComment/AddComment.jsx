@@ -8,13 +8,13 @@ import { useParams } from "react-router-dom";
 import { updatePostTC } from "../../store/slices/postsReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { createCommentTC } from "../../store/slices/commentsReducer";
+import { initComments } from "../../selectors/commentsSelector";
 
 export const AddComment = ({ img, obj }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [commentInPost, setCommentInPost] = useState("");
-
-  const { comments } = useSelector(state => state.comments);
+  const comments = useSelector(initComments.all);
 
   const writeComment = (event) => {
     setCommentInPost(event.currentTarget.value);

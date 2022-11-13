@@ -8,12 +8,13 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { createNewPasswordTC } from "../../store/slices/changePasswordReducer";
+import { initPassword } from "../../selectors/passwordSelector";
 
 export const CreatePasswordPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
-  const isCreated = useSelector(state => state.password.status === "created");
+  const { status } = useSelector(initPassword.item);
+  const isCreated = status === "created";
   const id = location.pathname.split("/")[2];
   const token = location.pathname.split("/")[3];
   const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
@@ -32,7 +33,8 @@ export const CreatePasswordPage = () => {
             Пароль успешно изменен!
           </Typography>
           <Button type="submit" size="large" variant="contained" fullWidth>
-            <NavLink style={{textDecoration:"none",color:"yellow"}} to={"/login"}>Вернуться на страницу авторизации...</NavLink>
+            <NavLink style={{ textDecoration: "none", color: "yellow" }} to={"/login"}>Вернуться на страницу
+              авторизации...</NavLink>
           </Button>
         </> :
         <>

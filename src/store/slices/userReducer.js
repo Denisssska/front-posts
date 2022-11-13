@@ -4,8 +4,7 @@ import { UserApi } from "../../api/userApi";
 const initialState = {
   login: {
     items: {},
-    status: "loading",
-    message: ""
+    status: "loading"
   },
   registration: {
     items: {},

@@ -6,18 +6,18 @@ import ReactMarkdown from "react-markdown";
 import { PORT } from "../../api/instance";
 import { getOnePostTC } from "../../store/slices/postsReducer";
 import { CommentsContainer } from "../../components/commentsContainer/CommentsContainer";
+import { initPost } from "../../selectors/postsSelector";
+import { initUser } from "../../selectors/userSelector";
 
 
 export const FullPost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { id } = useParams();
-  const { items } = useSelector(state => state.user.login);
-  const { posts } = useSelector(state => state.posts);
+  const { items } = useSelector(initUser.login);
+  const posts = useSelector(initPost.posts);
 
   const isPostDeleted = posts.status === "Статья удалена";
-
 
   useEffect(() => {
 

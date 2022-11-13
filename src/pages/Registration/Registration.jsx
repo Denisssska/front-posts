@@ -10,13 +10,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { registrationTC } from "../../store/slices/userReducer";
 import { useNavigate } from "react-router-dom";
 import { Snackbar } from "@mui/material";
+import { initUser } from "../../selectors/userSelector";
 
 
 export const Registration = () => {
   const navigate = useNavigate();
-  const { registration } = useSelector(state => state.user);
-  const isCreated = registration.status === "registered";
   const dispatch = useDispatch();
+  //const { registration } = useSelector(state => state.user);
+  const { status } = useSelector(initUser.registration);
+  const isCreated = status === "registered";
+
   const {
     register,
     handleSubmit,
@@ -81,8 +84,8 @@ export const Registration = () => {
           Зарегистрироваться
         </Button>
       </form>
-      {registration.status !== "registration" && registration.status !== "registered" &&
-        <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }} message={registration.status} />}
+      {status !== "registration" && status !== "registered" &&
+        <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }} message={status} />}
     </Paper>
   );
 };

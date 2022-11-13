@@ -9,6 +9,7 @@ import { PORT } from "../../api/instance";
 import { TextField } from "@mui/material";
 import { updateUserStateTC } from "../../store/slices/userReducer";
 import { savePhotoOnServer } from "../../utils/savePhotoOnServer";
+import { initUser } from "../../selectors/userSelector";
 
 const style = {
   position: "absolute",
@@ -24,17 +25,17 @@ const style = {
 
 export const BasicModal = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector(state => state.user.login);
+  const { items } = useSelector(initUser.login);
   const [open, setOpen] = useState(false);
   const inputFileRef = useRef(null);
   const [avatarUrl, setAvatarUrl] = useState(items.avatarUrl);
   const [fullName, setFullName] = useState(items.fullName);
   const [disabled, setDisabled] = useState(true);
 
-  const handleChangePhoto =  async (event) => {
-    const data = await savePhotoOnServer(event)
-      setAvatarUrl(data);
-       setDisabled(false);
+  const handleChangePhoto = async (event) => {
+    const data = await savePhotoOnServer(event);
+    setAvatarUrl(data);
+    setDisabled(false);
   };
   const changeName = (e) => {
     setDisabled(false);
@@ -53,7 +54,7 @@ export const BasicModal = () => {
   };
   return (
     <span>
-      <Button variant={"contained"} onClick={()=>setOpen(true)}>Изменить профиль</Button>
+      <Button variant={"contained"} onClick={() => setOpen(true)}>Изменить профиль</Button>
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -73,13 +74,12 @@ export const BasicModal = () => {
           <TextField style={{ margin: "0 auto", display: "block", textAlign: "center" }}
                      size="small" placeholder="Изменить имя" value={fullName}
                      onChange={(e) => changeName(e)} />
-          {/*<img style={{ margin: "0 auto", display: "block" }} src={items.avatarUrl} alt="" />*/}
           <Button onClick={() => inputFileRef.current.click()}
                   style={{ margin: "0 auto", display: "block", textAlign: "center" }}>
             Изменить фото профиля
           </Button>
           <Button
-            // disabled={!avatarUrl.length}
+
             disabled={disabled}
             onClick={submit}
             style={{ margin: "0 auto", display: "block", textAlign: "center" }}>
