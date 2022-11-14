@@ -18,20 +18,20 @@ function App() {
   }, [status]);
   return (
     <>
-      <Header />
-      <Container maxWidth="lg">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/forgot" element={<ForgotPasswordPage />} />
-          <Route path="/create-password/*" element={<CreatePasswordPage />} />
-          <Route path="/tags/:tag" element={<Home />} />
-          <Route path="/posts/:id" element={<FullPost />} />
-          <Route path="/posts/:id/edit" element={<AddPost />} />
-          <Route path="/add-post" element={<AddPost />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
-        </Routes>
-      </Container>
+        <Header />
+        <Container maxWidth="lg">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/forgot" element={<ForgotPasswordPage />} />
+            <Route path="/create-password/*" element={<CreatePasswordPage />} />
+            <Route path="/tags/:tag" element={<Home />} />
+            <Route path="/posts/:id" element={<FullPost />} />
+            <Route path="/posts/:id/edit" element={<AddPost />} />
+            <Route path="/add-post" element={<AddPost />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+          </Routes>
+        </Container>
     </>
   );
 }

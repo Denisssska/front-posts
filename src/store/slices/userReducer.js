@@ -8,7 +8,8 @@ const initialState = {
   },
   registration: {
     items: {},
-    status: "registration"
+    status: "registration",
+    error:null
   },
   authMe: {
     isAuth: false,
@@ -50,8 +51,8 @@ export const authMeTC = createAsyncThunk("/auth/authMe", async (_, { rejectWithV
     const { data } = await UserApi.authMe();
     return data;
   } catch (e) {
-    console.log();
-    return rejectWithValue(e);
+    //console.log(e.response.payload.data.message);
+    return rejectWithValue(e.response);
   }
 
 });
@@ -88,7 +89,8 @@ const userSlice = createSlice({
       state.authMe.isAuth = true;
     },
     [registrationTC.rejected]: (state, action) => {
-      state.registration.items = {};
+            state.registration.items = {};
+      state.registration.error = action.error.message
       state.registration.status = action.payload;
     },
     [loginTC.pending]: (state) => {

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Post } from "../../components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import { PORT } from "../../api/instance";
 import { getOnePostTC } from "../../store/slices/postsReducer";
 import { CommentsContainer } from "../../components/commentsContainer/CommentsContainer";
@@ -40,7 +40,7 @@ export const FullPost = () => {
         isViewedCount={false}
         isEditable={items._id === posts.onePost.user._id}
       >
-        <ReactMarkdown children={posts.onePost.text} />
+        {/*<ReactMarkdown children={posts.onePost.text} />*/}
 
       </Post>}
       <CommentsContainer />
