@@ -27,7 +27,7 @@ describe("loginTC", () => {
       updatedAt: "2022-11-13T17:23:12.797Z"
     };
 
-    UserApi.login.mockImplementation( () => Promise.resolve(mockResForFulfill));
+    UserApi.login.mockImplementation(() => Promise.resolve(mockResForFulfill));
     //UserApi.login.mockResolvedValue(() => Promise.resolve(mockResForFulfill));
 
     const thunk = loginTC(payload);

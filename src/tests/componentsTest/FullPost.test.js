@@ -4,6 +4,7 @@ import { FullPost } from "../../pages";
 import { useSelector } from "react-redux";
 //import {render} from "react-dom"
 jest.mock("react-redux");
+jest.mock("axios")
 const newPost = {
   title: "testTitle", text: 'testText', tags: "test", imageUrl: ""
 };
