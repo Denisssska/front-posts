@@ -112,6 +112,7 @@ const postsSlice = createSlice({
     [getOnePostTC.rejected]: (state, action) => {
       state.posts.onePost = {};
       state.posts.status = action.payload;
+      state.posts.error = action.error.message
     },
     [updatePostTC.pending]: (state) => {
       state.posts.isUpdated = false;
@@ -119,9 +120,11 @@ const postsSlice = createSlice({
     [updatePostTC.fulfilled]: (state) => {
       state.posts.isUpdated = true;
     },
-    [updatePostTC.rejected]: (state) => {
+    [updatePostTC.rejected]: (state,action) => {
       state.posts.isUpdated = false;
       state.posts.status = "error";
+      state.posts.error = action.error.message
+
     },
     [getPostsTC.pending]: (state) => {
       state.posts.items = [];
@@ -134,6 +137,7 @@ const postsSlice = createSlice({
     [getPostsTC.rejected]: (state, action) => {
       state.posts.items = [];
       state.posts.status = action.payload;
+      state.posts.error = action.error.message;
     },
     [getTagsTC.pending]: (state) => {
       state.tags.items = [];
@@ -156,6 +160,7 @@ const postsSlice = createSlice({
     },
     [deletePostTC.rejected]: (state, action) => {
       state.posts.status = action.payload;
+      state.posts.error = action.error.message;
     }
   }
 });

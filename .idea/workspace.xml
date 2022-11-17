@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6cc8278-b7bc-4f65-a1b6-305fbc7ecca4" name="Changes" comment="new">
-      <change afterPath="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/posts/postsReducerThunk.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2022_20_28_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2022_20_28__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/userApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/slices/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/userReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/user/userExtraReducers.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/user/userExtraReducers.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/user/userReducerThunk.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/user/userReducerThunk.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/slices/postsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/postsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,49 +85,8 @@
       <recent name="D:\front-posts\src\pages\home" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.postsSlice.should change status with 'createPostTC.fulfilled' action">
-    <configuration name="authMeTC.should authMeTC with resolved response" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/user/userReducerThunk.test.js" />
-      <test-names>
-        <test-name value="authMeTC" />
-        <test-name value="should authMeTC with resolved response" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="loginTC" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/tests/user/userReducerThunk.test.js" />
-      <test-names>
-        <test-name value="loginTC" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="loginTC.should loginTC with resolved response" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/user/userReducerThunk.test.js" />
-      <test-names>
-        <test-name value="loginTC" />
-        <test-name value="should loginTC with resolved response" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="postsSlice.should change status with 'createPostTC.fulfilled' action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.postsSlice.should change status with 'getPostsTC.rejected' action">
+    <configuration name="postsSlice.should change status with 'authMeTC.rejected' action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
@@ -143,27 +96,73 @@
       <test-file value="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" />
       <test-names>
         <test-name value="postsSlice" />
-        <test-name value="should change status with 'createPostTC.fulfilled' action" />
+        <test-name value="should change status with 'authMeTC.rejected' action" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
+    <configuration name="postsSlice.should change status with 'getOnePostTC.rejected' action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
       <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" />
+      <test-names>
+        <test-name value="postsSlice" />
+        <test-name value="should change status with 'getOnePostTC.rejected' action" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="postsSlice.should change status with 'getPostTC.fulfilled' action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" />
+      <test-names>
+        <test-name value="postsSlice" />
+        <test-name value="should change status with 'getPostTC.fulfilled' action" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="postsSlice.should change status with 'getPostsTC.rejected' action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" />
+      <test-names>
+        <test-name value="postsSlice" />
+        <test-name value="should change status with 'getPostsTC.rejected' action" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="postsSlice.should change status with 'updatePostTC.fulfilled' action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/posts/postsExtraReducers.test.js" />
+      <test-names>
+        <test-name value="postsSlice" />
+        <test-name value="should change status with 'updatePostTC.fulfilled' action" />
+      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.postsSlice.should change status with 'createPostTC.fulfilled' action" />
-        <item itemvalue="Jest.loginTC.should loginTC with resolved response" />
-        <item itemvalue="Jest.authMeTC.should authMeTC with resolved response" />
-        <item itemvalue="Jest.loginTC" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="Jest.postsSlice.should change status with 'getPostsTC.rejected' action" />
+        <item itemvalue="Jest.postsSlice.should change status with 'getPostTC.fulfilled' action" />
+        <item itemvalue="Jest.postsSlice.should change status with 'authMeTC.rejected' action" />
+        <item itemvalue="Jest.postsSlice.should change status with 'updatePostTC.fulfilled' action" />
+        <item itemvalue="Jest.postsSlice.should change status with 'getOnePostTC.rejected' action" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +219,7 @@
       <workItem from="1668432964518" duration="5000" />
       <workItem from="1668433068198" duration="6443000" />
       <workItem from="1668613617853" duration="13212000" />
-      <workItem from="1668677579578" duration="1522000" />
+      <workItem from="1668677579578" duration="5175000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1664913030348</created>
