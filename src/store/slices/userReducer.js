@@ -4,21 +4,24 @@ import { UserApi } from "../../api/userApi";
 const initialState = {
   login: {
     items: {},
-    status: "loading"
+    status: "loading",
+    error: null
   },
   registration: {
     items: {},
     status: "registration",
-    error:null
+    error: null
   },
   authMe: {
     isAuth: false,
-    status: "loading"
+    status: "loading",
+    error: null
   }
 };
 export const loginTC = createAsyncThunk("/auth/loginTC", async ({ email, password }, thunkAPI) => {
   try {
     const { data } = await UserApi.login(email, password);
+    console.log(data);
     return data;
   } catch (e) {
     if (e.response.data.message) {
@@ -49,10 +52,11 @@ export const registrationTC = createAsyncThunk("/auth/registrationTC", async ({
 export const authMeTC = createAsyncThunk("/auth/authMe", async (_, { rejectWithValue }) => {
   try {
     const { data } = await UserApi.authMe();
+    //console.log(data);
     return data;
   } catch (e) {
     //console.log(e.response.payload.data.message);
-    return rejectWithValue(e.response);
+    return  rejectWithValue(e.response);
   }
 
 });
@@ -89,8 +93,8 @@ const userSlice = createSlice({
       state.authMe.isAuth = true;
     },
     [registrationTC.rejected]: (state, action) => {
-            state.registration.items = {};
-      state.registration.error = action.error.message
+      state.registration.items = {};
+      state.registration.error = action.error.message;
       state.registration.status = action.payload;
     },
     [loginTC.pending]: (state) => {
@@ -105,6 +109,7 @@ const userSlice = createSlice({
     [loginTC.rejected]: (state, action) => {
       state.login.items = {};
       state.login.status = action.payload;
+      state.login.error = action.error.message;
     },
     [authMeTC.pending]: (state) => {
       state.login.items = {};

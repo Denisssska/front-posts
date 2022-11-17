@@ -8,7 +8,8 @@ const initialState = {
     createdPost: {},
     status: "loading",
     isUpdated: false,
-    sortByItem: "createdAt"
+    sortByItem: "createdAt",
+    error:null
   },
   tags: {
     items: [],
@@ -98,6 +99,7 @@ const postsSlice = createSlice({
     [createPostTC.rejected]: (state, action) => {
       state.posts.createdPost = {};
       state.posts.status = action.payload;
+      state.posts.error = action.error.message
     },
     [getOnePostTC.pending]: (state) => {
       state.posts.onePost = {};

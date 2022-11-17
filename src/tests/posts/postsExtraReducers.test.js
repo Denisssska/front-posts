@@ -1,36 +1,42 @@
-import { authMeTC, loginTC, registrationTC, userReducer } from "../../store/slices/userReducer";
+import { createPostTC, postsReducer } from "../../store/slices/postsReducer";
+
 
 const initialState = {
-  login: {
-    items: {},
+  posts: {
+    items: [],
+    onePost: {},
+    createdPost: {},
+    status: "loading",
+    isUpdated: false,
+    sortByItem: "createdAt"
+  },
+  tags: {
+    items: [],
     status: "loading"
   },
-  registration: {
-    items: {},
-    status: "registration"
-  },
-  authMe: {
-    isAuth: false,
+  comments: {
+    items: [],
     status: "loading"
   }
 };
-describe("userSlice", () => {
-  it("should change status with 'registrationTC.fulfilled' action", async () => {
+describe("postsSlice", () => {
+  it("should change status with 'createPostTC.fulfilled' action", async () => {
     const payload = {
-      email: "test@mail.ru",
-      password: "12345",
-      fullName: "test",
-      avatarUrl: ""
+      title:"testTitle",
+      imageUrl:"",
+      tags: "testTags",
+      text:"testText"
     };
-    const state = userReducer(initialState, registrationTC.fulfilled(payload));
-    expect(state.registration.status).toBe("registered");
-    expect(state.registration.items).toBe(payload);
+    const state = postsReducer(initialState, createPostTC.fulfilled(payload));
+    console.log(state);
+    expect(state.posts.status).toBe("loaded");
+    expect(state.posts.createdPost).toEqual(payload);
   });
   it("should change status with 'registrationTC.rejected' action", async () => {
-    const state = userReducer(initialState, registrationTC.rejected("error"));
-    expect(state.registration).toEqual({
-      items: {}, error: "error"
-    });
+    const state = postsReducer(initialState, createPostTC.rejected("error"));
+    console.log(state);
+    expect(state.posts.createdPost).toEqual({});
+    expect(state.posts.error).toEqual("error");
   });
   it("should change status with 'loginTC.fulfilled' action", async () => {
     const payload = {

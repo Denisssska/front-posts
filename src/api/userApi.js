@@ -16,10 +16,7 @@ export const UserApi = {
   authMe() {
     return instance.get("/auth/me");
   },
-  // uploadFile(formData) {
-  //   return instance.post("/upload", formData);
-  // },
-  updateUserFile(formData) {
+    updateUserFile(formData) {
     return instance.post("/update", formData);
   },
   changeUserPhotoAndName(userId, avatarUrl, fullName) {
