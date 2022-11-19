@@ -1,10 +1,20 @@
 import { render } from "@testing-library/react";
 import * as reduxHooks from "react-redux";
 import { FullPost } from "../../pages";
-import { useSelector } from "react-redux";
-//import {render} from "react-dom"
+
+
 jest.mock("react-redux");
-jest.mock("axios")
+// jest.mock('axios', () => {
+//   return {
+//     create: jest.fn(() => ({
+//       get: jest.fn(),
+//       interceptors: {
+//         request: { use: jest.fn(), eject: jest.fn() },
+//         response: { use: jest.fn(), eject: jest.fn() }
+//       }
+//     }))
+//   }
+// })
 const newPost = {
   title: "testTitle", text: 'testText', tags: "test", imageUrl: ""
 };

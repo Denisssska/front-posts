@@ -10,13 +10,13 @@ import {
 const initialState = {
   posts: {
     items: [{
-      _id: 1,
+      _id:1,
       title: "testTitle",
       imageUrl: "",
       tags: "testTags",
       text: "testText"
     }, {
-      _id: 2,
+      _id:2,
       title: "testTitle2",
       imageUrl: "",
       tags: "testTags2",
@@ -98,7 +98,7 @@ describe("postsSlice", () => {
   });
   it("should change status with 'deletePostTC.pending' action", async () => {
     const postId = 1;
-    const state = postsReducer(initialState, deletePostTC.pending(1));
+    const state = postsReducer(initialState, deletePostTC.pending(postId));
     console.log(state.posts.items);
     // expect(state.posts.items).toEqual(posts);
   });

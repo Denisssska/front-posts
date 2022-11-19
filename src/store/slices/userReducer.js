@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UserApi } from "../../api/userApi";
+import instance from "../../api/instance";
 
 const initialState = {
   login: {
@@ -21,7 +22,11 @@ const initialState = {
 export const loginTC = createAsyncThunk("/auth/loginTC", async ({ email, password }, thunkAPI) => {
   try {
     const { data } = await UserApi.login(email, password);
-    console.log(data);
+    // const  resp  = await fetch("", {
+    //   method: 'POST',
+    //  body: JSON.stringify({ email,password })
+    // });
+    // return await resp.json();
     return data;
   } catch (e) {
     if (e.response.data.message) {
@@ -56,7 +61,7 @@ export const authMeTC = createAsyncThunk("/auth/authMe", async (_, { rejectWithV
     return data;
   } catch (e) {
     //console.log(e.response.payload.data.message);
-    return  rejectWithValue(e.response);
+    return rejectWithValue(e.response);
   }
 
 });
@@ -126,5 +131,7 @@ const userSlice = createSlice({
     }
   }
 });
+
+
 export const { logoutAC, updateUserStateAC } = userSlice.actions;
 export const userReducer = userSlice.reducer;
