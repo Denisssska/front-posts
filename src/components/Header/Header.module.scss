@@ -1,6 +1,6 @@
 .root {
   //background: linear-gradient(to top, black, cyan);
-  background: linear-gradient(#141e30, #243b55);
+  background: linear-gradient(#141e30, #243b55, #141e30);
   padding: 10px 0;
   //border-bottom: 1px solid #e0e0e0;
   margin-bottom: 30px;
@@ -12,8 +12,8 @@
 }
 
 .logo {
-  background: linear-gradient( #243b55,#141e30);
-  color:#03e9f4;
+  background: linear-gradient(#243b55, #141e30);
+  color: #03e9f4;
   font-weight: 700;
   line-height: 35px;
   text-transform: uppercase;
@@ -24,7 +24,7 @@
 
   &:hover {
     background-color: #03e9f4;
-    color:#F5F5F5;
+    color: #F5F5F5;
     box-shadow: 0 0 5px #03e9f4,
     0 0 25px #03e9f4,
     0 0 50px #03e9f4,

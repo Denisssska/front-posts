@@ -69,8 +69,9 @@ export const CommentsBlock = ({ item, children }) => {
                   {obj.user._id === items._id &&
                     <IconButton color="secondary" onClick={() => deleteComment(obj._id)}>
                       <DeleteIcon />
-                    </IconButton>}</>
-
+                    </IconButton>
+                  }
+                </>
               )}
             </ListItem>
             <Divider variant="inset" component="li" />

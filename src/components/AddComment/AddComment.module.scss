@@ -4,6 +4,16 @@
   padding-bottom: 20px;
   margin-right: 20px;
   margin-left: 17px;
+
+  & .field {
+    //background-color: rgba(3, 233, 244, .1) !important;
+    &:hover {
+      box-shadow: 0 0 2px #03e9f4,
+      0 0 25px #03e9f4,
+      0 0 50px #03e9f4,
+      0 0 100px #03e9f4;
+    }
+  }
 }
 
 .avatar {

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "./AddComment.module.scss";
-import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import { PORT } from "../../api/instance";
 import { useParams } from "react-router-dom";
 import { updatePostTC } from "../../store/slices/postsReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { createCommentTC } from "../../store/slices/commentsReducer";
 import { initComments } from "../../selectors/commentsSelector";
+import { ColorButton } from "../Header/buttonStyle";
+import { CssTextField } from "../../pages/textFieldStyle";
 
 export const AddComment = ({ img, obj }) => {
   const dispatch = useDispatch();
@@ -45,7 +45,8 @@ export const AddComment = ({ img, obj }) => {
           src={`${PORT}${img}`}
         />
         <div className={styles.form}>
-          <TextField
+          <CssTextField
+            className={styles.field}
             onChange={(event) => writeComment(event)}
             label="Написать комментарий"
             variant="outlined"
@@ -54,7 +55,8 @@ export const AddComment = ({ img, obj }) => {
             fullWidth
             value={commentInPost}
           />
-          <Button disabled={commentInPost === ""} onClick={createComment} variant="contained">Отправить</Button>
+          <ColorButton disabled={commentInPost === ""} onClick={createComment}
+                       variant="outlined">Отправить</ColorButton>
         </div>
       </div>
     </>

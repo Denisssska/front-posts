@@ -20,7 +20,7 @@ export const TagsBlock = ({ items, isLoading }) => {
   };
   return (
     <SideBlock title="Тэги">
-      <List>
+      <List style={{backgroundColor:"rgba(3, 233, 244, .5)"}}>
         {(isLoading ? [...Array(5)] : items).map((name, i) => (
           <NavLink key={i}
                    onClick={() => handleClick(name)}
