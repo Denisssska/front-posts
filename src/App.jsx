@@ -19,7 +19,7 @@ function App() {
   return (
     <>
         <Header />
-        <Container maxWidth="lg">
+        <Container  maxWidth="lg">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/forgot" element={<ForgotPasswordPage />} />

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { Post, TagsBlock } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,12 +36,12 @@ export const Home = () => {
   const isTagLoading = tags.status === "loading";
 
   return (
-    <>
+    <div style={{margin:"8% auto"}}>
       <AntTabs style={{ marginBottom: 15 }} value={value} aria-label="basic tabs example">
         <StyledTab onClick={() => sortNew("createdAt")} label="Новые" />
         <StyledTab onClick={() => sortNew("viewsCount")} label="Популярные" />
       </AntTabs>
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) => isPostLoading ?
             <Post key={index} isLoading={isPostLoading} /> : (
@@ -70,6 +68,6 @@ export const Home = () => {
           {/*/>}*/}
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 };
