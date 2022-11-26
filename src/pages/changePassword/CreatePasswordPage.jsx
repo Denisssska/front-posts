@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { createNewPasswordTC } from "../../store/slices/changePasswordReducer";
 import { initPassword } from "../../selectors/passwordSelector";
+import { CssTextField } from "../textFieldStyle";
 
 export const CreatePasswordPage = () => {
   const dispatch = useDispatch();
@@ -32,26 +33,38 @@ export const CreatePasswordPage = () => {
           <Typography classes={{ root: styles.title }} variant="h5">
             Пароль успешно изменен!
           </Typography>
-          <Button type="submit" size="large" variant="contained" fullWidth>
-            <NavLink style={{ textDecoration: "none", color: "yellow" }} to={"/login"}>Вернуться на страницу
+          <button style={{ borderRadius: "5px" }} type="submit" className={styles.enable}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <NavLink className={styles.navLink} style={{ textDecoration: "none", color: "yellow" }} to={"/login"}>Вернуться
+              на страницу
               авторизации...</NavLink>
-          </Button>
+          </button>
         </> :
         <>
           <Typography classes={{ root: styles.title }} variant="h5">
             Создайте новый пороль
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField
+            <CssTextField
+              variant="filled"
               {...register("password", { required: "Укажите пароль" })}
               error={Boolean(errors.password?.message)}
               helperText={errors.password?.message} className={styles.field}
               label="Пароль"
               fullWidth />
-            <Button type="submit" size="large" variant="contained" fullWidth>
-              Войти
-            </Button>
-
+            {/*<Button type="submit" size="large" variant="contained" fullWidth>*/}
+            {/*  Войти*/}
+            {/*</Button>*/}
+            <button type="submit" className={styles.enable}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Создать
+            </button>
           </form>
         </>
 

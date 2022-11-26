@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import styles from "./Header.module.scss";
 import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
@@ -8,6 +7,7 @@ import { logoutTC } from "../../store/slices/userReducer";
 import { BasicModal } from "../../pages/profilePage/ProfilePage";
 import { changePostsStatus, changeSortBy } from "../../store/slices/postsReducer";
 import { initUser } from "../../selectors/userSelector";
+import { ColorButton } from "./buttonStyle";
 
 export const Header = () => {
   const login = useSelector(initUser.login);
@@ -37,19 +37,22 @@ export const Header = () => {
               <>
                 <BasicModal user={login.items} />
                 <NavLink to="/add-post">
-                  <Button onClick={() => dispatch(changePostsStatus())} variant="contained">Написать статью</Button>
+                  <ColorButton onClick={() => dispatch(changePostsStatus())} variant="outlined">Написать
+                    статью</ColorButton>
                 </NavLink>
-                <Button onClick={onClickLogout} variant="contained" color="error">
+                <ColorButton onClick={onClickLogout} variant="outlined">
                   Выйти
-                </Button>
+                </ColorButton>
               </>
             ) : (
               <>
                 <NavLink to="/login">
-                  <Button variant="outlined">Войти</Button>
+                  <ColorButton variant="outlined">
+                    Войти
+                  </ColorButton>
                 </NavLink>
                 <NavLink to="/register">
-                  <Button variant="contained">Создать аккаунт</Button>
+                  <ColorButton variant="outlined">Создать аккаунт</ColorButton>
                 </NavLink>
               </>
             )}

@@ -8,6 +8,7 @@ import { changeSortBy, getPostsTC, getTagsTC } from "../../store/slices/postsRed
 import { PORT } from "../../api/instance";
 import { initUser } from "../../selectors/userSelector";
 import { initPost } from "../../selectors/postsSelector";
+import { AntTabs, StyledTab } from "./customTabs";
 
 export const Home = () => {
   const posts = useSelector(initPost.posts);
@@ -38,10 +39,10 @@ export const Home = () => {
 
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={value} aria-label="basic tabs example">
-        <Tab onClick={() => sortNew("createdAt")} label="Новые" />
-        <Tab onClick={() => sortNew("viewsCount")} label="Популярные" />
-      </Tabs>
+      <AntTabs style={{ marginBottom: 15 }} value={value} aria-label="basic tabs example">
+        <StyledTab onClick={() => sortNew("createdAt")} label="Новые" />
+        <StyledTab onClick={() => sortNew("viewsCount")} label="Популярные" />
+      </AntTabs>
       <Grid container spacing={2}>
         <Grid xs={8} item>
           {(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) => isPostLoading ?

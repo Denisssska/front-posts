@@ -4,13 +4,14 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
-import styles from "./Login.module.scss";
+import styles from "../Login/Login.module.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registrationTC } from "../../store/slices/userReducer";
 import { useNavigate } from "react-router-dom";
 import { Snackbar } from "@mui/material";
 import { initUser } from "../../selectors/userSelector";
+import { CssTextField } from "../textFieldStyle";
 
 
 export const Registration = () => {
@@ -56,7 +57,8 @@ export const Registration = () => {
         <Avatar sx={{ width: 100, height: 100 }} />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
+        <CssTextField
+          variant="filled"
           error={Boolean(errors.fullName?.message)}
           helperText={errors.fullName?.message}
           {...register("fullName", { required: "Укажите имя" })}
@@ -64,7 +66,8 @@ export const Registration = () => {
           label="Полное имя"
           fullWidth
         />
-        <TextField
+        <CssTextField
+          variant="filled"
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           {...register("email", { required: "Укажите почту" })}
@@ -72,7 +75,8 @@ export const Registration = () => {
           label="E-Mail"
           fullWidth
         />
-        <TextField
+        <CssTextField
+          variant="filled"
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           {...register("password", { required: "Укажите пароль" })}
@@ -80,9 +84,14 @@ export const Registration = () => {
           label="Пароль"
           fullWidth
         />
-        <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
+        <button type="submit" disabled={!isValid} className={!isValid ? styles.disable : styles.enable}>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
           Зарегистрироваться
-        </Button>
+        </button>
+
       </form>
       {status !== "registration" && status !== "registered" &&
         <Snackbar open anchorOrigin={{ vertical: "bottom", horizontal: "center" }} message={status} />}

@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { forgotPasswordTC } from "../../store/slices/changePasswordReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { initPassword } from "../../selectors/passwordSelector";
+import { CssTextField } from "../textFieldStyle";
 
 
 export const ForgotPasswordPage = () => {
@@ -29,7 +30,7 @@ export const ForgotPasswordPage = () => {
           <Typography classes={{ root: styles.title }} variant="h5">
             Мы отправили на почту письмо. Пройдите по ссылке для дальнейших действий!
           </Typography>
-          <NavLink to="/login">Вернуться к авторизации</NavLink>
+          <NavLink className={styles.navLink} to="/login">Вернуться к авторизации</NavLink>
         </>
         :
         <>
@@ -40,7 +41,8 @@ export const ForgotPasswordPage = () => {
             Мы пришлем вам ссылку на указанный email.
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField
+            <CssTextField
+              variant="filled"
               type="email"
               className={styles.field}
               label="E-Mail"
@@ -49,10 +51,14 @@ export const ForgotPasswordPage = () => {
               {...register("email", { required: "Укажите почту" })}
               fullWidth
             />
-            <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
+            <button type="submit" disabled={!isValid} className={!isValid ? styles.disable : styles.enable}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
               Отправить
-            </Button>
-            <NavLink to="/login">Вернуться к авторизации</NavLink>
+            </button>
+            <NavLink className={styles.navLink} to="/login">Вернуться к авторизации</NavLink>
           </form>
 
         </>}

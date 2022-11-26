@@ -1,7 +1,23 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F5F5F5 !important;
+  //background-color: #F5F5F5 !important;
+  background: linear-gradient(#141e30, #243b55);
+  //background: linear-gradient(to top, black, cyan);
+
+
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  min-height: 100vh;
 }

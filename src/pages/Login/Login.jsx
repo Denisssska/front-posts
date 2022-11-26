@@ -1,8 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import styles from "./Login.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { loginTC } from "../../store/slices/userReducer";
@@ -10,9 +8,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Snackbar } from "@mui/material";
 import { initUser } from "../../selectors/userSelector";
-
+import { CssTextField } from "../textFieldStyle";
+import Button from "@mui/material/Button";
 
 export const Login = () => {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { status } = useSelector(initUser.login);
@@ -51,25 +51,32 @@ export const Login = () => {
           Вход в аккаунт
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            type="email"
-            className={styles.field}
+          <CssTextField
+            variant="filled"
+            type="email" className={styles.field}
             label="E-Mail"
             error={Boolean(errors.email?.message)}
             helperText={errors.email?.message}
             {...register("email", { required: "Укажите почту" })}
             fullWidth
           />
-          <TextField
+          <CssTextField
+            variant="filled"
             {...register("password", { required: "Укажите пароль" })}
             error={Boolean(errors.password?.message)}
             helperText={errors.password?.message} className={styles.field}
             label="Пароль"
             fullWidth />
-          <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
-            Войти
-          </Button>
-          <NavLink to="/forgot">Забыли пороль?</NavLink>
+
+          <button type="submit" disabled={!isValid} className={!isValid ? styles.disable : styles.enable}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </button>
+
+          <NavLink className={styles.navLink} to="/forgot">Забыли пороль?</NavLink>
         </form>
       </Paper>
     </>

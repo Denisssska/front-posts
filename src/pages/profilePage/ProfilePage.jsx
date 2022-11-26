@@ -10,6 +10,7 @@ import { TextField } from "@mui/material";
 import { updateUserStateTC } from "../../store/slices/userReducer";
 import { savePhotoOnServer } from "../../utils/savePhotoOnServer";
 import { initUser } from "../../selectors/userSelector";
+import { ColorButton } from "../../components/Header/buttonStyle";
 
 const style = {
   position: "absolute",
@@ -54,7 +55,7 @@ export const BasicModal = () => {
   };
   return (
     <span>
-      <Button variant={"contained"} onClick={() => setOpen(true)}>Изменить профиль</Button>
+      <ColorButton variant="outlined" onClick={() => setOpen(true)}>Изменить профиль</ColorButton>
       <Modal
         open={open}
         onClose={() => setOpen(false)}
