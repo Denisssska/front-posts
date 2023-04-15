@@ -8,7 +8,7 @@ import styles from "./AddPost.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { PORT } from "../../api/instance";
-import { changePostsStatus, createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/postsReducer";
+import { createPostTC, getOnePostTC, updatePostTC } from "../../store/slices/postsReducer";
 import { savePhotoOnServer } from "../../utils/savePhotoOnServer";
 import { Snackbar } from "@mui/material";
 import { initPost } from "../../selectors/postsSelector";
@@ -69,12 +69,12 @@ export const AddPost = () => {
     }),
     []
   );
-  if (!isAuth || posts.status === "loaded") {
+  if (!isAuth ) {
     navigate("/");
   }
   console.log(posts.status);
   return (
-    <Paper style={{ padding: 30 }}>
+    <Paper style={{ padding: 30 ,margin:100}}>
       <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">Загрузить превью</Button>
       <input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
       {imageUrl && (
